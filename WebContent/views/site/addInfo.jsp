@@ -28,22 +28,24 @@
 			<!-- /List group -->
 			<div class="col-lg-10 col-md-10 col-sm-10">
 				<h4 class="mq_h4">Thông tin</h4>
-				<form class="form-horizontal" style="margin-top: 20px;">
+				<form id="contactform" class="form-horizontal" method="post" id="contactform"   style="margin-top: 20px;">
 					<div class="form-group">
 						<label for="inputName" class="col-sm-2 control-label">Tên
 							đầy đủ</label>
 						<div class="col-sm-10">
-							<input type="Text" class="form-control" id="inputEmail3"
+							<input type="Text" class="form-control" id="inputName3"
 								placeholder="Họ và tên">
 						</div>
+						<p class="help-block col-sm-10" style=" margin-left: 165px;">Điền vào họ và tên</p>
 					</div>
 					<div class="form-group">
 						<label for="inputLocation" class="col-sm-2 control-label">Đơn
 							vị</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="inputPassword3"
+							<input type="text" class="form-control" id="inputText3"
 								placeholder="Đơn vị">
 						</div>
+						<p class="help-block col-sm-10" style="margin-left: 165px;">Điền vào địa chỉ nơi làm việc</p>
 					</div>
 					<div class="form-group">
 						<label for="inputEmail" class="col-sm-2 control-label">Email</label>
@@ -56,7 +58,7 @@
 						<label for="inputTel" class="col-sm-2 control-label">Số
 							điện thoại</label>
 						<div class="col-sm-10">
-							<input type="Tel" class="form-control" id="inputEmail3"
+							<input type="Tel" class="form-control" id="inputTel3"
 								placeholder="Số điện thoại">
 						</div>
 					</div>
@@ -70,7 +72,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">Xong</button>
+							<button type="button"  id="contactbtn" class="btn btn-default">Xong</button>
 						</div>
 					</div>
 				</form>
@@ -78,4 +80,57 @@
 		</div>
 	</div>
 </div>
+<script>
+	function validateText(id){
+
+		if($("#"+id).val() == null  || $("#"+id).val() == "")
+		{
+			var div = $("#"+id).closest("div").addClass("has-error");
+			div.removeClass("has-success");
+			$("#glypcn"+id).remove();
+			div.addClass("has-feedback");
+			div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>');
+
+			return false;
+		}
+		else
+		{
+			var div = $("#"+id).closest("div").removeClass("has-error");
+			div.addClass("has-success");
+			div.addClass("has-feedback");
+				$("#glypcn"+id).remove();
+		div.append('<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"  id="glypcn'+id+'" ></span>');
+			return true;
+		}
+	}
+	$(document).ready(
+		function()
+		{
+			$("#contactbtn").click(function()
+				{
+					if(!validateText("inputName3"))
+					{
+							return false;
+					}
+					if(!validateText("inputText3"))
+					{
+							return false;
+					}
+					if(!validateText("inputEmail3"))
+					{
+						return false;
+					}
+					if(!validateText("inputTel3"))
+					{
+						return false;
+					}
+
+					
+				}
+			);
+		}
+	)
+
+</script>
+
 <jsp:include page="layout/_footer.jsp"></jsp:include>
