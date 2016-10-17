@@ -36,6 +36,7 @@
 							<input type="Text" class="form-control" id="inputName3"
 								placeholder="Họ và tên">
 						</div>
+						<p class="help-block col-sm-10" style=" margin-left: 165px;">Điền vào họ và tên</p>
 					</div>
 					<div class="form-group">
 						<label for="inputLocation" class="col-sm-2 control-label">Đơn
@@ -44,6 +45,7 @@
 							<input type="text" class="form-control" id="inputText3"
 								placeholder="Đơn vị">
 						</div>
+						<p class="help-block col-sm-10" style="margin-left: 165px;">Điền vào địa chỉ nơi làm việc</p>
 					</div>
 					<div class="form-group">
 						<label for="inputEmail" class="col-sm-2 control-label">Email</label>
