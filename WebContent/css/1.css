@@ -1,5 +1,11 @@
 
 *{margin:0;padding:0; }
+
+.form-control.valid {
+    background-image: url('../images/true.png')!important;
+    background-repeat: no-repeat;
+    background-position: right;
+}
 #over {
    display: none;
     background: #000;
@@ -13,21 +19,21 @@
 }
 .ask{
   background-color:white;
-    height:auto;
-    width:450px;
-    font-family:Verdana, Arial, Helvetica, sans-serif;
-    font-size:14px;
-    padding-bottom:5px;
-    border-style: solid;
-    border-width: 5px;
-    border-color: rgb(51, 122, 183);
-    overflow:hidden;
-    position:absolute;
-    display: none;
-    z-index:99999;
-    top:10%;
-    left:50%;
-    margin-left:-300px;
+  height:auto;
+  width:450px;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:14px;
+  padding-bottom:5px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: rgb(51, 122, 183);
+  overflow:hidden;
+  position: fixed;
+  display: none;
+  z-index:99999;
+  top: 40%;
+  left:50%;
+  margin-left:-300px;
 }
 .img-close{
   width: 25px;
@@ -132,6 +138,10 @@ hr{
 }
 *{margin:0;padding:0; }
 
+label.error {
+    display: block;
+}
+
 .loadpage.text-center {
     overflow: hidden;
 }
@@ -141,8 +151,10 @@ hr{
 }
 
 form input.error {
-    background: rgba(0, 0, 0, 0.69);
-    color: rgba(229, 230, 229, 0.68);
+    background-image: url('../images/false.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    float: right;
 }
 
 ul#myError li {
@@ -506,12 +518,127 @@ a.left.carousel-control,a.right.carousel-control {
 ul.nav.navbar-nav.navbar-right.login {
     display: none;
 }
+@media (max-width: 799px) and (min-width: 300px){
+	*{
+		margin:0;
+		padding:0;
+	}
 
-@media (max-width: 1200px) and (min-width: 300px){
+.index .col-xs-8.col-sm-8.col-md-8.col-lg-8 {
+    width: 100%;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#header .header_top .col-xs-8.col-sm-8.col-md-8.col-lg-8 {
+    width: 100%;
+}
+
+#header .header_top .col-xs-4.col-sm-4.col-md-4.col-lg-4 {
+    display: none;
+}
+
+.header .header_top .col-xs-4.col-sm-4.col-md-4.col-lg-4 {}
+
+.navbar-header {
+    width: 100%;
+}
+
+.header_top input.form-control {
+    display: none;
+}
+
+.header_top h1 {
+    font-size: 21px;
+}
+	.index .container .row .col-xs-4.col-sm-4.col-md-4.col-lg-4 {display: none;}
+
+.info {
+    font-size: 9px;
+}
+
+.header_top img.img-responsive {
+    margin: 15px 0;
+    max-height: 85px;
+    min-width: 75px;
+}
+
+p {
+    font-size: 15px;
+}
+
+strong {
+    font-size: 7px;
+}
+
+p.list-group-item.active {
+    font-size: 7px;
+}
+
+.team-member .details p {
+    font-size: 9px;
+}
+
+.contact .col-xs-2.col-sm-2.col-md-2.col-lg-2 h2 {
+    font-size: 16px;
+    text-align: center;
+}
+
+.contact .col-xs-2.col-sm-2.col-md-2.col-lg-2 ul li {
+    font-size: 10px;
+}
+
+
+
+a {font-size: 12px!important;}
+
+.topview .list-group h3 {
+    font-size: 11px;
+}
+
+.slideshow {
+    display: none;
+}
+
+
+
+.or {
+    display: none;
+}
+
+    ul.login {
+        display: none;
+    }
+
+    ul.nav.navbar-nav.navbar-right.login {
+        display: block;
+    }
+    .hash-tag .right a{
+     	float: right!important;
+    }
+	
+}
+@media (max-width: 1200px) and (min-width: 800px){
     *{
         margin: 0;
         padding: 0;
     }
+
+.col-xs-4.col-sm-4.col-md-4.col-lg-4 {
+}
+
+.info {
+    font-size: 9px;
+}
+
+.header_top img.img-responsive {
+    min-height: 100px;
+    min-width: 70px;
+}
 
 p {
     font-size: 7px;
@@ -538,10 +665,9 @@ p.list-group-item.active {
     font-size: 10px;
 }
 
-.content-wrap .news .title a {
-}
 
-a {font-size: 8px;}
+
+a {font-size: 8px!important;}
 
 .topview .list-group h3 {
     font-size: 11px;
@@ -551,7 +677,7 @@ a {font-size: 8px;}
     display: none;
 }
 
-h1 {}
+
 
 .or {
     display: none;
@@ -742,7 +868,7 @@ footer {
     min-height: 300px;
 }
 
-.content-wrap img {min-height: 120px;min-width: 200px;width: 100%;max-height: 300px;}
+.content-wrap img {min-height: 120px;min-width: 100px;width: 100%;max-height: 300px;}
 
 .content-wrap img.img-responsive {
     max-height: 110px;
@@ -775,7 +901,7 @@ footer {
     min-height: 280px;
 }
 
-.header_top .login ul>li a:hover {
+.header_top .login li a:hover {
     color: burlywood;
     background: none;
     border-top: 3px solid red;

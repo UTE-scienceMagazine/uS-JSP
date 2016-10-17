@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class CheckLogin
  */
-@WebFilter("/CheckLogin")
+@WebFilter("/*")
 public class CheckLogin implements Filter {
 
     /**
@@ -36,19 +36,29 @@ public class CheckLogin implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpSession session = ((HttpServletRequest) request).getSession();
+		HttpServletRequest req=(HttpServletRequest) request;
+		HttpSession session = req.getSession();
 		
-		HttpServletResponse resp =(HttpServletResponse)response;
 		if(session.getAttribute("user")!=null){
-			resp.sendRedirect("/home.html");
+			chain.doFilter(request, response);
+			return;
 		}
 		
-		chain.doFilter(request, response);
+		String url= req.getRequestURI();
+		if(url.endsWith("/UteScience/")||url.endsWith(".css")||url.endsWith(".js")
+				||url.endsWith(".png")||url.endsWith(".jpg")
+				||url.endsWith(".ttf")
+				||url.endsWith("/home.html")
+				||url.endsWith(".mp4")){
+			chain.doFilter(request, response);
+			return;
+		}
+		
+		session.setAttribute("uri", url);
+		
+		req.getRequestDispatcher("signin.html").forward(request, response);
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
 	}

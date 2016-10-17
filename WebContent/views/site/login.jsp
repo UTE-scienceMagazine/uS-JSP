@@ -53,8 +53,9 @@
 								<label class="radio-inline"><input type="radio" value="editor" name="users">Editor</label>
 								<label class="radio-inline"><input type="radio" value="master" name="users">Master</label>
 								<label class="radio-inline"><input type="radio" value="admin" name="users">Admin</label>
+								
 							</div>
-							
+							<label><input type="checkbox" value="true" name="remember">Remember</label><br>
 							<button type="submit" class="btn btn-primary" value="login" name="command">Submit</button>
 
 						</form>
@@ -80,7 +81,6 @@
 								<input name="confirm" type="password" class="form-control" id="confirm" placeholder="Confirm Password">
 							</div>
 							<button type="submit" class="btn btn-primary" value="register" name="command">Submit</button>
-
 						</form>
 					</div>
 				</div>

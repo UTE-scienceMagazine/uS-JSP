@@ -7,6 +7,7 @@ import java.util.Enumeration;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,9 +19,11 @@ import tools.SendMail;
 @WebServlet("/signin.html")
 public class SigninController extends HttpServlet {
 
+	String uri;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		uri=(String) req.getSession().getAttribute("uri");
 		req.getRequestDispatcher("/views/site/login.jsp").forward(req, resp);
 	}
 
@@ -43,10 +46,29 @@ public class SigninController extends HttpServlet {
 					user.setUserPass(req.getParameter("password"));
 					user.setUserRole(req.getParameter("users"));
 					
+					String remember=req.getParameter("remember");
+					
 					session.setAttribute("user", user);
-
-					req.setAttribute("message", "Well come");
-					url = "/views/site/index.jsp";
+					Cookie ckId = new Cookie("uid", user.getUesrEmail());
+					Cookie ckPw = new Cookie("pwd", user.getUserPass());
+					if ( remember== "true") {
+						ckId.setMaxAge(30 * 24 * 60 * 60);
+						ckId.setMaxAge(30 * 24 * 60 * 60);
+						System.out.println("Ok");
+					} else {
+						ckId.setMaxAge(0);
+						ckPw.setMaxAge(0);
+					}
+					resp.addCookie(ckId);
+					resp.addCookie(ckPw);
+					
+					if(uri.endsWith("signin.html")){
+						url = "/views/site/index.jsp";
+					}else{
+						uri.replace("/UteScience", "");
+						resp.sendRedirect(uri);
+						return;
+					}
 
 				} else {
 					req.setAttribute("message", "Error password");
@@ -67,7 +89,7 @@ public class SigninController extends HttpServlet {
 			if (confirm.equals(password)) {
 				req.setAttribute("message", "Please active email");
 				SendMail mail = new SendMail();
-				mail.sendMail(email, "Kích hoặt email",	"WellCome " + email + "\n" + "You password is: " + password);
+				mail.sendMail(email, "Kích hoặt email", "WellCome " + email + "\n" + "You password is: " + password);
 				user.setUesrEmail(email);
 				user.setUserPass(password);
 
@@ -80,9 +102,8 @@ public class SigninController extends HttpServlet {
 			break;
 
 		}
-
-		RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
-		rd.forward(req, resp);
+		req.getRequestDispatcher(url).forward(req, resp);
+		
 	}
 
 }
