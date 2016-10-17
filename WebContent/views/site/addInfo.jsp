@@ -84,12 +84,20 @@
 		if($("#"+id).val() == null  || $("#"+id).val() == "")
 		{
 			var div = $("#"+id).closest("div").addClass("has-error");
+			div.removeClass("has-success");
+			$("#glypcn"+id).remove();
+			div.addClass("has-feedback");
+			div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>');
 
 			return false;
 		}
 		else
 		{
-			var div = $("#"+id).closest("div").removeClass("has-error").addClass("has-success");
+			var div = $("#"+id).closest("div").removeClass("has-error");
+			div.addClass("has-success");
+			div.addClass("has-feedback");
+				$("#glypcn"+id).remove();
+		div.append('<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"  id="glypcn'+id+'" ></span>');
 			return true;
 		}
 	}
