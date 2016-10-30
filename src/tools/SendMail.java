@@ -21,14 +21,14 @@ public class SendMail {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 				
-				return new PasswordAuthentication("duonganhvu809x@gmail.com", "123456789vu");
+				return new PasswordAuthentication("duongvu089x@gmail.com", "1234");
 				
 			}
 		});
 		try {
 			Message message=new MimeMessage(session);
 			message.setHeader("Content-Type", "text/plain; charset=UTF-8");
-			message.setFrom(new InternetAddress("duonganhvu809x@gmail.com"));
+			message.setFrom(new InternetAddress("duongvu089x@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 			message.setSubject(subject);
 			message.setText(text);

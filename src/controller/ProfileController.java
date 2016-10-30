@@ -29,23 +29,23 @@ public class ProfileController extends HttpServlet {
 			req.getRequestDispatcher(url).forward(req, resp);
 			return;
 		}
-		switch (user.getUserRole()) {
-		case "admin":
-			url="/views/site/profileAdmin.jsp";
+		switch (user.getRoleId()) {
+		case 6:
+			url="/views/admin/profileAdmin.jsp";
 			break;
-		case "view":
+		case 1:
 			url="/views/site/profileViewer.jsp";
 			break;
-		case "author":
+		case 3:
 			url="/views/site/profileAuthor.jsp";
 			break;
-		case "editor":
+		case 4:
 			url="/views/site/profileEditor.jsp";
 			break;
-		case "master":
+		case 5:
 			url="/views/site/profileMaster.jsp";
 			break;
-		case "tester":
+		case 2:
 			url="/views/site/profileTester.jsp";
 			break;
 		default:

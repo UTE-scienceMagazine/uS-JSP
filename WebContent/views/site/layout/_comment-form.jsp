@@ -2,15 +2,14 @@
 
 <legend>Comments</legend>
 <fieldset style="margin-left: 10px">
-	<form action="" method="POST" role="form">
+	<form role="form">
 
 		<div class="form-group">
-			<label for="">Title</label> <input type="text" class="form-control"
-				id="" placeholder="Title"> <label for="">Body</label>
-			<textarea type="text" class="form-control" id=""
+			<label>Comment</label>
+			<textarea type="text" class="com-mess form-control" id=""
 				placeholder="Massage"></textarea>
 		</div>
-		<button type="submit" value="comment" class="com-submit btn btn-primary">Submit</button>
+		<input type="submit" value="Comment" class="com-submit btn btn-primary">
 	</form>
 </fieldset>
 

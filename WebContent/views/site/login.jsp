@@ -27,7 +27,10 @@
 						confirm:{ equalTo:"Không trùng với password"}
 					}                 
 				}); 
-		}); 	
+
+			
+		});
+		
 </script>
 
 	<div class="signin-register">
@@ -47,12 +50,12 @@
 								
 							</div>
 							<div class="row text-center">
-								<label class="radio-inline"><input type="radio" value="view" name="users" checked="checked"> View</label>
-								<label class="radio-inline"><input type="radio" value="tester" name="users">Tester</label>
-								<label class="radio-inline"><input type="radio" value="author" name="users">Author</label>
-								<label class="radio-inline"><input type="radio" value="editor" name="users">Editor</label>
-								<label class="radio-inline"><input type="radio" value="master" name="users">Master</label>
-								<label class="radio-inline"><input type="radio" value="admin" name="users">Admin</label>
+								<label class="radio-inline"><input type="radio" value="1" name="users" checked="checked"> View</label>
+								<label class="radio-inline"><input type="radio" value="2" name="users">Tester</label>
+								<label class="radio-inline"><input type="radio" value="3" name="users">Author</label>
+								<label class="radio-inline"><input type="radio" value="4" name="users">Editor</label>
+								<label class="radio-inline"><input type="radio" value="5" name="users">Master</label>
+								<label class="radio-inline"><input type="radio" value="6" name="users">Admin</label>
 								
 							</div>
 							<label><input type="checkbox" value="true" name="remember">Remember</label><br>
@@ -72,7 +75,8 @@
 							<legend>Register</legend>
 							<div class="form-group">
 								<label for="">Email</label>
-								<input name="email" type="text" class="form-control" id="email" placeholder="Email">
+								<input name="email" type="text" class="form-control" id="email" onBlur="checkAvailability()" placeholder="Email">
+								<span id="user-availability-status"></span>    
 								<br>
 								<label for="">Password</label>
 								<input name="password" type="password" class="form-control" id="password-register" placeholder="Password">
@@ -84,10 +88,27 @@
 						</form>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
-	
+<script>
+
+function checkAvailability() {
+	$.ajax({
+		url : "checkemail.html",
+		type : "POST",
+		data : {
+			email:  $("#formRegister #email").val(),
+		},
+		async : true,
+		success : function(data) {
+			$("#user-availability-status").html(data);
+			
+		},
+		error : function() {
+		}
+	});
+} 	
+</script>
 
 <jsp:include page="layout/_footer.jsp"></jsp:include>

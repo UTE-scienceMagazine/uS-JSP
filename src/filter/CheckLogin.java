@@ -49,12 +49,15 @@ public class CheckLogin implements Filter {
 				||url.endsWith(".png")||url.endsWith(".jpg")
 				||url.endsWith(".ttf")
 				||url.endsWith("/home.html")
-				||url.endsWith(".mp4")){
+				||url.endsWith(".mp4")
+				||url.endsWith("/article.html")
+				||url.endsWith("/volume.html")
+				||url.endsWith("/checkemail.html")){
 			chain.doFilter(request, response);
 			return;
 		}
 		
-		session.setAttribute("uri", url);
+		req.setAttribute("uri", url);
 		
 		req.getRequestDispatcher("signin.html").forward(request, response);
 	}

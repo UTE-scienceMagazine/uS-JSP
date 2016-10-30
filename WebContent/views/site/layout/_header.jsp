@@ -10,7 +10,6 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-<!-- <script type="text/javascript" src="js/jquery.easing.1.3.js"></script> -->
 <script type="text/javascript" src="editor/ckeditor.js"></script>
 <script type="text/javascript" src="js/1.js"></script>
 

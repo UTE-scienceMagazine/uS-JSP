@@ -10,46 +10,42 @@
 			<div class="list-group">
 				<h3>Tên bài viết</h3>
 				<div class="image">
-					<a href="#"> <img src="images/blog-two.jpg"
-						class="img-responsive">
-					</a> <a href="" class="title">Nội dung video rất ngắn gọn: Faker
+					 <a href="" class="title">Nội dung video rất ngắn gọn: Faker
 						cầm Jarvan IV đi rừng!!!</a>
+					<p  class="description">Chỉ một câu Em đi về phía. Tôi Một làn mây thật trong lành. Một ngọn gió đung đưa cười vui. Tôi mơ màng chút thôi </p>
 				</div>
 			</div>
 			<div class="list-group">
 				<h3>Tên bài viết</h3>
 				<div class="image">
-					<a href="#"> <img src="images/blog-two.jpg"
-						class="img-responsive">
-					</a> <a href="" class="title">Nội dung video rất ngắn gọn: Faker
+					
+				 <a href="" class="title">Nội dung video rất ngắn gọn: Faker
 						cầm Jarvan IV đi rừng!!!</a>
+					<p  class="description">Chỉ một câu Em đi về phía. Tôi Một làn mây thật trong lành. Một ngọn gió đung đưa cười vui. Tôi mơ màng chút thôi </p>
 				</div>
 			</div>
 			<div class="list-group">
 				<h3>Tên bài viết</h3>
 				<div class="image">
-					<a href="#"> <img src="images/blog-two.jpg"
-						class="img-responsive">
-					</a> <a href="" class="title">Nội dung video rất ngắn gọn: Faker
+					 <a href="" class="title">Nội dung video rất ngắn gọn: Faker
 						cầm Jarvan IV đi rừng!!!</a>
+					<p  class="description">Chỉ một câu Em đi về phía. Tôi Một làn mây thật trong lành. Một ngọn gió đung đưa cười vui. Tôi mơ màng chút thôi </p>
 				</div>
 			</div>
 			<div class="list-group">
 				<h3>Tên bài viết</h3>
 				<div class="image">
-					<a href="#"> <img src="images/blog-two.jpg"
-						class="img-responsive">
-					</a> <a href="" class="title">Nội dung video rất ngắn gọn: Faker
+					 <a href="" class="title">Nội dung video rất ngắn gọn: Faker
 						cầm Jarvan IV đi rừng!!!</a>
+					<p  class="description">Chỉ một câu Em đi về phía. Tôi Một làn mây thật trong lành. Một ngọn gió đung đưa cười vui. Tôi mơ màng chút thôi </p>
 				</div>
 			</div>
 			<div class="list-group">
 				<h3>Tên bài viết</h3>
 				<div class="image">
-					<a href="#"> <img src="images/blog-two.jpg"
-						class="img-responsive">
-					</a> <a href="" class="title">Nội dung video rất ngắn gọn: Faker
+					 <a href="" class="title">Nội dung video rất ngắn gọn: Faker
 						cầm Jarvan IV đi rừng!!!</a>
+					<p  class="description">Chỉ một câu Em đi về phía. Tôi Một làn mây thật trong lành. Một ngọn gió đung đưa cười vui. Tôi mơ màng chút thôi </p>
 				</div>
 			</div>
 			

@@ -1,5 +1,5 @@
 $(function() {
-	
+
 	$(document).ready(function() {
 		$("#txtEditor").Editor();
 	});
@@ -50,13 +50,13 @@ $(function() {
 		$(this).next().slideToggle();
 
 	});
-	/*$('[data-toggle="tooltip"]').tooltip();*/
+	/* $('[data-toggle="tooltip"]').tooltip(); */
 	$(document).ready(function() {
 		$('a.ask-window').click(function() {
-			//lấy giá trị thuộc tính href - chính là phần tử "#box"
+			// lấy giá trị thuộc tính href - chính là phần tử "#box"
 			var Box = $(this).attr('href');
 
-			//cho hiện hộp đăng nhập trong 300ms
+			// cho hiện hộp đăng nhập trong 300ms
 			$(Box).fadeIn(300);
 
 			// thêm phần tử id="over" vào sau body
@@ -81,4 +81,29 @@ $(function() {
 			return false;
 		});
 	});
+
+	
+
+	$(".com-submit").click(function() {
+
+		m = $(".com-mess").val();
+
+		$.ajax({
+			type : "POST",
+			url : "article.html",
+			data : {
+				mess : m,
+			},
+			async : true,
+			success : function(response) {
+
+				$(".comments-list li:eq(0)").before(response);
+
+				$(".com-mess").val("");
+				$(".com-name").val("");
+			}
+		});
+		return false;
+	});
+
 });

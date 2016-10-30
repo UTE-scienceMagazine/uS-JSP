@@ -1,6 +1,19 @@
 
 *{margin:0;padding:0; }
 
+.content-wrap .news .title {
+    border-bottom: 4px solid rgba(131, 150, 205, 0.35);
+}
+
+.news .info {
+    display: inline-block;
+}
+
+.title p.dateUp.text-center {
+    background: #337ab7;
+    font-size: 20px;
+    color: rgb(237, 237, 237);
+}
 .form-control.valid {
     background-image: url('../images/true.png')!important;
     background-repeat: no-repeat;
@@ -137,6 +150,15 @@ hr{
     margin-right: 10px;
 }
 *{margin:0;padding:0; }
+
+a.rep-a {
+    margin: 15px;
+}
+
+.news .info p {
+    float: right;
+    padding: 0 10px;
+}
 
 label.error {
     display: block;
@@ -376,6 +398,7 @@ form .stars span {
 
 .topview .image {
     position: relative;
+    height: 100px;
 }
 
 ul.dropdown-menu.level-two {
@@ -707,8 +730,9 @@ a {font-size: 8px!important;}
 
 .reply-comment-list li.reply-commet {
     list-style-type: none;
-    padding: 10px 0;
+    padding: 0px 0;
     margin: -5px 0;
+    border-bottom: 1px solid;
 }
 
 
@@ -728,6 +752,7 @@ li.reply-comment {
 
 .comments-list .comments p {
     font-size: 13px;
+    padding: 0 0px 0px 0;
 }
 
 .comments-list .comments .col-xs-3.col-sm-3.col-md-3.col-lg-3 {
@@ -736,7 +761,7 @@ li.reply-comment {
 
 ul.reply-comment-list {
     padding: 10px;
-    height: 60px;
+    height: 0px;
 }
 
 .comments-list .comments img.img-responsive {
@@ -915,6 +940,7 @@ footer {
     position: relative;
     z-index: 1;
     transition: 0.4s;
+    border-bottom: 1px solid rgba(53, 141, 203, 0.86);
 }
 
 .topview .list-group h3:hover {
@@ -922,12 +948,12 @@ footer {
 }
 
 .topview .list-group {
-    border-bottom: 2px solid hsla(0, 28%, 58%, 0.46);
+    border-bottom: 2px solid hsla(0, 39%, 92%, 0.1);
     transition: 0.8s;
 }
 
 .topview .list-group:hover {
-    background: rgba(190, 175, 175, 0.81);
+    background: rgba(232, 197, 197, 0.18);
 }
 
 .topview .list-group h3::after {width: 100%;height: 0;top: 50%;left: 50%;background: #3d3f93;opacity: 0;transform: translateX(-50%) translateY(-50%) rotate(30deg);content: '';position: absolute;z-index: -1;transition: all 0.3s;}
@@ -969,6 +995,17 @@ footer {
 
 .content-wrap .news .title a {
     font-size: 20px;
+}
+
+.content-wrap .news a.fa.fa-download {
+    float: right;
+    text-decoration: none;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.content-wrap .news a.fa.fa-download:hover {
+    color: red;
 }
 
 .header_mid {
