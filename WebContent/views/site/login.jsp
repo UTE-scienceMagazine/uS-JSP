@@ -42,6 +42,7 @@
 						<form id="formLogin" action="signin.html" method="POST" role="form">
 							<legend>Sign in</legend>
 							<div class="form-group">
+							
 								<label>Email</label>
 								<input name="email" type="text" class="form-control" id="email" placeholder="Email">
 								<br>
@@ -59,8 +60,9 @@
 								
 							</div>
 							<label><input type="checkbox" value="true" name="remember">Remember</label><br>
+							
 							<button type="submit" class="btn btn-primary" value="login" name="command">Submit</button>
-
+						
 						</form>
 					</div>
 				</div>

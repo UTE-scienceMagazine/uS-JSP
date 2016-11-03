@@ -6,16 +6,17 @@ import java.sql.Timestamp;
 public class EmployeeArticle implements Serializable{
 
 	private Integer id;
-	private Integer employeeId;
-	private Integer articleId;
+	private Employee employeeId;
+	private Article articleId;
 	private Integer status;
 	private Timestamp date;
 	private Integer statuschange;
 	
+
 	public EmployeeArticle() {
 		super();
 	}
-	public EmployeeArticle(Integer id, Integer employeeId, Integer articleId, Integer status, Timestamp date,
+	public EmployeeArticle(Integer id, Employee employeeId, Article articleId, Integer status, Timestamp date,
 			Integer statuschange) {
 		super();
 		this.id = id;
@@ -31,16 +32,16 @@ public class EmployeeArticle implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getEmployeeId() {
+	public Employee getEmployeeId() {
 		return employeeId;
 	}
-	public void setEmployeeId(Integer employeeId) {
+	public void setEmployeeId(Employee employeeId) {
 		this.employeeId = employeeId;
 	}
-	public Integer getArticleId() {
+	public Article getArticleId() {
 		return articleId;
 	}
-	public void setArticleId(Integer articleId) {
+	public void setArticleId(Article articleId) {
 		this.articleId = articleId;
 	}
 	public Integer getStatus() {
@@ -61,6 +62,7 @@ public class EmployeeArticle implements Serializable{
 	public void setStatuschange(Integer statuschange) {
 		this.statuschange = statuschange;
 	}
+	
 	
 	
 	

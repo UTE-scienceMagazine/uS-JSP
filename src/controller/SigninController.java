@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.EmployeeDAO;
 import dao.UserDAO;
+import model.Employee;
 import model.User;
 import tools.MD5;
 import tools.SendMail;
@@ -36,20 +38,29 @@ public class SigninController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String command = req.getParameter("command");
-		User user = new User();
+	
 		String url = "";
 		String email = "";
 	
 		HttpSession session = req.getSession();
-		UserDAO dao = new UserDAO();
+		
+		
 		
 		switch (command) {
 		case "login":
 			
-			Integer roleId=Integer.parseInt(req.getParameter("users"));
+			Integer logined=(Integer)session.getAttribute("roleId");
+			if(logined != null){
+				resp.sendRedirect("home.html");
+				return;
+			}
 			
+			Integer roleId=Integer.parseInt(req.getParameter("users"));
+			session.setAttribute("roleId", roleId);
 			//đăng nhập theo view
 			if(roleId==1){
+				User user = new User();
+				UserDAO dao = new UserDAO();
 				user=dao.login(req.getParameter("email"),MD5.encryption(req.getParameter("password")));
 				if(user !=null){
 					session.setAttribute("user", user);
@@ -76,13 +87,44 @@ public class SigninController extends HttpServlet {
 					}
 					
 				}else{
+					req.setAttribute("login", "Please check emmail or password again");
 					url = "/views/site/login.jsp";
 				}
 			//đăng nhập theo employee
 			}else {
-				
-			}
+				Employee employee=new Employee();
+				EmployeeDAO dao=new EmployeeDAO();
+				employee=dao.login(req.getParameter("email"),MD5.encryption(req.getParameter("password")),roleId);
 			
+				if(employee !=null){
+					session.setAttribute("user", employee);
+					String remember = req.getParameter("remember");
+					Cookie ckId = new Cookie("uid", employee.getEmail());
+					Cookie ckPw = new Cookie("pwd", employee.getPassword());
+					if (remember == "true") {
+						ckId.setMaxAge(30 * 24 * 60 * 60);
+						ckId.setMaxAge(30 * 24 * 60 * 60);
+						
+					} else {
+						ckId.setMaxAge(0);
+						ckPw.setMaxAge(0);
+					}
+					resp.addCookie(ckId);
+					resp.addCookie(ckPw);
+					
+					if (uri.endsWith("signin.html")) {
+						url = "/views/site/index.jsp";
+					} else {
+						uri.replace("/UteScience", "");
+						resp.sendRedirect(uri);
+						return;
+					}
+					
+				}else{
+					req.setAttribute("login", "Please check emmail or password again");
+					url = "/views/site/login.jsp";
+				}
+			}
 			
 			break;
 
@@ -93,6 +135,8 @@ public class SigninController extends HttpServlet {
 			String password = req.getParameter("password");
 			String confirm = req.getParameter("confirm");
 			if (confirm.equals(password)) {
+				User user = new User();
+				UserDAO dao = new UserDAO();
 				// req.setAttribute("message", "Please active email");
 				/*
 				 * SendMail mail = new SendMail(); mail.sendMail(email,
