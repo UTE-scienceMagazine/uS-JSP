@@ -10,82 +10,68 @@ public class Comment implements Serializable{
 	private String mess;
 	private Timestamp date;
 	private Integer status;
-	private Integer userId;
-	private Integer articleId;
 	private List<Reply> replies;
+	private User userId;
+	private Article articleId;
+	
 	
 	public Comment() {
 		super();
 	}
-
-	public Comment(Integer id, String mess, Timestamp date, Integer status, Integer userId, Integer articleId,
-			List<Reply> replies) {
+	
+	public Comment(Integer id, String mess, Timestamp date, Integer status, List<Reply> replies, User userId,
+			Article articleId) {
 		super();
 		this.id = id;
 		this.mess = mess;
 		this.date = date;
 		this.status = status;
+		this.replies = replies;
 		this.userId = userId;
 		this.articleId = articleId;
-		this.replies = replies;
 	}
-
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getMess() {
 		return mess;
 	}
-
 	public void setMess(String mess) {
 		this.mess = mess;
 	}
-
 	public Timestamp getDate() {
 		return date;
 	}
-
 	public void setDate(Timestamp date) {
 		this.date = date;
 	}
-
 	public Integer getStatus() {
 		return status;
 	}
-
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
-	public Integer getArticleId() {
-		return articleId;
-	}
-
-	public void setArticleId(Integer articleId) {
-		this.articleId = articleId;
-	}
-
 	public List<Reply> getReplies() {
 		return replies;
 	}
-
 	public void setReplies(List<Reply> replies) {
 		this.replies = replies;
 	}
-	
+	public User getUserId() {
+		return userId;
+	}
+	public void setUserId(User userId) {
+		this.userId = userId;
+	}
+	public Article getArticleId() {
+		return articleId;
+	}
+	public void setArticleId(Article articleId) {
+		this.articleId = articleId;
+	}
 	
 	
 	

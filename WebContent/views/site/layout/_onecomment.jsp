@@ -12,14 +12,25 @@
 						class="rep-a" data-a="#">Reply</a></small>
 				</p>
 			</div>
-			<p>${mess1}</p>
 			<p class="time">Ngày đăng: ${text}</p>
-
+			<p>${mess1}</p>
+		
 			<ul class="reply-comment-list">
-				
+
 			</ul>
 			<!-- end reply-comment-list -->
-			<jsp:include page="_reply-form.jsp"></jsp:include>
+			<fieldset style="margin-left: 10px; display: none" class="rep-form">
+				<legend>Reply</legend>
+				<form role="form">
+					<div class="form-group">
+						<label for="">Message</label>
+						<textarea type="text" class="form-control rep-mess" id=""
+							placeholder="Massage"></textarea>
+					</div>
+					<button type="submit" value="reply"
+						class="reply-submit btn btn-primary">Reply</button>
+				</form>
+			</fieldset>
 		</div>
 		<!-- end col 11 -->
 	</div> <!-- end row -->

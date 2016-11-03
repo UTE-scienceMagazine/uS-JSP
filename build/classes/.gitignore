@@ -1,6 +1,5 @@
 /controller/
-/model/
-/filter/
-/connect/
 /dao/
+/filter/
+/model/
 /tools/

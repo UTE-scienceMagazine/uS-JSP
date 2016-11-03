@@ -14,7 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ArticleDAO;
 import dao.CommentDAO;
+import dao.ReplyDAO;
+import model.Article;
 import model.Comment;
 import model.User;
 
@@ -22,20 +25,28 @@ import model.User;
 public class ArticleController extends HttpServlet {
 	
 	Integer id;
-	
+	ArticleDAO adao=new ArticleDAO();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
 		id=Integer.parseInt(req.getParameter("id"));
+		
 		CommentDAO commentDAO=new CommentDAO();
 		try {
 			HttpSession httpSession=req.getSession();
+			Article article= adao.findArticleById(id);
+			httpSession.setAttribute("article", article);
+			
 			ArrayList<Comment> list=new ArrayList<>();
 			list=commentDAO.loadComment(id);
 			if(list.isEmpty()){
 				httpSession.removeAttribute("list");
 			}else{
+				for (Comment comment : list) {
+					ReplyDAO repDao = new ReplyDAO();
+					comment.setReplies(repDao.loadReply(comment.getId())) ;
+				}
 				httpSession.setAttribute("list", list);
 			}
 		} catch (Exception e) {
@@ -63,10 +74,12 @@ public class ArticleController extends HttpServlet {
 		try {
 			Comment cm = new Comment();
 			cm.setMess(mess1);
-			cm.setUserId(user.getId());
+			cm.setUserId(user);
 			cm.setDate(new Timestamp(new Date().getTime()));
 			cm.setStatus(1);
-			cm.setArticleId(id);
+			
+			Article article= adao.findArticleById(id);
+			cm.setArticleId(article);
 			CommentDAO dao = new CommentDAO();
 			dao.insertComment(cm);
 			

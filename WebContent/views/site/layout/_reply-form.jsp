@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <legend>Reply</legend>
-<fieldset style="margin-left: 10px">
+<fieldset style="margin-left: 10px" class="rep-form${l.id}">
 	<form role="form">
 
 		<div class="form-group">

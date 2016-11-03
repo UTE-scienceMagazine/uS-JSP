@@ -82,7 +82,12 @@ $(function() {
 		});
 	});
 
-	
+
+	$(".rep-a").click(function() {
+			id = $(this).attr("data-a");
+			$(".rep-form"+id).slideToggle();
+			
+	});
 
 	$(".com-submit").click(function() {
 
@@ -96,8 +101,12 @@ $(function() {
 			},
 			async : true,
 			success : function(response) {
-
-				$(".comments-list li:eq(0)").before(response);
+				if ($('.comments-list  li').length == 0) {
+					$('.comments-list').html(response);
+				}else{
+					$(".comments-list li:eq(0)").before(response);
+				}
+				
 
 				$(".com-mess").val("");
 				$(".com-name").val("");
@@ -105,5 +114,33 @@ $(function() {
 		});
 		return false;
 	});
-
+	
+	
+	
+	
+	$(".reply-submit").click(function() {
+		
+		cid = $(this).attr("data-comid");
+		m = $(".rep-mess" + cid).val();
+		
+		$.ajax({
+			type : "POST",
+			url : "reply.html",
+			data : {
+				mess : m,
+				com_id : cid
+			},
+			async : true,
+			success : function(response) {				
+				if ($('.reply-comment-list' + cid + ' li').length == 0) {
+					$(".reply-comment-list" + cid).html(response);
+				} else {
+					$(".reply-comment-list"+ cid + " li:eq(0)").before(response);
+				}
+				$(".rep-mess" + cid).val("");
+				
+			}
+		});
+		return false;
+	});
 });

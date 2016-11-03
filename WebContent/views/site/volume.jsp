@@ -4,7 +4,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-				
+				<h1 class="text-center">Volume 1</h1>
 				<div class="content-wrap">
 					<div class="news">
 						<div class="title">

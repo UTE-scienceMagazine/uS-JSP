@@ -1,7 +1,7 @@
 
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="comment hide">
 	<div class="comment-list">
@@ -15,14 +15,21 @@
 							</div>
 							<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
 								<div class="info">
-									<p>${l.userId} <small><a href="javascript:void(0)" class="rep-a" data-a="#">Reply</a></small></p>
+									<p>${l.userId.email}
+										<small><a href="javascript:void(0)" class="rep-a"
+											data-a="${l.id}">Reply</a></small>
+									</p>
 								</div>
+								<p class="time">
+									Ngày đăng:
+									<fmt:formatDate pattern="dd/MM/yyyy" value="${l.date}" />
+								</p>
 								<p>${l.mess}</p>
-								<p class="time">Ngày đăng: <fmt:formatDate pattern="dd/MM/yyyy" value="${l.date}"/> </p>
-											
-								<ul class="reply-comment-list">
-									
-										<!-- <li class="reply-commet">
+								
+
+								<ul class="reply-comment-list${l.id}">
+									<c:forEach var="r" items="${l.replies}">
+										<li class="reply-commet">
 											<div class="row">
 												<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 													<img src="images/images.png" class="img-responsive"
@@ -30,23 +37,41 @@
 												</div>
 												<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
 													<div class="info">
-														<p>Ai đó</p>
+														<p>${r.userId.email}</p>
 													</div>
-													<p>Bác nói chí phải ahihi</p>
-													<p class="time">Ngày đăng: 13/09/2016</p></div>
+													<p class="time">Ngày đăng: <fmt:formatDate pattern="dd/MM/yyyy" value="${r.date}" /></p>
+													<p>${r.mess }</p>
+													
+												</div>
 											</div>
-										</li> -->
-															
+										</li>
+									</c:forEach>
+									<!--  -->
+
 								</ul>
 								<!-- end reply-comment-list -->
-								<jsp:include page="_reply-form.jsp"></jsp:include>
+
+								<fieldset style="margin-left: 10px; display: none"
+									class="rep-form${l.id}">
+									<legend>Reply</legend>
+									<form role="form">
+										<div class="form-group">
+											<label for="">Message</label>
+											<textarea type="text" class="form-control rep-mess${l.id}"
+												id="" placeholder="Massage"></textarea>
+										</div>
+
+										<button type="submit" value="reply"
+											class="reply-submit btn btn-primary" data-comid="${l.id }">Reply</button>
+									</form>
+								</fieldset>
 							</div>
 							<!-- end col 11 -->
 						</div> <!-- end row -->
 					</li>
-				<!-- end comments -->
-				</c:forEach>	
-				
+					<!-- end comments -->
+				</c:forEach>
+
 				<!-- end commen-->
 			</ul>
 			<!-- end comment-list -->

@@ -1,9 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<legend>Comments</legend>
+
 <fieldset style="margin-left: 10px">
 	<form role="form">
-
+		<legend>Comments</legend>
 		<div class="form-group">
 			<label>Comment</label>
 			<textarea type="text" class="com-mess form-control" id=""
