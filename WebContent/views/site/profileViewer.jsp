@@ -1,11 +1,24 @@
 
-<%@ page pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="s" %>
+ 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="now" class="java.util.Date" />
 
 <jsp:include page="layout/_header.jsp" />
-
+<s:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
+                       url="jdbc:mysql://localhost/utescience"
+                       user="root" password=""/>
+ 
+      <s:query dataSource="${ds}" var="user">
+        select * 
+        from user
+        where user.email='${sessionScope.email}'
+      </s:query>
+      
+       <c:set var="email" value="${user.rowsByIndex[0][1]}" scope="page" />
+    	<c:set var="phone" value="${user.rowsByIndex[0][4]}" scope="page" />
+    	<c:set var="name" value="${user.rowsByIndex[0][2]}" scope="page" />
 <div class="profileViewer">
 	<div class="container">
 		<div class="row">
@@ -25,8 +38,8 @@
 								<!-- Contact info -->
 								<div class="form-group" style="width: 450px;">
 									<label for="email">Email</label> 
-									<input type="email"	class="form-control" placeholder="Email" id="email"> 
-									<label for="number">Điện thoại</label> <input type="number" class="form-control" placeholder="Điện thoại" id="number">
+									<input type="email"	class="form-control" placeholder="Email" id="email" value= '<c:out value="${pageScope.email}"></c:out>'> 
+									<label for="number">Điện thoại</label> <input type="number" class="form-control" placeholder="Điện thoại" id="number" value= '<c:out value="${pageScope.phone}"></c:out>'>
 								</div>
 								<hr>
 							</div>
@@ -39,8 +52,8 @@
 								<!-- Person info -->
 								<div class="form-group" style="width: 450px;">
 									<!--Form group -->
-									<label for="name">Họ và tên</label> <input type="text"
-										class="form-control" placeholder="Họ và tên" id="text">
+									<label for="name">Họ và tên</label>
+									 <input type="text" class="form-control" placeholder="Họ và tên" id="text" value= '<c:out value="${pageScope.name}"></c:out>'>
 									<div class="form-group">
 										<!--Gender select -->
 										<lable for="name" style="font-weight:bold;">Giới tính</lable>

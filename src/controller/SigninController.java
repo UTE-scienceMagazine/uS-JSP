@@ -63,6 +63,7 @@ public class SigninController extends HttpServlet {
 				user=dao.login(req.getParameter("email"),MD5.encryption(req.getParameter("password")));
 				if(user !=null){
 					session.setAttribute("user", user);
+					session.setAttribute("email", user.getEmail());
 					String remember = req.getParameter("remember");
 					Cookie ckId = new Cookie("uid", user.getEmail());
 					Cookie ckPw = new Cookie("pwd", user.getPassword());
@@ -98,6 +99,7 @@ public class SigninController extends HttpServlet {
 			
 				if(employee !=null){
 					session.setAttribute("user", employee);
+					session.setAttribute("email", employee.getEmail());
 					String remember = req.getParameter("remember");
 					Cookie ckId = new Cookie("uid", employee.getEmail());
 					Cookie ckPw = new Cookie("pwd", employee.getPassword());
