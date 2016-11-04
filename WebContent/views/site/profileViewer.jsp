@@ -16,9 +16,13 @@
         where user.email='${sessionScope.email}'
       </s:query>
       
-       <c:set var="email" value="${user.rowsByIndex[0][1]}" scope="page" />
+      	 <c:set var="email" value="${user.rowsByIndex[0][1]}" scope="page" />
+       	<c:set var="name" value="${user.rowsByIndex[0][2]}" scope="page" />
     	<c:set var="phone" value="${user.rowsByIndex[0][4]}" scope="page" />
-    	<c:set var="name" value="${user.rowsByIndex[0][2]}" scope="page" />
+    	<c:set var="s" value="${user.rowsByIndex[0][5]}" scope="page" />
+    	<c:set var="bdate" value="${user.rowsByIndex[0][6]}" scope="page" />
+    	<c:set var="idc" value="${user.rowsByIndex[0][7]}" scope="page" />
+    	
 <div class="profileViewer">
 	<div class="container">
 		<div class="row">
@@ -58,9 +62,9 @@
 										<!--Gender select -->
 										<lable for="name" style="font-weight:bold;">Giới tính</lable>
 										<div class="mq_gender_select">
-											<Form>
-													<label class="radio-inline"><input type="radio" value="view" name="sex" checked="checked"> Nam</label>
-													<label class="radio-inline"><input type="radio" value="tester" name="sex">Nữ</label>
+											<Form>										
+													<label class="radio-inline"><input type="radio" value="view" name="sex" id="male"> Nam</label>
+													<label class="radio-inline"><input type="radio" value="tester" name="sex" id="female">Nữ</label>
 											</Form>
 										</div>
 									</div>
@@ -98,7 +102,7 @@
 									</div>
 									<!-- /Birth day -->
 									<label for="id_number">Chứng minh nhân dân</label> <input
-										type="number" placeholder="Chứng minh nhân dân" class="form-control" id="number">
+										type="number" placeholder="Chứng minh nhân dân" class="form-control" id="number" value= '<c:out value="${pageScope.idc}"></c:out>'>
 								</div>
 								<!-- /Form group -->
 								<button class="btn btn-default">Lưu</button>
@@ -111,5 +115,11 @@
 		</div>
 	</div>
 </div>
+	<script type="text/javascript">
+		var s = <c:out value="${pageScope.s}"></c:out> ;
+		var male = document.getElementById("male");
+		if(s == 1)
+			male.checked="checked";
+	</script>
 
 <jsp:include page="layout/_footer.jsp"></jsp:include>
