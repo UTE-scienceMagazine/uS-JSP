@@ -42,7 +42,7 @@
 						<form id="formLogin" action="signin.html" method="POST" role="form">
 							<legend>Sign in</legend>
 							<div class="form-group">
-							
+								<p>${login}</p>
 								<label>Email</label>
 								<input name="email" type="text" class="form-control" id="email" placeholder="Email">
 								<br>

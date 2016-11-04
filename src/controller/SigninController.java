@@ -49,8 +49,7 @@ public class SigninController extends HttpServlet {
 		switch (command) {
 		case "login":
 			
-			Integer logined=(Integer)session.getAttribute("roleId");
-			if(logined != null){
+			if(session.getAttribute("logined") != null){
 				resp.sendRedirect("home.html");
 				return;
 			}
@@ -77,6 +76,7 @@ public class SigninController extends HttpServlet {
 					}
 					resp.addCookie(ckId);
 					resp.addCookie(ckPw);
+					session.setAttribute("logined", 1);
 					
 					if (uri.endsWith("signin.html")) {
 						url = "/views/site/index.jsp";
@@ -111,6 +111,7 @@ public class SigninController extends HttpServlet {
 					}
 					resp.addCookie(ckId);
 					resp.addCookie(ckPw);
+					session.setAttribute("logined", 1);
 					
 					if (uri.endsWith("signin.html")) {
 						url = "/views/site/index.jsp";
@@ -121,7 +122,7 @@ public class SigninController extends HttpServlet {
 					}
 					
 				}else{
-					req.setAttribute("login", "Please check emmail or password again");
+					req.setAttribute("login", "Please check email or password again");
 					url = "/views/site/login.jsp";
 				}
 			}

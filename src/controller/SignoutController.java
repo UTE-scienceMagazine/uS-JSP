@@ -16,7 +16,7 @@ public class SignoutController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession httpSession = req.getSession();		
-		httpSession.removeAttribute("user");
+		httpSession.invalidate();
 		req.getRequestDispatcher("/views/site/index.jsp").forward(req, resp);
 	}
 }

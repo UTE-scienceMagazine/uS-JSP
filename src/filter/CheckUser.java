@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import model.Employee;
 import model.User;
 
 /**
@@ -40,14 +41,15 @@ public class CheckUser implements Filter {
 		HttpServletRequest req=(HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		
-		User user=(User)session.getAttribute("user");
-		
-		if(!user.getRoleId().equals(1)){
+		Integer roleId =(Integer)session.getAttribute("roleId");
+		if(roleId==1){
+			User user=(User)session.getAttribute("user");
+		}else{
+			Employee user=(Employee)session.getAttribute("user");
 			chain.doFilter(request, response);	
 			return;
 		}
 		
-		System.out.println(user.getRoleId());
 		req.getRequestDispatcher("signin.html").forward(request, response);
 		
 		
