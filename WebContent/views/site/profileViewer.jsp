@@ -11,17 +11,19 @@
                        user="root" password=""/>
  
       <s:query dataSource="${ds}" var="user">
-        select * 
+        select email, name,phone,sex,identitycard,  Date_Format(birthday,'%d') as dob ,Date_Format(birthday,'%m') as mob ,Date_Format(birthday,'%y') as yob 
         from user
         where user.email='${sessionScope.email}'
       </s:query>
       
-      	 <c:set var="email" value="${user.rowsByIndex[0][1]}" scope="page" />
-       	<c:set var="name" value="${user.rowsByIndex[0][2]}" scope="page" />
-    	<c:set var="phone" value="${user.rowsByIndex[0][4]}" scope="page" />
-    	<c:set var="s" value="${user.rowsByIndex[0][5]}" scope="page" />
-    	<c:set var="bdate" value="${user.rowsByIndex[0][6]}" scope="page" />
-    	<c:set var="idc" value="${user.rowsByIndex[0][7]}" scope="page" />
+      	<c:set var="email" value="${user.rowsByIndex[0][0]}" scope="page" />
+       	<c:set var="name" value="${user.rowsByIndex[0][1]}" scope="page" />
+    	<c:set var="phone" value="${user.rowsByIndex[0][2]}" scope="page" />
+    	<c:set var="s" value="${user.rowsByIndex[0][3]}" scope="page" />
+    	<c:set var="bdate" value="${user.rowsByIndex[0][5]}" scope="page" />
+    	<c:set var="mdate" value="${user.rowsByIndex[0][6]}" scope="page" />
+    	<c:set var="ydate" value="${user.rowsByIndex[0][7]}" scope="page" />
+    	<c:set var="idc" value="${user.rowsByIndex[0][4]}" scope="page" />
     	
 <div class="profileViewer">
 	<div class="container">
@@ -93,7 +95,7 @@
 										<fmt:formatDate var="year" value="${now}" pattern="yyyy" />
 										<select name="myvne_year_of_birth">
 											<option>Năm</option>
-											<c:forEach var="i" begin="1970" end="${year}">
+											<c:forEach var="i" begin="1970" end="2016">
 												<option value="${i}">${i}</option>
 											</c:forEach>
 										</select>
@@ -116,10 +118,31 @@
 	</div>
 </div>
 	<script type="text/javascript">
+	$( document ).ready(function() {
 		var s = <c:out value="${pageScope.s}"></c:out> ;
 		var male = document.getElementById("male");
+		var female = document.getElementById("female");
 		if(s == 1)
 			male.checked="checked";
+		else
+			female.checked="checked";
+		
+		var d = <c:out value="${pageScope.bdate}"></c:out> ;
+		var date = document.getElementsByName("myvne_day_of_birth")[0];
+		date.selectedIndex = d;
+	
+		var m = <c:out value="${pageScope.mdate}"></c:out> ;
+		var month = document.getElementsByName("myvne_month_of_birth")[0];
+		month.selectedIndex = m;
+		
+		var y = <c:out value="${pageScope.ydate}"></c:out> ;
+		var year = document.getElementsByName("myvne_year_of_birth")[0];
+		year.selectedIndex = y;
+	});
+		
+			
+		
+		
 	</script>
 
 <jsp:include page="layout/_footer.jsp"></jsp:include>
