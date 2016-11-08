@@ -12,18 +12,20 @@ public class Employee implements Serializable{
 	private String password;
 	private Timestamp birthday;
 	private String phone;
-	private Integer roleId;
+	private Role roleId;
 	private Integer sex;
-	private String identityCard;
+	private String identitycard;
+	private String avatar;
+	private Integer available;
+	private Timestamp joinday;
 	private List<EmployeeArticle> employeeArticles;
-	
 	
 	public Employee() {
 		super();
 	}
-	
 	public Employee(Integer id, String email, String name, String password, Timestamp birthday, String phone,
-			Integer roleId, Integer sex, String identityCard, List<EmployeeArticle> employeeArticles) {
+			Role roleId, Integer sex, String identitycard, String avatar, Integer available, Timestamp joinday,
+			List<EmployeeArticle> employeeArticles) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -33,7 +35,10 @@ public class Employee implements Serializable{
 		this.phone = phone;
 		this.roleId = roleId;
 		this.sex = sex;
-		this.identityCard = identityCard;
+		this.identitycard = identitycard;
+		this.avatar = avatar;
+		this.available = available;
+		this.joinday = joinday;
 		this.employeeArticles = employeeArticles;
 	}
 	public Integer getId() {
@@ -72,10 +77,10 @@ public class Employee implements Serializable{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public Integer getRoleId() {
+	public Role getRoleId() {
 		return roleId;
 	}
-	public void setRoleId(Integer roleId) {
+	public void setRoleId(Role roleId) {
 		this.roleId = roleId;
 	}
 	public Integer getSex() {
@@ -84,11 +89,29 @@ public class Employee implements Serializable{
 	public void setSex(Integer sex) {
 		this.sex = sex;
 	}
-	public String getIdentityCard() {
-		return identityCard;
+	public String getIdentitycard() {
+		return identitycard;
 	}
-	public void setIdentityCard(String identityCard) {
-		this.identityCard = identityCard;
+	public void setIdentitycard(String identitycard) {
+		this.identitycard = identitycard;
+	}
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+	public Integer getAvailable() {
+		return available;
+	}
+	public void setAvailable(Integer available) {
+		this.available = available;
+	}
+	public Timestamp getJoinday() {
+		return joinday;
+	}
+	public void setJoinday(Timestamp joinday) {
+		this.joinday = joinday;
 	}
 	public List<EmployeeArticle> getEmployeeArticles() {
 		return employeeArticles;

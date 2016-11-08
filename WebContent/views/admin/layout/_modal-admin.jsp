@@ -13,15 +13,14 @@
 					<form action="" method="POST" role="form">
 						<div class="form-group">
 							<label for="">Tên tài khoản</label>
-							<input type="text" class="form-control" id="" placeholder="Tên tài khoản">
+							<input type="text" class="form-control" name="name" value="${l.name }" placeholder="Tên tài khoản">
 							<label for="">Mật khẩu</label>
-							<input type="text" class="form-control" id="" placeholder="Mật khẩu">
+							<input type="text" class="form-control" name="password" value="${l.password}" placeholder="Mật khẩu">
 							<label for="">Email</label>
-							<input type="text" class="form-control" id="" placeholder="Email">
+							<input type="text" class="form-control" name="email" value="${l.email}" id="" placeholder="Email">
 							<label for="">Số điện thoại</label>
 							<input type="text" class="form-control" id="" placeholder="Số điện thoại">
 							<div class="row text-center">
-								<label class="radio-inline"><input type="radio" value="view" name="users" checked="checked"> View</label>
 								<label class="radio-inline"><input type="radio" value="tester" name="users">Tester</label>
 								<label class="radio-inline"><input type="radio" value="author" name="users">Author</label>
 								<label class="radio-inline"><input type="radio" value="editor" name="users">Editor</label>

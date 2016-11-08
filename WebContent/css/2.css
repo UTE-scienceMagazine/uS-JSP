@@ -1,0 +1,545 @@
+*{margin: 0;padding: 0}
+h4.mq_h4 {
+    text-align: center;
+    background: #337ab7;
+    padding: 10px;
+    color: white;
+}
+.commments .row.comments ul {
+    list-style-type: none;
+}
+a.ui-datepicker-next.ui-corner-all {}
+
+.content-wrap .news .title {
+    border-bottom: 4px solid rgba(131, 150, 205, 0.35);
+}
+
+.news .info {
+    display: inline-block;
+}
+
+.title p.dateUp.text-center {
+    background: #337ab7;
+    font-size: 20px;
+    color: rgb(237, 237, 237);
+}
+.form-control.valid {
+    background-image: url('../images/true.png')!important;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+#over {
+   display: none;
+    background: #000;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    z-index: 999;
+}
+.ask{
+  background-color:white;
+  height:auto;
+  width:450px;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:14px;
+  padding-bottom:5px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: rgb(51, 122, 183);
+  overflow:hidden;
+  position: fixed;
+  display: none;
+  z-index:99999;
+  top: 40%;
+  left:50%;
+  margin-left:-300px;
+}
+.img-close{
+  width: 25px;
+  height: 25px;
+}
+a.btnclose{
+  float: none !important;
+  color: blue;
+}
+.list-posts .post-contact {
+    background: rgba(147, 145, 142, 0.31);
+    margin: 10px;
+    font-style: italic;
+    padding: 5px;
+}
+
+.list-posts .date-and-category {
+    background: rgba(76, 175, 80, 0.38);
+}
+
+.list-posts .post {
+    background: rgba(255, 228, 196, 0.31);
+    border: 1px solid rgba(156, 39, 176, 0.42);
+    margin-bottom: 10px;
+}
+
+.date-time p {
+    float: left;
+    padding: 0 5px;
+}
+
+.list-posts .col-xs-6.col-sm-6.col-md-6.col-lg-6.float-right a, .list-posts .col-xs-4.col-sm-4.col-md-4.col-lg-4.float-right p {
+    float: right;
+    padding: 5px;
+}
+
+.list-posts h3 {
+    color: #3f3f95;
+    background: rgba(255, 0, 0, 0.51);
+    padding: 10px 5px;
+    margin: 0 0 5px;
+    border: 1px solid rgba(32, 178, 170, 0.51);
+}
+
+.list-posts .row {
+    padding: 5px;
+    background: rgba(250, 250, 210, 0.07);
+    overflow: hidden;
+}
+
+.Editor-editor {
+    height: 440px;
+}
+
+.authorPost .row legend {
+    text-align: center;
+    font-size: 30px;
+    color: #337ab7;
+}
+
+.col-lg-12.nopadding {
+    padding: 15px 0;
+    height: 700px;
+}
+
+.table.table-striped tbody tr:hover {
+    cursor: pointer;
+    background: antiquewhite;
+}
+
+.table.table-striped tbody tr {
+    transition: 0.6s;
+}
+
+.mq_row{
+        margin-bottom: 20px;
+
+}
+
+.mq-dropdown-menu{
+    left: inherit;
+    
+    transform: translateX(-38%) translateY(-10%);
+}
+hr{
+    margin: 0;
+    padding: 0;
+}
+.btn-group, .btn-group-vertical {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+.mq_refesh{
+    margin-left: 350px;
+}
+.mq_float_right{
+    float: right!important;
+    margin-right: 10px;
+}
+*{margin:0;padding:0; }
+
+li.comments .row.comments ul {
+    list-style-type: none;
+}
+
+.comment .comments .info p {
+    font-weight: bold;
+}
+
+.article-info {
+    padding: 5px;
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.ui-datepicker-calendar tbody tr td {
+    border: 1px solid burlywood;
+}
+
+table.ui-datepicker-calendar {
+    width: 100%;
+    background: beige;
+}
+
+table.ui-datepicker-calendar thead tr th {text-align: center;border: 1px solid burlywood;}
+
+
+
+a.ui-datepicker-next.ui-corner-all, a.ui-datepicker-prev.ui-corner-all {
+    color: aquamarine;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.6s;
+}
+
+a.ui-datepicker-next.ui-corner-all {
+    float: right;
+}
+
+a.ui-datepicker-prev.ui-corner-all {
+    float: left;
+}
+
+a.ui-datepicker-next.ui-corner-all:hover, a.ui-datepicker-prev.ui-corner-all:hover {
+    color: white;
+}
+
+.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all {
+    background: #337ab7;
+    color: aliceblue;
+    height: 35px;
+    padding: 10px 5px;
+}
+
+div#ui-datepicker-div {
+    background: bisque;
+    width: 300px;
+    height: 0px;
+    text-align: center;
+}
+
+.content-article iframe {
+    width: 100%;
+    height: 900px;
+}
+
+a.rep-a {
+    margin: 15px;
+}
+
+.news .info p {
+    float: right;
+    padding: 0 10px;
+}
+
+label.error {
+    display: block;
+}
+
+.loadpage.text-center {
+    overflow: hidden;
+}
+
+.post-title {
+    font-size: 7px;
+}
+
+form input.error {
+    background-image: url('../images/false.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    float: right;
+}
+
+ul#myError li {
+    list-style-type: none;
+    color: #337ab7;
+}
+
+form img#img {
+    width: 50%;
+}
+
+body {}
+
+button.fa.fa-pencil {
+    color: #337ab7;
+    padding: 2px 5px;
+}
+
+button.modal-footer.btn.btn-danger {
+    padding: 6px 14px;
+    float: right;
+}
+
+.list-account .account .row {
+    padding: 11px;
+    border-bottom: 1px solid black;
+}
+
+.profile .row .row {
+    border: 1px solid rgba(255, 0, 0, 0.13);
+    box-shadow: 0 0 5px lightgray;
+    padding-bottom: 10px;
+}
+
+.register {
+    height: 400px;
+}
+
+.profile.tbody tr {}
+.mq_h4{
+    font-weight: bolder;
+    background-color: #337ab7;
+    border-color: #337ab7;
+    color: white;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin: 0;
+    padding: 0;
+    text-align: -webkit-center;
+    font-size: 30px;
+
+}
+.mq_leftrow_inf{
+    width: 35%;
+    color: black;
+    font-weight: bolder;
+}
+.gender_select{
+    display: inline-block;
+}
+.mq_rightform_label{
+    width: 58%;
+}
+.article-list .thumbnail {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+
+.team-member .detail-of-member .member-details {
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+}
+
+.team-member .detail-of-member .member-details h2 {
+    border-top: 3px solid  rgba(255, 0, 0, 0);
+    font-size: 20px;
+    position: absolute;
+    width: 100%;
+    margin: 10px 0;
+    bottom: 0;
+    color: white;
+    transition: 0.8s;
+}
+
+.team-member .detail-of-member:hover .member-details h2 {
+    border-top: 3px solid #3f3f95;
+}
+
+.detail-of-member .details p {
+    padding: 30% 0;
+}
+
+.detail-of-member .details {
+    position: absolute;
+    height: 100%;
+    background: rgba(127, 255, 212, 0.29);
+    color: red;
+    z-index: 1;
+    transition: 0.4s;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.detail-of-member:hover  .details {
+    opacity: 1;
+}
+
+.team-member .detail-of-member {
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.team-member .detail-of-member:hover .profile-pic img {border-radius: 50%;}
+
+.team-member .detail-of-member .profile-pic img {
+    transition: 0.4s;
+}
+
+.hash-tag .rating {
+    position: relative;
+    width: 30%;
+    padding: 0;
+    margin: 0!important;
+    display: inline-block;
+}
+
+.hash-tag .rating:hover form {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+form .stars {
+  background: url("../images/stars.png") repeat-x 0 0;
+  width: 150px;
+  margin: 0 auto;
+}
+
+form .stars input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+form .stars input[type="radio"].star-5:checked ~ span {
+  width: 100%;
+}
+form .stars input[type="radio"].star-4:checked ~ span {
+  width: 80%;
+}
+form .stars input[type="radio"].star-3:checked ~ span {
+  width: 60%;
+}
+form .stars input[type="radio"].star-2:checked ~ span {
+  width: 40%;
+}
+form .stars input[type="radio"].star-1:checked ~ span {
+  width: 20%;
+}
+form .stars label {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 0!important;
+  padding: 0!important;
+  text-indent: -999em;
+  float: left;
+  position: relative;
+  z-index: 10;
+  background: transparent!important;
+  cursor: pointer;
+}
+form .stars label:hover ~ span {
+  background-position: 0 -30px;
+}
+form .stars label.star-5:hover ~ span {
+  width: 100% !important;
+}
+form .stars label.star-4:hover ~ span {
+  width: 80% !important;
+}
+form .stars label.star-3:hover ~ span {
+  width: 60% !important;
+}
+form .stars label.star-2:hover ~ span {
+  width: 40% !important;
+}
+form .stars label.star-1:hover ~ span {
+  width: 20% !important;
+}
+form .stars span {
+  display: block;
+  width: 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 30px;
+  background: url("../images/stars.png") repeat-x 0 -60px;
+  transition: width 0.5s;
+}
+
+
+
+
+
+.signin form .row.text-center {
+    padding: 5px;
+}
+
+.topview .image a.title {
+    position: absolute;
+    bottom: 0;
+    font-size: 20px;
+    color: #3f3f95;
+}
+
+.topview .image {
+    position: relative;
+    height: 100px;
+}
+
+ul.dropdown-menu.level-two {
+    left: -100%;
+    max-width: 170px;
+    top: 0;
+    z-index: 1200;
+}
+
+.login ul.dropdown-menu {
+    margin: 0px;
+    padding: 0;
+    min-width: 50px;
+}
+
+.article-list .thumbnail {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+img.img-responsive.article-thumbnail {
+    transform: scale(1.2);
+    transition: 0.6s;
+}
+
+img.img-responsive.article-thumbnail:hover {
+    transform: scale(1);
+    cursor: pointer;
+}
+
+article.article-item {overflow: hidden;}
+
+.recommendation .container .row strong a {
+    text-decoration: none;
+}
+
+.recommendation .container .row {
+    margin: 10px 0;
+    padding: 5px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.19);
+    background: rgba(211, 211, 211, 0.17);
+}
+
+.recommendation.container .row {}
+
+.about-us ul.list-group li::after, .contact-us ul.list-group li::after, .advertising ul.list-group li::after {
+    width: 100%;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    background: #3d3f93;
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50%) rotate(30deg);
+    content: '';
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s;
+}
+
+.about-us ul.list-group li, .contact-us ul.list-group li, .advertising  ul.list-group li {
+    cursor: pointer;
+    margin: 0;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    z-index: 1;
+    transition: 0.4s;
+}

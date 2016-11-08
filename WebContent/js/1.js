@@ -1,5 +1,9 @@
 $(function() {
-
+	
+	$(document).ready(function() {
+		$('#birthday').datepicker({dateFormat: 'dd/mm/yy'});
+	});
+		
 	$(document).ready(function() {
 		$("#txtEditor").Editor();
 	});
@@ -143,4 +147,5 @@ $(function() {
 		});
 		return false;
 	});
+	
 });

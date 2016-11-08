@@ -20,7 +20,7 @@ public class UserDAO {
 		User user=new User();
 		
 		String sql="Select * from user Where id="+id;
-		PreparedStatement ps=connection.prepareCall(sql);
+		PreparedStatement ps =connection.prepareCall(sql);
 		ResultSet rs=ps.executeQuery();
 		if(rs.next()){
 			user.setId(rs.getInt("id"));
@@ -29,8 +29,9 @@ public class UserDAO {
 			user.setPassword(rs.getString("password"));
 			user.setPhone(rs.getString("phone"));
 			user.setSex(rs.getInt("sex"));
+			user.setAvatar(rs.getString("avatar"));
 			user.setBirthday(rs.getTimestamp("birthday"));
-			user.setIdentitycard(rs.getInt("identitycard"));
+			user.setIdentitycard(rs.getString("identitycard"));
 			user.setRoleId(rs.getInt("roleId"));
 			return user;
 		}
@@ -50,6 +51,7 @@ public class UserDAO {
 	            ps.setInt(3, user.getRoleId());
 	            
 	            ps.executeUpdate();
+	            ps.close();
 	            return true;
 	        } catch (SQLException ex) {
 	            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -69,6 +71,7 @@ public class UserDAO {
 				connection.close();
 				return true;
 			}
+			ps.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -87,17 +90,42 @@ public class UserDAO {
 			if(rs.next()){
 				User user=new User();
 				user.setId(rs.getInt("id"));
-				user.setEmail(email);
+				user.setEmail(rs.getString("email"));
+				user.setName(rs.getString("name"));
 				user.setPassword(rs.getString("password"));
-				user.setRoleId(rs.getInt("id"));
-				conn.close();
+				user.setPhone(rs.getString("phone"));
+				user.setSex(rs.getInt("sex"));
+				user.setAvatar(rs.getString("avatar"));
+				user.setBirthday(rs.getTimestamp("birthday"));
+				user.setIdentitycard(rs.getString("identitycard"));
+				user.setRoleId(rs.getInt("roleId"));
 				return user;
 			}
+			ps.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public boolean updateUser(User user) {
+		Connection connection = DBConnect.getConnection();
+        String sql = "UPDATE user SET name = ?,phone = ?,sex= ?,birthday= ?,identitycard=?  WHERE id = ?";
+        try {
+            PreparedStatement ps = connection.prepareCall(sql);
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getPhone());
+            ps.setInt(3, user.getSex());
+            ps.setTimestamp(4, user.getBirthday());
+            ps.setString(5, user.getIdentitycard());
+            ps.setInt(6, user.getId());
+            return ps.executeUpdate() == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+		
 	}
 	
 	/*public static void main(String[] args) {

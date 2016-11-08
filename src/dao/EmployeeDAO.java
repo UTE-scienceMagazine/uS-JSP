@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.concurrent.locks.AbstractQueuedLongSynchronizer.ConditionObject;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,10 +13,11 @@ import org.hibernate.Query;
 
 import connect.DBConnect;
 import model.Employee;
+import model.Role;
 import model.User;
 
 public class EmployeeDAO {
-	
+	RoleDAO rdao=new RoleDAO();
 	public Employee findEmployeeById(Integer id) throws SQLException{
 		Connection connection=DBConnect.getConnection();
 		Employee employee=new Employee();
@@ -31,25 +33,55 @@ public class EmployeeDAO {
 			employee.setPhone(rs.getString("phone"));
 			employee.setSex(rs.getInt("sex"));
 			employee.setBirthday(rs.getTimestamp("birthday"));
-			employee.setIdentityCard(rs.getString("identitycard"));
-			employee.setRoleId(rs.getInt("roleId"));
+			employee.setIdentitycard(rs.getString("identitycard"));
+			Role role=rdao.findRoleById(rs.getInt("roleId"));
+			employee.setRoleId(role);
+			employee.setJoinday(rs.getTimestamp("joindate"));
 			return employee;
 		}
 		
 		return null;
 	}
 	
+	public ArrayList<Employee> getEmployee() throws SQLException {
+		Connection connection=DBConnect.getConnection();
+		ArrayList<Employee> list=new ArrayList<>();
+		
+		String sql="Select * from employee";
+		PreparedStatement ps=connection.prepareCall(sql);
+		ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			Employee employee =new Employee();
+			employee.setId(rs.getInt("id"));
+			employee.setEmail(rs.getString("email"));
+			employee.setName(rs.getString("name"));
+			employee.setPassword(rs.getString("password"));
+			employee.setPhone(rs.getString("phone"));
+			employee.setSex(rs.getInt("sex"));
+			employee.setAvatar(rs.getString("avatar"));
+			employee.setBirthday(rs.getTimestamp("birthday"));
+			employee.setIdentitycard(rs.getString("identitycard"));
+			Role role=rdao.findRoleById(rs.getInt("roleId"));
+			employee.setRoleId(role);
+			employee.setAvailable(rs.getInt("available"));
+			employee.setJoinday(rs.getTimestamp("joindate"));
+			list.add(employee);
+		}
+		
+		return list;
+	}
+	
 	public  Boolean insertEmployee(Employee employee) {
 		
 		Connection connection=DBConnect.getConnection();
-		String sql= "INSERT INTO employee (email,password,roleId) VALUES(?,?,?)";
+		String sql= "INSERT INTO employee (email,password,roleId,joindate) VALUES(?,?,?,?)";
 		 try {
 	            PreparedStatement ps = connection.prepareCall(sql);
 	         
 	            ps.setString(1, employee.getEmail());	          
 	            ps.setString(2, employee.getPassword());
-	            ps.setInt(3, employee.getRoleId());
-	            
+	            ps.setInt(3, employee.getRoleId().getId());
+	            ps.setTimestamp(4, employee.getJoinday());
 	            ps.executeUpdate();
 	            return true;
 	        } catch (SQLException ex) {
@@ -90,7 +122,8 @@ public class EmployeeDAO {
 				employee.setId(rs.getInt("id"));
 				employee.setEmail(email);
 				employee.setPassword(password);
-				employee.setRoleId(roleId);
+				Role role=rdao.findRoleById(rs.getInt("roleId"));
+				employee.setRoleId(role);
 				conn.close();
 				return employee;
 			}

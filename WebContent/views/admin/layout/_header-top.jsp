@@ -29,17 +29,17 @@
 								<li class="dropdown"><a href="signin.html"
 									class="dropdown-toggle text-center" data-toggle="dropdown">
 										<c:choose>
-											<c:when test="${empty sessionScope.user.uesrEmail }">
+											<c:when test="${empty sessionScope.user.email }">
 						                        		 Account
 						                        	</c:when>
 											<c:otherwise>
-		                        						${sessionScope.user.uesrEmail }
+		                        						${sessionScope.user.email }
 		                        					</c:otherwise>
 										</c:choose> <span class="caret"></span>
 								</a>
 									<ul class="dropdown-menu ">
 										<c:choose>
-											<c:when test="${empty sessionScope.user.uesrEmail}">
+											<c:when test="${empty sessionScope.user.email}">
 												<li><a href="signin.html">Sign in</a></li>
 												<li><a href="forgot.html">Forgot Password</a></li>
 												
@@ -52,7 +52,7 @@
 									</ul></li>
 								<li><a href="about.html">About</a></li>
 								<c:choose>
-									<c:when test="${empty sessionScope.user.uesrEmail}">
+									<c:when test="${empty sessionScope.user.email}">
 										<li><a href="signin.html">Register</a></li>
 									</c:when>
 									<c:otherwise>

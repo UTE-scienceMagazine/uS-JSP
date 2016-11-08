@@ -1,3 +1,6 @@
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page pageEncoding="utf-8"%>
 <jsp:include page="layout/_header.jsp" />
 
@@ -5,71 +8,15 @@
 	<div class="container">
 		<div class="row">
 			<div class="buttons">
-				<div class="row">
-					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-						<button class="btn btn-default dropdown-toggle master_text"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-							style="color: red;">
-							<b>Admin</b> <span class="glyphicon glyphicon-triangle-bottom"
-								aria-hidden="true"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Chỉnh sửa</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul>
-						<!-- End dropdown -->
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 
-						<!--Select All -->
-						<button class="btn btn-default">
-							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-							Chọn tất cả
-						</button>
-						<!-- End select all -->
 
-						<!-- Refesh -->
-						<button class="btn btn-default" style="margin-left: 20px;">
-							<a href="profile.html">
-								<span class="glyphicon glyphicon-refresh" aria-hidden="true">								
-								</span>
-							</a>
-						</button>
-						<!-- end sl all-->
-
-						<!-- Trans to tester -->
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-						<div class="mq_float_right">
-							<!--Setting-->
-							<button class="btn btn-default dropdown-toggle"
-								data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false">
-								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-								Cài đặt <span class="glyphicon glyphicon-triangle-bottom"
-									aria-hidden="true"></span>
-							</button>
-							<ul class="dropdown-menu mq_float_right mq-dropdown-menu">
-								<li><a href="#">Sometext</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li role="separator" class="divider"></li>
-								<li><a href="#">Separated link</a></li>
-							</ul>
-						</div>
-						<!-- End Setting -->
-					</div>
-				</div>
-				<br>
 				<div class="row">
 					<div class="col-md-4 col-md-push-4">
-						
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Add Account</button>
+
+						<button type="button" class="btn btn-default" data-toggle="modal"
+							data-target="#myModal">Add Account</button>
 						<jsp:include page="layout/_modal-admin.jsp"></jsp:include>
-						
+
 					</div>
 				</div>
 			</div>
@@ -82,12 +29,10 @@
 							<a href="#" class="list-group-item"> <span
 								class="glyphicon glyphicon-bookmark" aria-hidden="true"
 								style="float: left padding-right:10px;"> </span> Thông báo
-							</a> 
-							<a href="#" class="list-group-item"><span
+							</a> <a href="#" class="list-group-item"><span
 								class="glyphicon glyphicon-pencil" aria-hidden="true"
 								style="float: left padding-right:10px;"></span> Chỉnh sửa thông
-								tin</a> 
-							<a href="signout.html" class="list-group-item"><span
+								tin</a> <a href="signout.html" class="list-group-item"><span
 								class="glyphicon glyphicon-off" aria-hidden="true"
 								style="float: left padding-right:10px;"></span> Đăng xuất</a>
 						</div>
@@ -106,67 +51,78 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>1</td>
-									<td>kunmaster001</td>
-									<td>Tổng biên tập</td>
-									<td>Hoạt động</td>
-									<td>1/1/2016</td>
-									<td style="padding-left: 25px;">
-										<button  class="fa fa-pencil" data-toggle="modal" data-target="#myModal"></button>
-										<!-- Modal -->
-										<jsp:include page="layout/_modal-admin.jsp"></jsp:include>						
-									</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>vueditor002</td>
-									<td>Biên tập viên</td>
-									<td>Hoạt động</td>
-									<td>1/1/2016</td>
-									<td style="padding-left: 25px;">
-										<button  class="fa fa-pencil" data-toggle="modal" data-target="#myModal"></button>
-										<!-- Modal -->
-										<jsp:include page="layout/_modal-admin.jsp"></jsp:include>						
-									</td>
-								</tr>
+								<c:forEach var="l" items="${list}">
+									<tr>
+										<td>${l.id}</td>
+										<td>${l.email}</td>
+										<td>${l.roleId.name }</td>
+										<td><c:choose>
+												<c:when test="${l.available ==1}">
+													Hoạt động
+												</c:when>
+												<c:otherwise>
+													Block
+												</c:otherwise>
+											</c:choose></td>
+										<td><fmt:formatDate pattern="dd/MM/yyyy"
+												value="${l.joinday}" /></td>
+										<td style="padding-left: 25px;">
+											<button class="fa fa-pencil" data-toggle="modal" data-target="#myModal${l.id}"></button> <!-- Modal -->
+											<div id="myModal${l.id}" class="modal" role="dialog">
+												<div class="modal-dialog">
+													<!-- Modal content-->
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal">&times;</button>
+															<h4 class="modal-title">Thông tin tài khoản</h4>
+														</div>
+														<div class="modal-body">
+															<form action="admin.html" method="POST" role="form">
+																<div class="form-group">
+																
+																	<label>Email</label>
+																	<input type="text" class="form-control" id="email" name="email" value="${l.email}" placeholder="Email">
+																
+																	<label>Tên tài khoản</label> 
+																	<input type="text" class="form-control" id="name" name="name" value="${l.name }" placeholder="Tên tài khoản"> 
+																	
+																	<label>Mật khẩu</label> 
+																	<input type="password" class="form-control" id="password" name="password" value="${l.password}" placeholder="Mật khẩu"> 
+																
+																	<label>Số điện thoại</label>
+																	<input type="text" class="form-control" id="phone" name="phone" value="${l.phone}" placeholder="Số điện thoại">
+																	
+																	<div class="row text-center">
+																		<label class="radio-inline">
+																		<input type="radio" value="2" name="users">Tester</label>
+																		<label class="radio-inline"><input
+																			type="radio" value="3" name="users">Author</label>
+																		<label class="radio-inline"><input
+																			type="radio" value="4" name="users">Editor</label>
+																		<label class="radio-inline"><input
+																			type="radio" value="5" name="users">Master</label>
+																		<label class="radio-inline"><input
+																			type="radio" value="6" name="users">Admin</label>
+																		<label class="radio-inline"><input
+																			type="radio" value="7" name="users">Block</label>
+																	</div>
+																	
+																</div>
+																<button value="add" class="btn btn-primary" name="command">Add</button>
+																<button value="change" class="btn btn-primary" name="command">Change</button>
+																<button value="delete" class="btn btn-warning" name="command">Delete</button>
+																<button class=" modal-footer btn btn-danger" data-dismiss="modal">Close</button>
 
-								<tr>
-									<td>3</td>
-									<td>toantester003</td>
-									<td>Phản biện</td>
-									<td>Hoạt động</td>
-									<td>1/1/2016</td>
-									<td style="padding-left: 25px;">
-										<button  class="fa fa-pencil" data-toggle="modal" data-target="#myModal"></button>
-										<!-- Modal -->
-										<jsp:include page="layout/_modal-admin.jsp"></jsp:include>						
-									</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>khoiauthor004</td>
-									<td>Tác giả</td>
-									<td>Hoạt động</td>
-									<td>1/1/2016</td>
-									<td style="padding-left: 25px;">
-										<button  class="fa fa-pencil" data-toggle="modal" data-target="#myModal"></button>
-										<!-- Modal -->
-										<jsp:include page="layout/_modal-admin.jsp"></jsp:include>						
-									</td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td>khatester005</td>
-									<td>Phản biện</td>
-									<td>Khóa</td>
-									<td>1/1/2016</td>
-									<td style="padding-left: 25px;">
-										<button  class="fa fa-pencil" data-toggle="modal" data-target="#myModal"></button>
-										<!-- Modal -->
-										<jsp:include page="layout/_modal-admin.jsp"></jsp:include>						
-									</td>
-								</tr>
+															</form>
+														</div>
+
+													</div>
+
+												</div>
+											</div>
+										</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>

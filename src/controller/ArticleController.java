@@ -36,6 +36,9 @@ public class ArticleController extends HttpServlet {
 		try {
 			HttpSession httpSession=req.getSession();
 			Article article= adao.findArticleById(id);
+			
+			article.setViews(article.getViews()+1);
+			adao.updateViews(article);
 			httpSession.setAttribute("article", article);
 			
 			ArrayList<Comment> list=new ArrayList<>();
@@ -55,6 +58,8 @@ public class ArticleController extends HttpServlet {
 		
 		req.getRequestDispatcher("/views/site/article.jsp").forward(req, resp);
 	}
+	
+	
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -84,7 +89,7 @@ public class ArticleController extends HttpServlet {
 			dao.insertComment(cm);
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			e.printStackTrace();
 		}
 		
@@ -100,5 +105,4 @@ public class ArticleController extends HttpServlet {
 		
 		resp.sendRedirect("/UteScience/views/site/layout/_onecomment.jsp");
 	}
-	
 }

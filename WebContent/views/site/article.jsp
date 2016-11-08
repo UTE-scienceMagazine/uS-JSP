@@ -12,6 +12,7 @@
 					<div class="title">
 							<h4>${article.title}</h4>
 							<p>Ngày đăng :<fmt:formatDate pattern="dd/MM/yyyy" value="${article.date}" /></p>
+							<p>Views :${article.views}</p>
 					</div>
 					<div class="content-article">
 						<iframe src="pdf/${article.pdf}" seamless="seamless">

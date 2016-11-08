@@ -17,16 +17,19 @@ public class Article implements Serializable{
 	private Integer num;
 	private String description;
 	private Integer vote;
+	private Integer views;
 	private List<Comment> comments;
 	private List<EmployeeArticle> employeeArticles;
 	private List<HashTag> hashTags;
+	
 	
 	public Article() {
 		super();
 	}
 
+
 	public Article(Integer id, String title, String detail, Timestamp date, Integer volumeId, Integer statusId,
-			String pdf, Integer num, String description, Integer vote, List<Comment> comments,
+			String pdf, Integer num, String description, Integer vote, Integer views, List<Comment> comments,
 			List<EmployeeArticle> employeeArticles, List<HashTag> hashTags) {
 		super();
 		this.id = id;
@@ -39,29 +42,11 @@ public class Article implements Serializable{
 		this.num = num;
 		this.description = description;
 		this.vote = vote;
+		this.views = views;
 		this.comments = comments;
 		this.employeeArticles = employeeArticles;
 		this.hashTags = hashTags;
 	}
-
-
-
-
-
-	public List<HashTag> getHashTags() {
-		return hashTags;
-	}
-
-
-
-
-
-	public void setHashTags(List<HashTag> hashTags) {
-		this.hashTags = hashTags;
-	}
-
-
-
 
 
 	public Integer getId() {
@@ -69,11 +54,9 @@ public class Article implements Serializable{
 	}
 
 
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 
 
 	public String getTitle() {
@@ -81,11 +64,9 @@ public class Article implements Serializable{
 	}
 
 
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 
 
 	public String getDetail() {
@@ -93,11 +74,9 @@ public class Article implements Serializable{
 	}
 
 
-
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
-
 
 
 	public Timestamp getDate() {
@@ -105,11 +84,9 @@ public class Article implements Serializable{
 	}
 
 
-
 	public void setDate(Timestamp date) {
 		this.date = date;
 	}
-
 
 
 	public Integer getVolumeId() {
@@ -117,11 +94,9 @@ public class Article implements Serializable{
 	}
 
 
-
 	public void setVolumeId(Integer volumeId) {
 		this.volumeId = volumeId;
 	}
-
 
 
 	public Integer getStatusId() {
@@ -129,11 +104,9 @@ public class Article implements Serializable{
 	}
 
 
-
 	public void setStatusId(Integer statusId) {
 		this.statusId = statusId;
 	}
-
 
 
 	public String getPdf() {
@@ -141,11 +114,9 @@ public class Article implements Serializable{
 	}
 
 
-
 	public void setPdf(String pdf) {
 		this.pdf = pdf;
 	}
-
 
 
 	public Integer getNum() {
@@ -153,11 +124,9 @@ public class Article implements Serializable{
 	}
 
 
-
 	public void setNum(Integer num) {
 		this.num = num;
 	}
-
 
 
 	public String getDescription() {
@@ -165,11 +134,9 @@ public class Article implements Serializable{
 	}
 
 
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 
 
 	public Integer getVote() {
@@ -177,11 +144,19 @@ public class Article implements Serializable{
 	}
 
 
-
 	public void setVote(Integer vote) {
 		this.vote = vote;
 	}
 
+
+	public Integer getViews() {
+		return views;
+	}
+
+
+	public void setViews(Integer views) {
+		this.views = views;
+	}
 
 
 	public List<Comment> getComments() {
@@ -189,11 +164,9 @@ public class Article implements Serializable{
 	}
 
 
-
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-
 
 
 	public List<EmployeeArticle> getEmployeeArticles() {
@@ -201,9 +174,19 @@ public class Article implements Serializable{
 	}
 
 
-
 	public void setEmployeeArticles(List<EmployeeArticle> employeeArticles) {
 		this.employeeArticles = employeeArticles;
 	}
+
+
+	public List<HashTag> getHashTags() {
+		return hashTags;
+	}
+
+
+	public void setHashTags(List<HashTag> hashTags) {
+		this.hashTags = hashTags;
+	}
+	
 	
 }

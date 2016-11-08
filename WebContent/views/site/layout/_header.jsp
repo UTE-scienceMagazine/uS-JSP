@@ -7,17 +7,18 @@
 <meta charset="utf-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript" src="js/bootstrap.js"></script>
-<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
-<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="editor/ckeditor.js"></script>
-<script type="text/javascript" src="js/1.js"></script>
-
-
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
 <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
 <link rel="stylesheet" href="css/editor.css" type="text/css"/>
 <link rel="stylesheet" href="css/1.css" type="text/css">
+<link rel="stylesheet" href="css/2.css" type="text/css">
+
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="editor/ckeditor.js"></script>
+<script type="text/javascript" src="js/1.js"></script>
 
 
 </head>

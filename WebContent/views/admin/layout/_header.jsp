@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
 <link  rel="stylesheet" href="css/editor.css" type="text/css"/>
 <link rel="stylesheet" href="css/1.css" type="text/css">
-
+<link rel="stylesheet" href="css/2.css" type="text/css">
 
 </head>
 <body>

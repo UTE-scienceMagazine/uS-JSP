@@ -48,6 +48,7 @@ public class CheckLogin implements Filter {
 		if(url.endsWith("/UteScience/")||url.endsWith(".css")||url.endsWith(".js")
 				||url.endsWith(".png")||url.endsWith(".jpg")
 				||url.endsWith(".ttf")
+				||url.endsWith(".pdf")
 				||url.endsWith("/home.html")
 				||url.endsWith(".mp4")
 				||url.endsWith("/article.html")

@@ -26,19 +26,19 @@
 			<div class="col-lg-2 col-md-2 col-sm-2">
 				<!-- List group -->
 				<c:choose>
-					<c:when test="${user.userRole=='view'}">
+					<c:when test="${user.roleId==1}">
 						<jsp:include page="layout/_list-group-Viewer.jsp" />
 					</c:when>
-					<c:when test="${user.userRole=='author'}">
+					<c:when test="${user.roleId==3}">
 						<jsp:include page="layout/_list-group-Author.jsp" />
 					</c:when>
-					<c:when test="${user.userRole=='tester'}">
+					<c:when test="${user.roleId==2}">
 						<jsp:include page="layout/_list-group-Tester.jsp" />
 					</c:when>
-					<c:when test="${user.userRole=='editor'}">
+					<c:when test="${user.roleId==4}">
 						<jsp:include page="layout/_list-group-Editor.jsp" />
 					</c:when>
-					<c:when test="${user.userRole=='master'}">
+					<c:when test="${user.roleId==5}">
 						<jsp:include page="layout/_list-group-Master.jsp" />
 					</c:when>
 				</c:choose>

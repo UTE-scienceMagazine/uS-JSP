@@ -1,91 +1,26 @@
+
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <%@ page pageEncoding="utf-8"%>
 <jsp:include page="layout/_header.jsp" />
 <div class="index">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-				
 				<div class="content-wrap">
-					<div class="news">
-						<div class="title">
-							<p  class="dateUp text-center">27/10/2016</p>
-							<a href="volume.html">Review camera HTC One ME: màu sắc tốt,
-								chế độ Manual với nhiều tuỳ chỉnh</a>
-						</div>
-						<div class="info">
-							By <a href="">Duong Anh Vu</a>
-						
-						</div>
-						
-						<div class="news-content">
-							<p>Do so written as raising parlors spirits mr elderly. Made
-								late in of high left hold. Carried females of up highest
-								calling. Limits marked led silent dining her she far. Sir but
-								elegance marriage dwelling likewise position old pleasure men.
-								Dissimilar themselves simplicity no of contrasted as. Delay
-								great day hours men. Stuff front to do allow to asked he.</p>
-						</div>
-					</div>
-					<div class="news">
-						<div class="title">
-							<p  class="dateUp text-center">27/10/2016</p>
-							<a href="volume.html">Review camera HTC One ME: màu sắc tốt,
-								chế độ Manual với nhiều tuỳ chỉnh</a>
-						</div>
-						<div class="info">
-							By <a href="">Duong Anh Vu</a>
-							
-						</div>
-						
-						<div class="news-content">
-							<p>Do so written as raising parlors spirits mr elderly. Made
-								late in of high left hold. Carried females of up highest
-								calling. Limits marked led silent dining her she far. Sir but
-								elegance marriage dwelling likewise position old pleasure men.
-								Dissimilar themselves simplicity no of contrasted as. Delay
-								great day hours men. Stuff front to do allow to asked he.</p>
-						</div>
-					</div>
-					<div class="news">
-						<div class="title">
-							<p  class="dateUp text-center">27/10/2016</p>
-							<a href="volume.html">Review camera HTC One ME: màu sắc tốt,
-								chế độ Manual với nhiều tuỳ chỉnh</a>
-						</div>
-						<div class="info">
-							By <a href="">Duong Anh Vu</a>
-							
-						</div>
-						
-						<div class="news-content">
-							<p>Do so written as raising parlors spirits mr elderly. Made
-								late in of high left hold. Carried females of up highest
-								calling. Limits marked led silent dining her she far. Sir but
-								elegance marriage dwelling likewise position old pleasure men.
-								Dissimilar themselves simplicity no of contrasted as. Delay
-								great day hours men. Stuff front to do allow to asked he.</p>
-						</div>
-					</div>
+					<c:forEach var="l" items="${list}">
 						<div class="news">
-						<div class="title">
-							<p  class="dateUp text-center">27/10/2016</p>
-							<a href="volume.html">Review camera HTC One ME: màu sắc tốt,
-								chế độ Manual với nhiều tuỳ chỉnh</a>
-						</div>
-						<div class="info">
-							By <a href="">Duong Anh Vu</a>
+							<div class="title">
+								<p  class="dateUp text-center"><fmt:formatDate pattern="dd/MM/yyyy" value="${l.date}" /></p>
+								<a href="volume.html?id=${l.id}">${l.text}</a>
+							</div>
 							
+							<div class="news-content">
+								<p>${l.description}</p>
+							</div>
 						</div>
-						
-						<div class="news-content">
-							<p>Do so written as raising parlors spirits mr elderly. Made
-								late in of high left hold. Carried females of up highest
-								calling. Limits marked led silent dining her she far. Sir but
-								elegance marriage dwelling likewise position old pleasure men.
-								Dissimilar themselves simplicity no of contrasted as. Delay
-								great day hours men. Stuff front to do allow to asked he.</p>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 				<!-- end content-wrap -->
 			</div>
