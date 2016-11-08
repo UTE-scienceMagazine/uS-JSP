@@ -74,7 +74,7 @@ public class EmployeeDAO {
 	public  Boolean insertEmployee(Employee employee) {
 		
 		Connection connection=DBConnect.getConnection();
-		String sql= "INSERT INTO employee (email,password,roleId,joindate) VALUES(?,?,?,?)";
+		String sql= "INSERT INTO employee (email,password,roleId,joindate,available) VALUES(?,?,?,?,?)";
 		 try {
 	            PreparedStatement ps = connection.prepareCall(sql);
 	         
@@ -82,6 +82,7 @@ public class EmployeeDAO {
 	            ps.setString(2, employee.getPassword());
 	            ps.setInt(3, employee.getRoleId().getId());
 	            ps.setTimestamp(4, employee.getJoinday());
+	            ps.setInt(5,1);
 	            ps.executeUpdate();
 	            return true;
 	        } catch (SQLException ex) {
@@ -132,6 +133,37 @@ public class EmployeeDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public boolean updateEmployee(Employee employee) {
+		// TODO Auto-generated method stub
+		Connection connection = DBConnect.getConnection();
+        String sql = "UPDATE employee SET email = ?,password = ?,name= ?,roleId= ? WHERE id = ?";
+        try {
+            PreparedStatement ps = connection.prepareCall(sql);
+            ps.setString(1,employee.getEmail());
+            ps.setString(2, employee.getPassword());
+            ps.setString(3, employee.getName());
+            ps.setInt(4, employee.getRoleId().getId());
+            ps.setInt(5, employee.getId());
+            return ps.executeUpdate() == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+	}
+
+	public boolean deleteEmloye(Integer id) {
+		Connection connection=DBConnect.getConnection();
+		String sql="Delete from employee Where id="+id;
+		try {
+			PreparedStatement ps=connection.prepareStatement(sql);
+			
+			return ps.executeUpdate()==1;
+		} catch (Exception ex) {
+			Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		  return false;
 	}
 	
 	/*public static void main(String[] args) {

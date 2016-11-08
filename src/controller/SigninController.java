@@ -146,7 +146,7 @@ public class SigninController extends HttpServlet {
 				 */
 
 				
-				PrintWriter out = resp.getWriter();
+			
 				if (dao.checkEmail(email)) {
 					user.setEmail(email);
 					user.setPassword(MD5.encryption(password));

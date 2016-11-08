@@ -100,8 +100,6 @@ public class ProfileController extends HttpServlet {
 			UserDAO udao=new UserDAO();
 			udao.updateUser(user);
 			
-		}else{
-			Employee user=(Employee)session.getAttribute("user");
 		}
 		
 		req.getRequestDispatcher(url).forward(req, resp);
