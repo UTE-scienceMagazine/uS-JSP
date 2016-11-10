@@ -1,3 +1,6 @@
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page pageEncoding="utf-8"%>
 <jsp:include page="layout/_header.jsp" />
 
@@ -24,24 +27,8 @@
 
 
 					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-
-						<!--Select All -->
-						<button class="btn btn-default">
-							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-							Chọn tất cả
-						</button>
-						<!-- End select all -->
-
-						<!-- Refesh -->
-						<button class="btn btn-default" style="margin-left: 20px;">
-							<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-						</button>
-						<!-- end sl all-->
-
-						<!-- Trans to tester -->
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					
+					<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 						<div class="mq_float_right">
 							<!--Setting-->
 							<button class="btn btn-default dropdown-toggle"
@@ -63,26 +50,7 @@
 					</div>
 				</div>
 				<br>
-				<div class="row">
-					<div class="col-md-4 col-md-push-4">
-						<button class="btn btn-default dropdown-toggle"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-							style="margin-right: 630px">
-							<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-							Tác vụ khác <span class="glyphicon glyphicon-triangle-bottom"
-								aria-hidden="true"></span>
-						</button>
-						<ul class="dropdown-menu mq_float_right mq-dropdown-menu "
-							style="transform: translateX(0%) translateY(-10%);">
-							<li><a href="#">Gửi phản biện cho tổng biên tập</a></li>
-							<li><a href="#">Gửi phản biện cho tác giả</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul>
-						<!-- End some action -->
-					</div>
-				</div>
+				
 			</div>
 			<br>
 			<div class="profile">
@@ -95,53 +63,25 @@
 							<h4 class="mq_h4">Danh sách bài viết</h4>
 							<table class="table table-striped">
 								<thead>
-									<tr>
-										<th>STT</th>
+									<tr>	
+										<th>STT</th>								
 										<th>Tên bài báo</th>
-										<th>Tên lĩnh vực</th>
-										<th>Trạng thái</th>
+										<th>Tên lĩnh vực</th>										
 										<th>Ngày cập nhật</th>
 										<th>Chi tiết</th>
 									</tr>
 								</thead>
 								<tbody>
+									<c:forEach var="l" items="${listArticle}" varStatus="loop" >
 									<tr>
-										<td>1</td>
-										<td>Ứng dụng CNTT</td>
-										<td>Công nghệ thông tin</td>
-										<td>Chuyển cho phản biện</td>
-										<td>1/1/2016</td>
-										<td style="padding-left: 25px;"><a href="post.html" style=""><span
-												class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+										<td>${loop.index +1}</td>
+										<td>${l.title }</td>
+										<td>${l.detail }</td>										
+										<td>${l.date }</td>
+										<td><a href="tester-comment.html?id=${l.id}"><span class="glyphicon glyphicon-pencil"></span> Chi tiet</a></td>
+										
 									</tr>
-									<tr>
-										<td>2</td>
-										<td>Samsung sẽ sớm bán Note7 trở lại</td>
-										<td>Viễn thông</td>
-										<td>Chuyển cho phản biện</td>
-										<td>1/1/2016</td>
-										<td style="padding-left: 25px;"><a href="post.html" style=""><span
-												class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
-									</tr>
-
-									<tr>
-										<td>3</td>
-										<td>Máy rang ca cao</td>
-										<td>Sản phẩm mới</td>
-										<td>Chuyển cho phản biện</td>
-										<td>1/1/2016</td>
-										<td style="padding-left: 25px;"><a href="post.html" style=""><span
-												class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td>Trực thăng tự chế của kỹ sư Bình Dương</td>
-										<td>Sản phẩm mới</td>
-										<td>Chuyển cho phản biện</td>
-										<td>1/1/2016</td>
-										<td style="padding-left: 25px;"><a href="post.html" style=""><span
-												class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
-									</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 

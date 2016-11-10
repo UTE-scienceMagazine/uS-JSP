@@ -13,19 +13,19 @@
 </script>
 
 
-<form action="tester-comment.html" method="POST" role="form">
-	<legend>Bài viết mới</legend>
+<form action="feedback.html" method="POST" role="form">
+	<legend>Xem bài viết</legend>
 	<div class="form-group">
 		<label for="">Tiêu đề</label> 
-		<input name="id" value="" type="hidden">
-		<input name="title" type="text"	class="form-control" id="" value="" disabled="disabled"
+		<input name="id" value="${article.id}" type="hidden">
+		<input name="title" type="text"	class="form-control" id="name" value="${article.title}" disabled="disabled"
 			placeholder="Tiêu đề"> 
 			
 			
 			<label for="">Tóm tắt</label>
 			
-		<textarea id="tomtat" name="summary" class="form-control" disabled="disabled"
-			placeholder="Tóm tắt"></textarea>
+		<textarea id="tomtat" name="summary" class="form-control" disabled="disabled" 
+			placeholder="Tóm tắt">${article.description}</textarea>
 
 		<label for="">Nội dung</label>
 		<div class="content-article">
@@ -38,17 +38,10 @@
 		
 		<fieldset disabled="disabled">
 			<label for="">Từ khóa</label> 
-		<input name="hashtag" type="text" class="form-control" id="" placeholder="Từ khóa"> <label
-			for="">Loại tin</label> <select name="category">
-			<option value="1">Công nghệ thông tin</option>
-		</select> <br> <label for="">Trạng thái</label> <select name="status">
-			<option value="true" selected="selected">Hiển thị</option>
-			<option value="false">Không hiển thị</option>
-		</select> <br> <label for="">Thứ tự</label>
-		 <input name="position"
-			type="text" class="form-control" id="" placeholder="Thứ tự">
+		<input name="hashtag" type="text" class="form-control" id="" placeholder="Từ khóa" value="${article.detail }">
+		 
 		</fieldset>
 		
 	</div>
-	<button name="post" type="submit" class="btn btn-primary">Submit</button>
+	<a class="btn btn-default" href="feedback.html">Gửi phản biện</a>
 </form>

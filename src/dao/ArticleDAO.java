@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import connect.DBConnect;
 import model.Article;
+import model.Employee;
 import model.User;
 
 
@@ -85,5 +86,35 @@ public class ArticleDAO implements Serializable{
         }
         return false;
 		
+	}
+	
+	
+	public ArrayList<Article> getArticleByEmployeeID(Integer id) throws SQLException{
+		Connection connection=DBConnect.getConnection();
+		ArrayList<Article> list= new ArrayList<>();
+		
+		String sql="Select * from article Where employeeID="+id;
+		PreparedStatement ps=connection.prepareCall(sql);
+		ResultSet rs=ps.executeQuery();
+		while(rs.next())
+		{
+			Article article = new Article();
+			article.setId(rs.getInt("id"));
+			article.setTitle(rs.getString("title"));
+			article.setDetail(rs.getString("detail"));
+			article.setDate(rs.getTimestamp("date"));
+			article.setVolumeId(rs.getInt("volumeId"));
+			article.setStatusId(rs.getInt("statusId"));
+			article.setPdf(rs.getString("pdf"));
+			article.setNum(rs.getInt("num"));
+			article.setDescription(rs.getString("description"));
+			article.setVote(rs.getInt("vote"));
+			article.setViews(rs.getInt("views"));
+			
+			list.add(article);
+		}
+		
+		
+		return list;
 	}
 }

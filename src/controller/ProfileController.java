@@ -15,8 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ArticleDAO;
 import dao.EmployeeDAO;
 import dao.UserDAO;
+import model.Article;
 import model.Employee;
 import model.User;
 
@@ -31,9 +33,10 @@ public class ProfileController extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = req.getSession();
 		
-
+		
 		Integer roleId = (Integer) session.getAttribute("roleId");
-
+	
+		
 		if (roleId == null) {
 			url = "/views/site/login.jsp";
 			req.getRequestDispatcher(url).forward(req, resp);
@@ -43,6 +46,18 @@ public class ProfileController extends HttpServlet {
 		} else {
 			switch (roleId) {
 			case 2:
+				try {
+					
+					
+					Employee em = (Employee)session.getAttribute("user");
+					Integer employeeID = (Integer) em.getId();
+					ArticleDAO adao=new ArticleDAO();
+					ArrayList<Article>  listArticle =adao.getArticleByEmployeeID(employeeID);
+					session.setAttribute("listArticle", listArticle);
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
 				url = "/views/site/profileTester.jsp";
 				break;
 			case 3:
