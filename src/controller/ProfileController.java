@@ -46,9 +46,7 @@ public class ProfileController extends HttpServlet {
 		} else {
 			switch (roleId) {
 			case 2:
-				try {
-					
-					
+				try {				
 					Employee em = (Employee)session.getAttribute("user");
 					Integer employeeID = (Integer) em.getId();
 					ArticleDAO adao=new ArticleDAO();
@@ -67,6 +65,20 @@ public class ProfileController extends HttpServlet {
 				url = "/views/site/profileEditor.jsp";
 				break;
 			case 5:
+				
+				
+				try {
+					ArticleDAO adao=new ArticleDAO();
+					ArrayList<Article> listArticle = null;
+					listArticle = adao.getListArticle();
+					session.setAttribute("listArticle", listArticle);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					System.out.println("SQLEX");
+				}
+				
+				
 				url = "/views/site/profileMaster.jsp";
 				break;
 			case 6:

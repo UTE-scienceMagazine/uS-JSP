@@ -13,7 +13,7 @@
 </script>
 
 
-<form action="feedback.html" method="POST" role="form">
+<form action="feedback.html" method="GET" role="form">
 	<legend>Xem bài viết</legend>
 	<div class="form-group">
 		<label for="">Tiêu đề</label> 
@@ -43,5 +43,5 @@
 		</fieldset>
 		
 	</div>
-	<a class="btn btn-default" href="feedback.html">Gửi phản biện</a>
+	<button type="submit" class="btn btn-primary" value="register" name="command">Phản biện</button>
 </form>

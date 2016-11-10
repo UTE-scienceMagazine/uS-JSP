@@ -65,20 +65,18 @@
 								<thead>
 									<tr>	
 										<th>STT</th>								
-										<th>Tên bài báo</th>
-										<th>Tên lĩnh vực</th>										
-										<th>Ngày cập nhật</th>
-										<th>Chi tiết</th>
+										<th style="text-align: center;">Tên bài báo</th>																				
+										<th style="width:150px; text-align: center;">Ngày cập nhật</th>
+										<th style="width:100px;text-align: center;">Chi tiết</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach var="l" items="${listArticle}" varStatus="loop" >
 									<tr>
 										<td>${loop.index +1}</td>
-										<td>${l.title }</td>
-										<td>${l.detail }</td>										
-										<td>${l.date }</td>
-										<td><a href="tester-comment.html?id=${l.id}"><span class="glyphicon glyphicon-pencil"></span> Chi tiet</a></td>
+										<td>${l.title }</td>																			
+										<td style="width:150px; text-align: center;">${l.date }</td>
+										<td  style="width:100px;text-align: center;"><a href="tester-comment.html?id=${l.id}">Xem</a></td>
 										
 									</tr>
 									</c:forEach>

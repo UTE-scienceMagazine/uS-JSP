@@ -14,105 +14,87 @@ public class Feedback implements Serializable{
 	private String license;
 	private String result;
 	private String neededit;
-
-
-	public Feedback(){
-	super();
+	private String title;
+	
+	
+	public int intValue() {
+		return articleId.intValue();
 	}
 
-	public Feedback(Integer id,Integer testerId,Integer articleId,String description,String meaning,String license,String result,String neededit){
+	public Feedback() {
+		// TODO Auto-generated constructor stub
 		super();
-		
-		this.id= id;
-		this.testerId= testerId;
-		this.articleId= articleId;
-		this.description= description;
-		this.meaning= meaning;
-		this.license=license;
-		this.result=result;
-		this.neededit=neededit;
-		}
+	}
+	public Feedback(Integer id, Integer testerId, Integer articleId, String description, String meaning, String license,
+			String result, String neededit, String title) {
+		super();
+		this.id = id;
+		this.testerId = testerId;
+		this.articleId = articleId;
+		this.description = description;
+		this.meaning = meaning;
+		this.license = license;
+		this.result = result;
+		this.neededit = neededit;
+		this.title = title;
+	}
 	
-	public Integer getID()
-	{
+	
+
+	public Integer getId() {
 		return id;
 	}
-	
-	public void setId(Integer id){
-		this.id=id;
-		
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	
-	public Integer getTesterID()
-	{
+	public Integer getTesterId() {
 		return testerId;
 	}
-	
-	public void setTesterId(Integer testerId){
-		this.testerId=testerId;
-		
+	public void setTesterId(Integer testerId) {
+		this.testerId = testerId;
 	}
-	
-	public Integer getArticleID()
-	{
+	public Integer getArticleId() {
 		return articleId;
 	}
-	
-	public void setArticleID(Integer articleId){
-		this.articleId=articleId;
-		
+	public void setArticleId(Integer articleId) {
+		this.articleId = articleId;
 	}
-	
-	
-	public String getDescription()
-	{
+	public String getDescription() {
 		return description;
 	}
-	
-	public void setDescription(String description)
-	{
-		this.description=description;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	
-	public String getMeaning()
-	{
+	public String getMeaning() {
 		return meaning;
 	}
-	
-	public void setMeaning(String meaning)
-	{
-		this.meaning=meaning;
+	public void setMeaning(String meaning) {
+		this.meaning = meaning;
 	}
-	
-	public String getLicense()
-	{
+	public String getLicense() {
 		return license;
 	}
-	
-	public void setLicense(String license)
-	{
-		this.license=license;
+	public void setLicense(String license) {
+		this.license = license;
 	}
-	
-	public String getResult()
-	{
+	public String getResult() {
 		return result;
 	}
-	
-	public void setResult(String result)
-	{
-		this.result=result;
+	public void setResult(String result) {
+		this.result = result;
 	}
-	
-	public String getNeedEdit()
-	{
+	public String getNeededit() {
 		return neededit;
 	}
-	
-	public void setNeedEdit(String neededit)
-	{
-		this.neededit=neededit;
+	public void setNeededit(String neededit) {
+		this.neededit = neededit;
 	}
-	
-	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 }
+	
