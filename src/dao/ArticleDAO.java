@@ -120,7 +120,9 @@ public class ArticleDAO implements Serializable{
 		Connection connection=DBConnect.getConnection();
 		ArrayList<Article> list= new ArrayList<>();
 		
-		String sql="Select * from article Where employeeID="+id;
+		String sql="Select * "
+				+ "from article join employee_article on article.id =  employee_article.articleId "
+				+ "Where employee_article.employeeId="+id;
 		PreparedStatement ps=connection.prepareCall(sql);
 		ResultSet rs=ps.executeQuery();
 		while(rs.next())
