@@ -104,7 +104,7 @@
 									<tr>
 										<td>${loop.index +1}</td>
 										<td>${l.title }</td>
-										<td style="width:250px;"><select class="form-control mySelect"  onchange="changeSTTbyMaster()">
+										<td style="width:250px;"><select class="form-control mySelect" id="mySelect${loop.index +1}" >
 															<option value = -1>Không được đăng</option>
 														    <option value = 1> Được đăng</option>
 														    <option value = 2>Chuyển cho phản biện</option>
@@ -113,8 +113,15 @@
 														  </select></td>	
 										<script>
 											var x = ${l.statusId};
-											
+											var articleId${loop.index +1} = ${l.id}
 											document.getElementsByClassName("mySelect")['${loop.index}'].selectedIndex = x;
+											$( "#mySelect${loop.index +1}").change(function() {
+												  var role = $("#mySelect${loop.index +1} option:selected").val();
+												  if(role== 2 || role ==3)
+													  {
+													  window.location.replace("listaccount-by-role.html?role="+role+"&articleId="+articleId${loop.index +1})
+													  }
+												});
 										</script>																		
 										<td style="width:150px; text-align: center;">${l.date }</td>
 										<td  style="width:100px;text-align: center;"><a href="tester-comment.html?id=${l.id}">Xem</a></td>
@@ -212,18 +219,7 @@
 
 
 <script>
-	
-	function changeSTTbyMaster() {
 
-		var x = document.getElementById("mySelect").value;
-		if (x == 1) {
-			window.location = "listEditor.html";
-		}
-		if (x == 2) {
-			window.location = "listEditor.html";
-
-		}
-	}
 </script>
 
 <jsp:include page="layout/_footer.jsp"></jsp:include>

@@ -70,6 +70,33 @@ public class EmployeeDAO {
 		
 		return list;
 	}
+	public ArrayList<Employee> getEmployeeByRole(Integer roleId) throws SQLException {
+		Connection connection=DBConnect.getConnection();
+		ArrayList<Employee> list=new ArrayList<>();
+		
+		String sql="Select * from employee where roleId="+roleId;
+		PreparedStatement ps=connection.prepareCall(sql);
+		ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			Employee employee =new Employee();
+			employee.setId(rs.getInt("id"));
+			employee.setEmail(rs.getString("email"));
+			employee.setName(rs.getString("name"));
+			employee.setPassword(rs.getString("password"));
+			employee.setPhone(rs.getString("phone"));
+			employee.setSex(rs.getInt("sex"));
+			employee.setAvatar(rs.getString("avatar"));
+			employee.setBirthday(rs.getTimestamp("birthday"));
+			employee.setIdentitycard(rs.getString("identitycard"));
+			Role role=rdao.findRoleById(rs.getInt("roleId"));
+			employee.setRoleId(role);
+			employee.setAvailable(rs.getInt("available"));
+			employee.setJoinday(rs.getTimestamp("joindate"));
+			list.add(employee);
+		}
+		
+		return list;
+	}
 	
 	public  Boolean insertEmployee(Employee employee) {
 		
