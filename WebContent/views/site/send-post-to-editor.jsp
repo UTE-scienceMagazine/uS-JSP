@@ -27,30 +27,28 @@
 					class="form-control" id="" value="Ứng dụng CNTT"
 					placeholder="Tiêu đề"> 
 
-					<label for="">Ảnh minh họa</label> 
-					<input name="img" type="file" id="" placeholder="Ảnh minh họa"> 
+					
 
 					<label for="">Tóm tắt</label>
-					<textarea id="tomtat" name="name" class="form-control" rows="8" cols="80">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum auctor aliquet. Nam sit amet odio laoreet, viverra est tristique, posuere neque. Donec tempus velit sit amet posuere iaculis. Mauris cursus, nibh quis pulvinar consectetur, ipsum dui rutrum dolor, nec sagittis lacus mi eget massa. Donec sit amet tempor tortor. Etiam sollicitudin purus urna, scelerisque congue ante tempus quis. Phasellus sollicitudin ante massa, ut rhoncus libero luctus nec.
-					</textarea>
+					<textarea id="tomtat" name="tomtat" class="form-control" rows="8" cols="80">
+				</textarea>
 
 					<label for="">Ý nghĩ bài viết</label> 
-					<textarea id="ynghia" name="name" class="form-control" rows="8" cols="80">
+					<textarea id="ynghia"" class="form-control" rows="8" cols="80">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum auctor aliquet. Nam sit amet odio laoreet, viverra est tristique, posuere neque. Donec tempus velit sit amet posuere iaculis. Mauris cursus, nibh quis pulvinar consectetur, ipsum dui rutrum dolor, nec sagittis lacus mi eget massa. Donec sit amet tempor tortor. Etiam sollicitudin purus urna, scelerisque congue ante tempus quis. Phasellus sollicitudin ante massa, ut rhoncus libero luctus nec.
 					</textarea>
 					
 
 					<label for="">1.3 Nội dung bài viết đã được công bố trên các ấn phẩm khác chưa? Nếu có, nêu cụ thể ấn phẩm đó.</label> 	
 
-					<textarea id="congbo" name="name" class="form-control" rows="8" cols="80">
+					<textarea id="congbo"class="form-control" rows="8" cols="80">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum auctor aliquet. Nam sit amet odio laoreet, viverra est tristique, posuere neque. Donec tempus velit sit amet posuere iaculis. Mauris cursus, nibh quis pulvinar consectetur, ipsum dui rutrum dolor, nec sagittis lacus mi eget massa. Donec sit amet tempor tortor. Etiam sollicitudin purus urna, scelerisque congue ante tempus quis. Phasellus sollicitudin ante massa, ut rhoncus libero luctus nec.
 					</textarea>
 
 
 					<label for="">1.4 Kết luận.</label> 	
 
-					<textarea id="ketluan" name="name" class="form-control" rows="8" cols="80">
+					<textarea id="ketluan"  class="form-control" rows="8" cols="80">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum auctor aliquet. Nam sit amet odio laoreet, viverra est tristique, posuere neque. Donec tempus velit sit amet posuere iaculis. Mauris cursus, nibh quis pulvinar consectetur, ipsum dui rutrum dolor, nec sagittis lacus mi eget massa. Donec sit amet tempor tortor. Etiam sollicitudin purus urna, scelerisque congue ante tempus quis. Phasellus sollicitudin ante massa, ut rhoncus libero luctus nec.
 					</textarea>
 					

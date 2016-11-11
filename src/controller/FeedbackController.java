@@ -31,13 +31,14 @@ public class FeedbackController extends HttpServlet {
 		
 		id = Integer.parseInt(req.getParameter("id"));
 		HttpSession session = req.getSession();
-		Article a = (Article) session.getAttribute("article");
-		Integer articleId = a.getId();
+		
 		Integer roleId = (Integer) session.getAttribute("roleId");
 		
 		if(roleId == 2)
 		{
 			try {
+				Article a = (Article) session.getAttribute("article");
+				Integer articleId = a.getId();
 				Feedback fb = FeedbackDAO.getInfoByArticleId(articleId);
 				session.setAttribute("feedback", fb);
 				req.getRequestDispatcher("/views/site/feedback.jsp").forward(req, resp);
@@ -50,6 +51,10 @@ public class FeedbackController extends HttpServlet {
 		if(roleId==5)
 		{
 			try {
+				ArticleDAO dao = new ArticleDAO();
+				Article article = dao.findArticleById(id);
+				session.setAttribute("article", article);
+				
 				Feedback fb = FeedbackDAO.getInfoByArticleId(id);
 				session.setAttribute("feedback", fb);
 				req.getRequestDispatcher("/views/site/feedback.jsp").forward(req, resp);
