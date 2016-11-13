@@ -45,7 +45,7 @@ public class FeedbackController extends HttpServlet {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				req.getRequestDispatcher("/views/site/feedback.jsp").forward(req, resp);
+				resp.sendRedirect("profile.html");
 			}
 		}
 		if(roleId==5)

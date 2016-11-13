@@ -10,21 +10,20 @@ public class EmployeeArticle implements Serializable{
 	private Article articleId;
 	private Integer status;
 	private Timestamp date;
-	private Integer statuschange;
+	
 	
 
 	public EmployeeArticle() {
 		super();
 	}
-	public EmployeeArticle(Integer id, Employee employeeId, Article articleId, Integer status, Timestamp date,
-			Integer statuschange) {
+	public EmployeeArticle(Integer id, Employee employeeId, Article articleId, Integer status, Timestamp date) {
 		super();
 		this.id = id;
 		this.employeeId = employeeId;
 		this.articleId = articleId;
 		this.status = status;
 		this.date = date;
-		this.statuschange = statuschange;
+		
 	}
 	public Integer getId() {
 		return id;
@@ -56,12 +55,7 @@ public class EmployeeArticle implements Serializable{
 	public void setDate(Timestamp date) {
 		this.date = date;
 	}
-	public Integer getStatuschange() {
-		return statuschange;
-	}
-	public void setStatuschange(Integer statuschange) {
-		this.statuschange = statuschange;
-	}
+	
 	
 	
 	

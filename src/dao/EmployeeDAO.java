@@ -70,33 +70,6 @@ public class EmployeeDAO {
 		
 		return list;
 	}
-	public ArrayList<Employee> getEmployeeByRole(Integer roleId) throws SQLException {
-		Connection connection=DBConnect.getConnection();
-		ArrayList<Employee> list=new ArrayList<>();
-		
-		String sql="Select * from employee where roleId="+roleId;
-		PreparedStatement ps=connection.prepareCall(sql);
-		ResultSet rs=ps.executeQuery();
-		while(rs.next()){
-			Employee employee =new Employee();
-			employee.setId(rs.getInt("id"));
-			employee.setEmail(rs.getString("email"));
-			employee.setName(rs.getString("name"));
-			employee.setPassword(rs.getString("password"));
-			employee.setPhone(rs.getString("phone"));
-			employee.setSex(rs.getInt("sex"));
-			employee.setAvatar(rs.getString("avatar"));
-			employee.setBirthday(rs.getTimestamp("birthday"));
-			employee.setIdentitycard(rs.getString("identitycard"));
-			Role role=rdao.findRoleById(rs.getInt("roleId"));
-			employee.setRoleId(role);
-			employee.setAvailable(rs.getInt("available"));
-			employee.setJoinday(rs.getTimestamp("joindate"));
-			list.add(employee);
-		}
-		
-		return list;
-	}
 	
 	public  Boolean insertEmployee(Employee employee) {
 		
@@ -192,10 +165,50 @@ public class EmployeeDAO {
 		}
 		  return false;
 	}
-	
-	/*public static void main(String[] args) {
-		User user =new User("binhbinh0708@gmail.com","123456789",1);
-		insertUser(user);
-		System.out.println(user);
-	}*/
+
+	public boolean updateUser(Employee employee) {
+		Connection connection = DBConnect.getConnection();
+        String sql = "UPDATE employee SET name = ?,phone = ?,sex= ?,birthday= ?,identitycard=?  WHERE id = ?";
+        try {
+            PreparedStatement ps = connection.prepareCall(sql);
+            ps.setString(1, employee.getName());
+            ps.setString(2, employee.getPhone());
+            ps.setInt(3, employee.getSex());
+            ps.setTimestamp(4, employee.getBirthday());
+            ps.setString(5, employee.getIdentitycard());
+            ps.setInt(6, employee.getId());
+            return ps.executeUpdate() == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+	}
+	public ArrayList<Employee> getEmployeeByRole(Integer roleId) throws SQLException {
+		Connection connection=DBConnect.getConnection();
+		ArrayList<Employee> list=new ArrayList<>();
+		
+		String sql="Select * from employee where roleId="+roleId;
+		PreparedStatement ps=connection.prepareCall(sql);
+		ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			Employee employee =new Employee();
+			employee.setId(rs.getInt("id"));
+			employee.setEmail(rs.getString("email"));
+			employee.setName(rs.getString("name"));
+			employee.setPassword(rs.getString("password"));
+			employee.setPhone(rs.getString("phone"));
+			employee.setSex(rs.getInt("sex"));
+			employee.setAvatar(rs.getString("avatar"));
+			employee.setBirthday(rs.getTimestamp("birthday"));
+			employee.setIdentitycard(rs.getString("identitycard"));
+			Role role=rdao.findRoleById(rs.getInt("roleId"));
+			employee.setRoleId(role);
+			employee.setAvailable(rs.getInt("available"));
+			employee.setJoinday(rs.getTimestamp("joindate"));
+			list.add(employee);
+		}
+		
+		return list;
+	}
+
 }

@@ -39,12 +39,33 @@
 			<div class="profile">
 				<div class="row">
 					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-						<jsp:include page="layout/_list-group-Viewer.jsp" />
+						<c:choose>
+							<c:when test="${user.roleId.id == 1}">
+								<jsp:include page="layout/_list-group-Viewer.jsp" />
+							</c:when>
+							<c:otherwise>
+								<div class="list-group">
+									<div class="list-group">
+										<p class="list-group-item active">Dành cho nhân viên</p>
+										
+										<a href="profile.html" class="list-group-item">
+										<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"
+											style="float: left padding-right:10px;">
+										</span> Quay lại</a>
+										 <a
+											href="signout.html" class="list-group-item"><span
+											class="glyphicon glyphicon-off" aria-hidden="true"
+											style="float: left padding-right:10px;"></span> Đăng xuất</a>
+									</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+						
 					</div>
 					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
 						<div class="row">
 							<form id="formChangeInfo" action="profile.html" method="POST"
-								role="form">
+								role="form" >
 								<h4 class="mq_h4">Thông tin tài khoản</h4>
 								<div class="col-lg-5 mq_leftrow_inf ">
 									<p>Thông tin liên hệ</p>

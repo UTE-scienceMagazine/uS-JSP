@@ -12,12 +12,13 @@ public class Article implements Serializable{
 	private String detail;
 	private Timestamp date;
 	private Integer volumeId;
-	private Integer statusId;
+	private Status statusId;
 	private String pdf;
 	private Integer num;
 	private String description;
 	private Integer vote;
 	private Integer views;
+	private Employee authorId;
 	private List<Comment> comments;
 	private List<EmployeeArticle> employeeArticles;
 	private List<HashTag> hashTags;
@@ -27,10 +28,9 @@ public class Article implements Serializable{
 		super();
 	}
 
-
-	public Article(Integer id, String title, String detail, Timestamp date, Integer volumeId, Integer statusId,
-			String pdf, Integer num, String description, Integer vote, Integer views, List<Comment> comments,
-			List<EmployeeArticle> employeeArticles, List<HashTag> hashTags) {
+	public Article(Integer id, String title, String detail, Timestamp date, Integer volumeId, Status statusId,
+			String pdf, Integer num, String description, Integer vote, Integer views, Employee authorId,
+			List<Comment> comments, List<EmployeeArticle> employeeArticles, List<HashTag> hashTags) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -43,10 +43,13 @@ public class Article implements Serializable{
 		this.description = description;
 		this.vote = vote;
 		this.views = views;
+		this.authorId = authorId;
 		this.comments = comments;
 		this.employeeArticles = employeeArticles;
 		this.hashTags = hashTags;
 	}
+
+
 
 
 	public Integer getId() {
@@ -99,12 +102,12 @@ public class Article implements Serializable{
 	}
 
 
-	public Integer getStatusId() {
+	public Status getStatusId() {
 		return statusId;
 	}
 
 
-	public void setStatusId(Integer statusId) {
+	public void setStatusId(Status statusId) {
 		this.statusId = statusId;
 	}
 
@@ -159,6 +162,16 @@ public class Article implements Serializable{
 	}
 
 
+	public Employee getAuthorId() {
+		return authorId;
+	}
+
+
+	public void setAuthorId(Employee authorId) {
+		this.authorId = authorId;
+	}
+
+
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -187,6 +200,4 @@ public class Article implements Serializable{
 	public void setHashTags(List<HashTag> hashTags) {
 		this.hashTags = hashTags;
 	}
-	
-	
 }

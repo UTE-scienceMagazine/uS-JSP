@@ -33,10 +33,9 @@ public class ProfileController extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = req.getSession();
 		
-		
+
 		Integer roleId = (Integer) session.getAttribute("roleId");
-	
-		
+
 		if (roleId == null) {
 			url = "/views/site/login.jsp";
 			req.getRequestDispatcher(url).forward(req, resp);
@@ -44,14 +43,16 @@ public class ProfileController extends HttpServlet {
 		} else if (roleId == 1) {
 			url = "/views/site/profileViewer.jsp";
 		} else {
+			EmployeeDAO edao=new EmployeeDAO();
+			Employee employee=(Employee)session.getAttribute("user");
+			ArticleDAO adao=new ArticleDAO();
 			switch (roleId) {
 			case 2:
 				try {				
-					Employee em = (Employee)session.getAttribute("user");
-					Integer employeeID = (Integer) em.getId();
-					ArticleDAO adao=new ArticleDAO();
-					ArrayList<Article>  listArticle =adao.getArticleByEmployeeID(employeeID);
-					session.setAttribute("listArticle", listArticle);
+					
+				
+					ArrayList<Article>  listArticle =adao.getArticleByEmployeeID(employee.getId());
+					req.setAttribute("listArticle", listArticle);
 				} catch (SQLException e) {
 					
 					e.printStackTrace();
@@ -59,19 +60,22 @@ public class ProfileController extends HttpServlet {
 				url = "/views/site/profileTester.jsp";
 				break;
 			case 3:
+				
+				
+				ArrayList<Article> listArticle = adao.findArticlesByAuthor(employee.getId());
+				req.setAttribute("list", listArticle);
+				
 				url = "/views/site/profileAuthor.jsp";
 				break;
 			case 4:
 				url = "/views/site/profileEditor.jsp";
 				break;
 			case 5:
-				
-				
 				try {
-					ArticleDAO adao=new ArticleDAO();
-					ArrayList<Article> listArticle = null;
-					listArticle = adao.getListArticle();
-					session.setAttribute("listArticle", listArticle);
+					
+					ArrayList<Article> listArticle1 = null;
+					listArticle1 = adao.getListArticle();
+					session.setAttribute("listArticle", listArticle1);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -80,13 +84,14 @@ public class ProfileController extends HttpServlet {
 				
 				
 				url = "/views/site/profileMaster.jsp";
+				
 				break;
 			case 6:
 				
 				try {
-					EmployeeDAO dao=new EmployeeDAO();
-					ArrayList<Employee> list=dao.getEmployee();
-					session.setAttribute("list", list);
+					
+					ArrayList<Employee> listEmployee=edao.getEmployee();
+					req.setAttribute("list", listEmployee);
 				} catch (SQLException e) {
 					
 					e.printStackTrace();
@@ -128,7 +133,26 @@ public class ProfileController extends HttpServlet {
 			udao.updateUser(user);
 			
 		}
-		
+		else{
+			Employee employee=(Employee)session.getAttribute("user");
+			employee.setName(req.getParameter("name"));
+			employee.setPhone(req.getParameter("phone"));
+			employee.setSex(Integer.parseInt(req.getParameter("sex")));
+			
+			try {
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+				Date parsedDate = dateFormat.parse(req.getParameter("birthday"));
+				employee.setBirthday(new Timestamp( parsedDate.getTime()));
+			} catch (ParseException e) {
+				
+				e.printStackTrace();
+			}
+			
+			employee.setIdentitycard(req.getParameter("identitycard"));
+			EmployeeDAO edao=new EmployeeDAO();
+			edao.updateUser(employee);
+			
+		}
 		req.getRequestDispatcher(url).forward(req, resp);
 	}
 

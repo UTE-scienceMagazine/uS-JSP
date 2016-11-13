@@ -20,8 +20,10 @@ public class RoleDAO {
 		if(rs.next()){
 			role.setId(rs.getInt("id"));
 			role.setName(rs.getString("name"));
+			ps.close();
 			return role;
 		}
+		ps.close();
 		
 		return null;
 	}

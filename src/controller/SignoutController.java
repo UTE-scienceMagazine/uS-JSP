@@ -17,6 +17,6 @@ public class SignoutController extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession httpSession = req.getSession();		
 		httpSession.invalidate();
-		req.getRequestDispatcher("/views/site/index.jsp").forward(req, resp);
+		resp.sendRedirect("home.html");
 	}
 }

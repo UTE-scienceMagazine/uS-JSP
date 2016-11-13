@@ -7,67 +7,7 @@
 <div class="profileMaster">
 	<div class="container">
 		<div class="row">
-			<div class="buttons">
-				<div class="row">
-					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-						<button class="btn btn-default dropdown-toggle master_text"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-							style="color: red;">
-							<b>Master</b> <span class="glyphicon glyphicon-triangle-bottom"
-								aria-hidden="true"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Chỉnh sửa</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul>
-						<!-- End dropdown -->
-
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-
-						<!--Select All -->
-						<button class="btn btn-default">
-							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-							Chọn tất cả
-						</button>
-						<!-- End select all -->
-
-						<!-- Refesh -->
-						<button class="btn btn-default" style="margin-left: 20px;">
-							<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-						</button>
-						<!-- end sl all-->
-
-						<!-- Trans to tester -->
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-						<div class="mq_float_right">
-							<!--Setting-->
-							<button class="btn btn-default dropdown-toggle"
-								data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false">
-								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-								Cài đặt <span class="glyphicon glyphicon-triangle-bottom"
-									aria-hidden="true"></span>
-							</button>
-							<ul class="dropdown-menu mq_float_right mq-dropdown-menu">
-								<li><a href="#">Sometext</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li role="separator" class="divider"></li>
-								<li><a href="#">Separated link</a></li>
-							</ul>
-						</div>
-						<!-- End Setting -->
-					</div>
-				</div>
-				<br>
-
-			</div>
-			<br>
+			
 			<div class="profile">
 				<div class="row">
 					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
@@ -104,15 +44,16 @@
 									<tr>
 										<td>${loop.index +1}</td>
 										<td>${l.title }</td>
-										<td style="width:250px;"><select class="form-control mySelect" id="mySelect${loop.index +1}" >
+										<td style="width:250px;">
+										<select class="form-control mySelect" id="mySelect${loop.index +1}" >
 															<option value = -1>Không được đăng</option>
 														    <option value = 1> Được đăng</option>
 														    <option value = 2>Chuyển cho phản biện</option>
 														    <option value = 3>Cần chỉnh sửa</option>
 															<option value = 4>Đã chỉnh sửa</option>	
-														  </select></td>	
+										</select></td>	
 										<script>
-											var x = ${l.statusId};
+											var x = ${l.statusId.id};
 											var articleId${loop.index +1} = ${l.id}
 											document.getElementsByClassName("mySelect")['${loop.index}'].selectedIndex = x;
 											$( "#mySelect${loop.index +1}").change(function() {

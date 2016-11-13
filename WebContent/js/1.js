@@ -36,9 +36,9 @@ $(function() {
 
 	$(window).scroll(function(event) {
 		var vitri = $('body').scrollTop();
-		if (vitri > 450) {
+		if (vitri > 500) {
 			$('.back-to-top').removeClass('hide');
-		} else if (vitri < 500) {
+		} else if (vitri <= 500) {
 			$('.back-to-top').addClass('hide');
 		}
 		if (vitri > 250) {

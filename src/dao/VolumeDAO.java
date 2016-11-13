@@ -24,6 +24,7 @@ public class VolumeDAO {
 			volume.setText(rs.getString("title"));
 			volume.setDate(rs.getTimestamp("date"));
 			volume.setDescription(rs.getString("description"));
+			
 			ArticleDAO adao=new ArticleDAO();
 			ArrayList<Article> articles=adao.findArticlesByVolume(rs.getInt("id"));
 			volume.setArticles(articles);
