@@ -1,5 +1,9 @@
 *{margin: 0;padding: 0}
 
+.header_top form input.form-control {
+    padding-right: 70px;
+}
+
 h4.mq_h4 {
     text-align: center;
     background: #337ab7;
@@ -160,6 +164,26 @@ hr{
     margin-right: 10px;
 }
 *{margin:0;padding:0; }
+
+.header_top form button.form-control {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #337ab7;
+    color: white;
+    padding: 0;
+}
+
+.header_top .form-group {
+    position: relative;
+}
+
+#formChangeInfo img.img-responsive {
+    max-width: 170px;
+    margin: 10px;
+    min-width: 170px;
+    min-height: 170px;
+}
 
 .mq_post_table {
     min-height: 500px;

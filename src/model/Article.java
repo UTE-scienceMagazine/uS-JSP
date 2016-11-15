@@ -19,18 +19,23 @@ public class Article implements Serializable{
 	private Integer vote;
 	private Integer views;
 	private Employee authorId;
+	private Category categoryId;
 	private List<Comment> comments;
 	private List<EmployeeArticle> employeeArticles;
 	private List<HashTag> hashTags;
+	
 	
 	
 	public Article() {
 		super();
 	}
 
+
+
 	public Article(Integer id, String title, String detail, Timestamp date, Integer volumeId, Status statusId,
 			String pdf, Integer num, String description, Integer vote, Integer views, Employee authorId,
-			List<Comment> comments, List<EmployeeArticle> employeeArticles, List<HashTag> hashTags) {
+			Category categoryId, List<Comment> comments, List<EmployeeArticle> employeeArticles,
+			List<HashTag> hashTags) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -44,11 +49,11 @@ public class Article implements Serializable{
 		this.vote = vote;
 		this.views = views;
 		this.authorId = authorId;
+		this.categoryId = categoryId;
 		this.comments = comments;
 		this.employeeArticles = employeeArticles;
 		this.hashTags = hashTags;
 	}
-
 
 
 
@@ -57,9 +62,11 @@ public class Article implements Serializable{
 	}
 
 
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 
 
 	public String getTitle() {
@@ -67,9 +74,11 @@ public class Article implements Serializable{
 	}
 
 
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 
 
 	public String getDetail() {
@@ -77,9 +86,11 @@ public class Article implements Serializable{
 	}
 
 
+
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
+
 
 
 	public Timestamp getDate() {
@@ -87,9 +98,11 @@ public class Article implements Serializable{
 	}
 
 
+
 	public void setDate(Timestamp date) {
 		this.date = date;
 	}
+
 
 
 	public Integer getVolumeId() {
@@ -97,9 +110,11 @@ public class Article implements Serializable{
 	}
 
 
+
 	public void setVolumeId(Integer volumeId) {
 		this.volumeId = volumeId;
 	}
+
 
 
 	public Status getStatusId() {
@@ -107,9 +122,11 @@ public class Article implements Serializable{
 	}
 
 
+
 	public void setStatusId(Status statusId) {
 		this.statusId = statusId;
 	}
+
 
 
 	public String getPdf() {
@@ -117,9 +134,11 @@ public class Article implements Serializable{
 	}
 
 
+
 	public void setPdf(String pdf) {
 		this.pdf = pdf;
 	}
+
 
 
 	public Integer getNum() {
@@ -127,9 +146,11 @@ public class Article implements Serializable{
 	}
 
 
+
 	public void setNum(Integer num) {
 		this.num = num;
 	}
+
 
 
 	public String getDescription() {
@@ -137,9 +158,11 @@ public class Article implements Serializable{
 	}
 
 
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 
 
 	public Integer getVote() {
@@ -147,9 +170,11 @@ public class Article implements Serializable{
 	}
 
 
+
 	public void setVote(Integer vote) {
 		this.vote = vote;
 	}
+
 
 
 	public Integer getViews() {
@@ -157,9 +182,11 @@ public class Article implements Serializable{
 	}
 
 
+
 	public void setViews(Integer views) {
 		this.views = views;
 	}
+
 
 
 	public Employee getAuthorId() {
@@ -167,9 +194,23 @@ public class Article implements Serializable{
 	}
 
 
+
 	public void setAuthorId(Employee authorId) {
 		this.authorId = authorId;
 	}
+
+
+
+	public Category getCategoryId() {
+		return categoryId;
+	}
+
+
+
+	public void setCategoryId(Category categoryId) {
+		this.categoryId = categoryId;
+	}
+
 
 
 	public List<Comment> getComments() {
@@ -177,9 +218,11 @@ public class Article implements Serializable{
 	}
 
 
+
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
+
 
 
 	public List<EmployeeArticle> getEmployeeArticles() {
@@ -187,9 +230,11 @@ public class Article implements Serializable{
 	}
 
 
+
 	public void setEmployeeArticles(List<EmployeeArticle> employeeArticles) {
 		this.employeeArticles = employeeArticles;
 	}
+
 
 
 	public List<HashTag> getHashTags() {
@@ -197,7 +242,10 @@ public class Article implements Serializable{
 	}
 
 
+
 	public void setHashTags(List<HashTag> hashTags) {
 		this.hashTags = hashTags;
 	}
+	
+	
 }

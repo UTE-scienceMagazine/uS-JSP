@@ -5,7 +5,7 @@
 <div class="index">
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" id="findContent">
 				<h1 class="text-center">Volume ${volumeId}</h1>
 				<div class="content-wrap">
 					<c:forEach var="l" items="${list}">

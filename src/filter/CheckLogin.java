@@ -53,7 +53,11 @@ public class CheckLogin implements Filter {
 				||url.endsWith(".mp4")
 				||url.endsWith("/article.html")
 				||url.endsWith("/volume.html")
-				||url.endsWith("/checkemail.html")){
+				||url.endsWith("/checkemail.html")
+				||url.endsWith("/category.html")
+				||url.endsWith("/find.html")
+				||url.endsWith("/_find-content.jsp")){
+			
 			chain.doFilter(request, response);
 			return;
 		}

@@ -19,12 +19,10 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="#">Machanical</a></li>
-					<li><a href="#">Electronic</a></li>
-					<li><a href="#">Electronic</a></li>
-					<li><a href="#">Electronic</a></li>
-					<li><a href="#">Electronic</a></li>
-					<li><a href="#">Electronic</a></li>
+					<c:forEach var="lc" items="${listCategory}">
+						<li><a href="category.html?id=${lc.id}">${lc.name}</a></li>
+					</c:forEach>
+					
 				</ul>
 				<ul class="nav navbar-nav navbar-right login">
 					<li><a href="signin.html">Sign in</a></li>

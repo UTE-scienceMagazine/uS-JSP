@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import connect.DBConnect;
 import model.Article;
+import model.Category;
 import model.Employee;
 import model.Status;
 
@@ -25,12 +26,13 @@ public class ArticleDAO implements Serializable {
 			Integer maxId=rs.getInt("id");
 			rs.close();
 			ps.close();
+			connection.close();
 			return maxId;
 		}
 		return null;
 		
 	}
-public static void newSendPost(Integer employeeId, Integer articleId,Integer status,Integer statusChange){
+public static void newSendPost(Integer employeeId, Integer articleId,Integer status,Integer statusChange) {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -68,6 +70,7 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			e.printStackTrace();
 			System.out.println("update error");
 		}
+		
 	}
 	public Article findArticleById(Integer id) throws SQLException {
 		Connection connection = DBConnect.getConnection();
@@ -81,6 +84,7 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			article.setTitle(rs.getString("title"));
 			article.setDate(rs.getTimestamp("date"));
 			article.setVolumeId(rs.getInt("volumeId"));
+			
 			StatusDAO sdao = new StatusDAO();
 			Status status = sdao.findStatusId(rs.getInt("statusId"));
 			article.setStatusId(status);
@@ -94,10 +98,18 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			Employee employee = edao.findEmployeeById(rs.getInt("authorId"));
 			article.setAuthorId(employee);
 
+			CategoryDAO cdao=new CategoryDAO();
+			Category categoryId=cdao.findCategoryById(rs.getInt("categoryId"));
+			article.setCategoryId(categoryId);
+			
+			rs.close();
 			ps.close();
+			connection.close();
 			return article;
 		}
+		rs.close();
 		ps.close();
+		connection.close();
 		return null;
 	}
 
@@ -128,10 +140,43 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			article.setAuthorId(employee);
 			list.add(article);
 		}
+		rs.close();
 		ps.close();
+		connection.close();
 		return list;
 	}
+	public ArrayList<Article> findArticlesByCategory(Integer id) throws SQLException {
+		Connection connection = DBConnect.getConnection();
+		ArrayList<Article> list = new ArrayList<>();
 
+		String sql = "Select * from article Where categoryId=" + id;
+		PreparedStatement ps = connection.prepareCall(sql);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			Article article = new Article();
+			article.setId(rs.getInt("id"));
+			article.setTitle(rs.getString("title"));
+			article.setDate(rs.getTimestamp("date"));
+			article.setVolumeId(rs.getInt("volumeId"));
+			StatusDAO sdao = new StatusDAO();
+			Status status = sdao.findStatusId(rs.getInt("statusId"));
+			article.setStatusId(status);
+			article.setPdf(rs.getString("pdf"));
+			article.setNum(rs.getInt("num"));
+			article.setDescription(rs.getString("description"));
+			article.setVote(rs.getInt("vote"));
+			article.setViews(rs.getInt("views"));
+
+			EmployeeDAO edao = new EmployeeDAO();
+			Employee employee = edao.findEmployeeById(rs.getInt("authorId"));
+			article.setAuthorId(employee);
+			list.add(article);
+		}
+		rs.close();
+		ps.close();
+		connection.close();
+		return list;
+	}
 	public boolean updateViews(Article article) {
 		Connection connection = DBConnect.getConnection();
 		String sql = "UPDATE article SET views=?  WHERE id = ?";
@@ -140,8 +185,9 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			ps.setInt(1, article.getViews());
 			ps.setInt(2, article.getId());
 			ps.executeUpdate();
+			
 			ps.close();
-			System.out.println(11);
+			connection.close();
 			return true;
 		} catch (SQLException ex) {
 			Logger.getLogger(ArticleDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -150,7 +196,7 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 
 	}
 
-	public ArrayList<Article> findArticlesByAuthor(Integer id) {
+	public ArrayList<Article> findArticlesByAuthor(Integer id){
 
 		Connection connection = DBConnect.getConnection();
 		ArrayList<Article> list = new ArrayList<>();
@@ -181,15 +227,17 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 				list.add(article);
 
 			}
+			rs.close();
 			ps.close();
+			
 		} catch (SQLException ex) {
 			Logger.getLogger(ArticleDAO.class.getName()).log(Level.SEVERE, null, ex);
 		}
-
+	
 		return list;
 	}
 
-	public boolean updateArticle(Article article) {
+	public boolean updateArticle(Article article) throws SQLException {
 		Connection connection = DBConnect.getConnection();
 		String sql = "UPDATE article SET title = ?,description= ?,volumeId= ?,statusId= ?,pdf=?  WHERE id = ?";
 		try {
@@ -200,10 +248,13 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			ps.setInt(4, article.getStatusId().getId());
 			ps.setString(5, article.getPdf());
 			ps.setInt(6, article.getId());
+			
+		
 			return ps.executeUpdate() == 1;
 		} catch (SQLException ex) {
 			Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
 		}
+		connection.close();
 		return false;
 	}
 
@@ -299,6 +350,38 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 		}
 		ps.close();
 		return list;
+	}
+	public ArrayList<Article> findArticlesByContent(String content) throws SQLException {
+		Connection connection=DBConnect.getConnection();
+		ArrayList<Article> list=new ArrayList<>();
+		
+		String sql="SELECT * FROM article "
+				+ "WHERE article.title LIKE '%"+content+"%'OR article.authorId LIKE '%"+content+"%' OR article.description LIKE '%"+content+"%'";
+		PreparedStatement ps=connection.prepareCall(sql);
+		ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			Article article=new Article();
+			article.setId(rs.getInt("id"));
+			article.setTitle(rs.getString("title"));
+			article.setDate(rs.getTimestamp("date"));
+			article.setVolumeId(rs.getInt("volumeId"));
+			
+			StatusDAO sdao = new StatusDAO();
+			Status status = sdao.findStatusId(rs.getInt("statusId"));
+			article.setStatusId(status);
+			
+			article.setPdf(rs.getString("pdf"));
+			article.setNum(rs.getInt("num"));
+			article.setDescription(rs.getString("description"));
+			article.setVote(rs.getInt("vote"));
+			article.setViews(rs.getInt("views"));
+			list.add(article);
+		}
+		rs.close();
+		ps.close();
+		connection.close();
+		return list;
+		
 	}
 	
 	

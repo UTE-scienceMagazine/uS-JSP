@@ -148,4 +148,21 @@ $(function() {
 		return false;
 	});
 	
+	$('#find').click(function(){
+		content=$('.findcontent').val();
+		$.ajax({
+			type:"POST",
+			url:"find.html",
+			data:{
+				content:content
+			},
+			async:true,
+			success:function(response){
+				$(".index .container .row #findContent .content-wrap").replaceWith(response);
+			}
+		});
+		return false;
+	});
+	
+	
 });

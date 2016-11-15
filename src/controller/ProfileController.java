@@ -1,6 +1,11 @@
 package controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -9,11 +14,13 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import dao.ArticleDAO;
 import dao.EmployeeDAO;
@@ -23,6 +30,7 @@ import model.Employee;
 import model.User;
 
 @WebServlet("/profile.html")
+@MultipartConfig
 public class ProfileController extends HttpServlet {
 	
 	String url = "";
@@ -130,6 +138,24 @@ public class ProfileController extends HttpServlet {
 			
 			user.setIdentitycard(req.getParameter("identitycard"));
 			UserDAO udao=new UserDAO();
+			
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			Part filePart = req.getPart("avatar"); 
+		    String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); 
+		    InputStream fileContent = filePart.getInputStream();
+		  
+			byte[] block = new byte[4*1204];
+			while(true){
+				int n = fileContent.read(block);
+				if(n <= 0) break; // hết dữ liệu
+				buffer.write(block, 0, n);
+			}
+			fileContent.close();
+			
+			buffer.writeTo(new FileOutputStream(req.getServletContext().getRealPath("/images/avatar")
+	        										+ File.separator + fileName));
+			user.setAvatar(fileName);
+			
 			udao.updateUser(user);
 			
 		}
@@ -148,12 +174,32 @@ public class ProfileController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			Part filePart = req.getPart("avatar"); 
+		    String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); 
+		    InputStream fileContent = filePart.getInputStream();
+		  
+			byte[] block = new byte[4*1204];
+			while(true){
+				int n = fileContent.read(block);
+				if(n <= 0) break; // hết dữ liệu
+				buffer.write(block, 0, n);
+			}
+			fileContent.close();
+			
+			buffer.writeTo(new FileOutputStream(req.getServletContext().getRealPath("/images/avatar")
+	        										+ File.separator + fileName));
+			employee.setAvatar(fileName);
 			employee.setIdentitycard(req.getParameter("identitycard"));
 			EmployeeDAO edao=new EmployeeDAO();
-			edao.updateUser(employee);
+			if(edao.updateUser(employee)){
+				req.setAttribute("message", "cập nhật thông tin thành công");
+			}else{
+				req.setAttribute("message", "cập nhật thông tin thất bại");
+			}
 			
 		}
-		req.getRequestDispatcher(url).forward(req, resp);
+		req.getRequestDispatcher("/views/site/profileViewer.jsp").forward(req, resp);
 	}
 
 }

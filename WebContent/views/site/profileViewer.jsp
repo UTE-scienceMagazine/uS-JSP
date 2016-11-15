@@ -36,11 +36,12 @@
 	<div class="container">
 		<div class="row">
 			<br>
+			<p class="text-center">${message}</p>
 			<div class="profile">
 				<div class="row">
 					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 						<c:choose>
-							<c:when test="${user.roleId.id == 1}">
+							<c:when test="${roleId == 1}">
 								<jsp:include page="layout/_list-group-Viewer.jsp" />
 							</c:when>
 							<c:otherwise>
@@ -62,13 +63,35 @@
 						</c:choose>
 						
 					</div>
+				
 					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
 						<div class="row">
-							<form id="formChangeInfo" action="profile.html" method="POST"
+							
+							<form id="formChangeInfo" action="profile.html" method="POST" enctype="multipart/form-data"
 								role="form" >
 								<h4 class="mq_h4">Thông tin tài khoản</h4>
-								<div class="col-lg-5 mq_leftrow_inf ">
-									<p>Thông tin liên hệ</p>
+								<div class="col-lg-5 mq_leftrow_inf ">						
+									<script type="text/javascript">
+									      $(function() {
+									          $('#idDateField').datepicker({dateFormat: 'dd/mm/yy'});
+									      });
+									
+									      function file_change(f){
+												var reader = new FileReader();
+												reader.onload = function (e) {
+													var img = document.getElementById("img");
+													img.src = e.target.result;
+													img.style.display = "inline";
+												};
+												reader.readAsDataURL(f.files[0]);
+											}
+									  </script>
+									 <img id="img" src="images/avatar/${user.avatar}" class="img-responsive" alt="Image">
+									 <br>
+									<input id="image" type="file" name="avatar" onchange="file_change(this)" style="display: none" >
+									<input type="button" value="Chọn ảnh" onclick="document.getElementById('image').click()" /> <br>
+													
+									
 								</div>
 								<div class="col-lg-5 mq_rightform_label">
 									<!-- Contact info -->
@@ -77,6 +100,7 @@
 										 <input type="text" name="name" class="form-control" placeholder="Tên" id="name" value="${user.name}">
 										<label for="number">Điện thoại</label> 
 										<input type="number" name="phone" class="form-control" placeholder="Điện thoại" id="phone" value="${user.phone }">
+										
 									</div>
 									<hr>
 								</div>

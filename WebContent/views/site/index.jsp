@@ -4,10 +4,11 @@
 
 <%@ page pageEncoding="utf-8"%>
 <jsp:include page="layout/_header.jsp" />
+
 <div class="index">
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" id="findContent">
 				<div class="content-wrap">
 					<c:forEach var="l" items="${list}">
 						<div class="news">
@@ -22,7 +23,7 @@
 						</div>
 					</c:forEach>
 				</div>
-				<!-- end content-wrap -->
+				
 			</div>
 			<!-- end col-8 -->
 			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">

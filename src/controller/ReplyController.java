@@ -58,7 +58,7 @@ public class ReplyController extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		PrintWriter out = resp.getWriter();
+		
 		Date date=new Date();
 		SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
 		String text=dateFormat.format(date.getTime());

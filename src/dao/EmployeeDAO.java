@@ -37,6 +37,9 @@ public class EmployeeDAO {
 			Role role=rdao.findRoleById(rs.getInt("roleId"));
 			employee.setRoleId(role);
 			employee.setJoinday(rs.getTimestamp("joindate"));
+			
+			rs.close();
+			ps.close();
 			return employee;
 		}
 		
@@ -67,7 +70,8 @@ public class EmployeeDAO {
 			employee.setJoinday(rs.getTimestamp("joindate"));
 			list.add(employee);
 		}
-		
+		rs.close();
+		ps.close();
 		return list;
 	}
 	
@@ -84,6 +88,9 @@ public class EmployeeDAO {
 	            ps.setTimestamp(4, employee.getJoinday());
 	            ps.setInt(5,1);
 	            ps.executeUpdate();
+	            
+	            ps.close();
+	            connection.close();
 	            return true;
 	        } catch (SQLException ex) {
 	            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -100,6 +107,8 @@ public class EmployeeDAO {
 			ps=connection.prepareCall(sql);
 			ResultSet rs= ps.executeQuery();
 			if(rs.next()){
+				rs.close();
+				ps.close();
 				connection.close();
 				return true;
 			}
@@ -168,7 +177,7 @@ public class EmployeeDAO {
 
 	public boolean updateUser(Employee employee) {
 		Connection connection = DBConnect.getConnection();
-        String sql = "UPDATE employee SET name = ?,phone = ?,sex= ?,birthday= ?,identitycard=?  WHERE id = ?";
+        String sql = "UPDATE employee SET name = ?,phone = ?,sex= ?,birthday= ?,identitycard=?, avatar=?  WHERE id = ?";
         try {
             PreparedStatement ps = connection.prepareCall(sql);
             ps.setString(1, employee.getName());
@@ -176,7 +185,8 @@ public class EmployeeDAO {
             ps.setInt(3, employee.getSex());
             ps.setTimestamp(4, employee.getBirthday());
             ps.setString(5, employee.getIdentitycard());
-            ps.setInt(6, employee.getId());
+            ps.setString(6,employee.getAvatar());
+            ps.setInt(7, employee.getId());
             return ps.executeUpdate() == 1;
         } catch (SQLException ex) {
             Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);

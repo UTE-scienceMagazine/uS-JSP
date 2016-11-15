@@ -30,6 +30,9 @@ public class VolumeDAO {
 			volume.setArticles(articles);
 			list.add(volume);
 		}
+		rs.close();
+		ps.close();
+		connection.close();
 		
 		return list;
 	}

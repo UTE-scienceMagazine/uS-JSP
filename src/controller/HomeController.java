@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import dao.CategoryDAO;
 import dao.VolumeDAO;
+import model.Category;
 import model.Volume;
 
 @WebServlet("/home.html")
@@ -25,9 +26,15 @@ public class HomeController extends HttpServlet {
 		HttpSession httpSession = req.getSession();
 		VolumeDAO dao= new VolumeDAO();
 		ArrayList<Volume> list;
+		
+		CategoryDAO cdao=new CategoryDAO();
+		ArrayList<Category> listCategory;
+		
 		try {
 			list = dao.loadVolume();
+			listCategory=cdao.getListCategory();
 			httpSession.setAttribute("list", list);
+			httpSession.setAttribute("listCategory", listCategory);
 		} catch (SQLException e) {
 			
 			e.printStackTrace();

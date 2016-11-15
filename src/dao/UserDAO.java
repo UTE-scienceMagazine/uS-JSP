@@ -99,19 +99,23 @@ public class UserDAO {
 				user.setBirthday(rs.getTimestamp("birthday"));
 				user.setIdentitycard(rs.getString("identitycard"));
 				user.setRoleId(rs.getInt("roleId"));
+				rs.close();
+				ps.close();
+				
 				return user;
 			}
-			ps.close();
+		
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-		}
+		}	
+		
 		return null;
 	}
 
 	public boolean updateUser(User user) {
 		Connection connection = DBConnect.getConnection();
-        String sql = "UPDATE user SET name = ?,phone = ?,sex= ?,birthday= ?,identitycard=?  WHERE id = ?";
+        String sql = "UPDATE user SET name = ?,phone = ?,sex= ?,birthday= ?,identitycard=?,avatar=?  WHERE id = ?";
         try {
             PreparedStatement ps = connection.prepareCall(sql);
             ps.setString(1, user.getName());
@@ -119,7 +123,8 @@ public class UserDAO {
             ps.setInt(3, user.getSex());
             ps.setTimestamp(4, user.getBirthday());
             ps.setString(5, user.getIdentitycard());
-            ps.setInt(6, user.getId());
+            ps.setString(6,user.getAvatar());
+            ps.setInt(7, user.getId());
             return ps.executeUpdate() == 1;
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);

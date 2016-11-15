@@ -24,9 +24,11 @@ public class StatusDAO {
 			status.setName(rs.getString("name"));
 			
 			ps.close();
+			connection.close();
 			return status;
 		}
 		ps.close();
+		connection.close();
 		return null;
 	}
 	
