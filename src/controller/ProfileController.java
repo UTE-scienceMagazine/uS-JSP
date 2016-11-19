@@ -54,12 +54,13 @@ public class ProfileController extends HttpServlet {
 			EmployeeDAO edao=new EmployeeDAO();
 			Employee employee=(Employee)session.getAttribute("user");
 			ArticleDAO adao=new ArticleDAO();
+			ArrayList<Article> listArticle=new ArrayList<>();
 			switch (roleId) {
 			case 2:
 				try {				
 					
 				
-					ArrayList<Article>  listArticle =adao.getArticleByEmployeeID(employee.getId());
+					listArticle =adao.getArticleByEmployeeID(employee.getId());
 					req.setAttribute("listArticle", listArticle);
 				} catch (SQLException e) {
 					
@@ -70,12 +71,19 @@ public class ProfileController extends HttpServlet {
 			case 3:
 				
 				
-				ArrayList<Article> listArticle = adao.findArticlesByAuthor(employee.getId());
+				listArticle = adao.findArticlesByAuthor(employee.getId());
 				req.setAttribute("list", listArticle);
 				
 				url = "/views/site/profileAuthor.jsp";
 				break;
 			case 4:
+				try {
+					listArticle = adao.getArticleByEmployeeID(employee.getId());
+					req.setAttribute("list", listArticle);
+				} catch (SQLException e2) {
+					
+					e2.printStackTrace();
+				}
 				url = "/views/site/profileEditor.jsp";
 				break;
 			case 5:

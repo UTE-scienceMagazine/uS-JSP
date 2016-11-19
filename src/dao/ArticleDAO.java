@@ -83,6 +83,7 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			article.setId(rs.getInt("id"));
 			article.setTitle(rs.getString("title"));
 			article.setDate(rs.getTimestamp("date"));
+			
 			article.setVolumeId(rs.getInt("volumeId"));
 			
 			StatusDAO sdao = new StatusDAO();
@@ -289,7 +290,7 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 		Connection connection=DBConnect.getConnection();
 		ArrayList<Article> list= new ArrayList<>();
 		
-		String sql="SELECT a.id,a.title,a.date,a.volumeId,a.pdf,a.num,a.description,a.vote,a.views,a.statusId,a.authorId "
+		String sql="SELECT distinct  a.id,a.title,a.date,a.volumeId,a.pdf,a.num,a.description,a.vote,a.views,a.statusId,a.authorId,a.categoryId "
 				+ "FROM `employee` JOIN employee_article on employee.id=employee_article.employeeId "
 				+ "JOIN article as a on employee_article.articleId =a.id "
 				+ "WHERE employee.id="+id;
@@ -316,6 +317,10 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			EmployeeDAO edao=new EmployeeDAO();
 			Employee employee=edao.findEmployeeById(rs.getInt("authorId"));
 			article.setAuthorId(employee);
+			
+			CategoryDAO cdao=new CategoryDAO();
+			Category categoryId=cdao.findCategoryById(rs.getInt("categoryId"));
+			article.setCategoryId(categoryId);
 			
 			list.add(article);
 		}

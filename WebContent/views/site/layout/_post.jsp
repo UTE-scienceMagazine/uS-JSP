@@ -1,13 +1,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-<form action="post.html" method="POST" role="form" enctype="multipart/form-data">
+<form action="checkArticle.html" method="POST" role="form" enctype="multipart/form-data">
 	<legend>Bài viết mới</legend>
 	<div class="form-group">
 		<label for="">Tiêu đề</label> <input name="id" value="${article.id}"
 			type="hidden">
-		<textarea name="title" type="text" class="form-control" id="" rows="3"
+		<textarea name="title" type="text" class="form-control" id="title" rows="3"
 			placeholder="Tiêu đề">${article.title }</textarea>
-		
+		<script type="text/javascript" lang="javascript">
+				CKEDITOR.replace( 'title' );
+		</script>
 
 		<label for="">Tóm tắt</label>
 
@@ -36,16 +38,17 @@
 		<input name="hashtag"  type="text" class="form-control" id="hashtag" placeholder="Từ khóa"/> 
 		<label>Volume</label> 
 		<select name="volume" id="input" class="form-control" required="required">
-			<c:forEach var="lv" items="${listVolume}">
-				<option value="${lv.id }" selected="selected">${lv.text }</option>
-			</c:forEach>
+			
+				<option value="${article.id }" selected="selected">VOLUME ${article.id}</option>
+			
 			
 
 		</select>
 		<br> 
 		<label for="">Trạng thái</label> 
 		<select name="statusId">
-			<option value="3" selected="selected">Waiting for verifica</option>
+			
+			<option value="4" selected="selected">Edittable</option>
 		</select>
 		
 		

@@ -76,4 +76,28 @@ public class CommentDAO {
 		
 		return null;
 	}
+	
+	public ArrayList<Comment> loadCommentByUser(Integer id) throws SQLException {
+		Connection connection=DBConnect.getConnection();
+		String sql="SELECT * FROM comment Where userId= "+id+" ORDER BY id DESC";
+		PreparedStatement ps=connection.prepareStatement(sql);
+		ResultSet rs=ps.executeQuery();
+		ArrayList<Comment> list= new ArrayList<>();
+		while(rs.next()){
+			Comment cm=new  Comment();
+			
+			cm.setId(rs.getInt("id"));
+			cm.setMess(rs.getString("mess"));
+			cm.setDate(rs.getTimestamp("date"));
+			cm.setStatus(rs.getInt("status"));
+			User user=udao.findUserById(rs.getInt("userId"));
+			cm.setUserId(user);
+			Article article=adao.findArticleById(rs.getInt("articleId"));
+			cm.setArticleId(article);
+			list.add(cm);
+		}
+		
+		
+		return list;
+	}
 }
