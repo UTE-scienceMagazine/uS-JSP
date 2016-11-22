@@ -68,7 +68,12 @@ public class ListAccountController extends HttpServlet {
 		Integer statusChange = (Integer) session.getAttribute("role");
 		
 		ArticleDAO adao = new ArticleDAO();
-		adao.newSendPost(employeeId, articleId, statusChange, statusChange);
+		try {
+			adao.newSendPost(employeeId, articleId, statusChange, statusChange);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		resp.sendRedirect("home.html");
 	}
 

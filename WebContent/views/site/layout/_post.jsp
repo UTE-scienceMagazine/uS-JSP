@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-<form action="checkArticle.html" method="POST" role="form" enctype="multipart/form-data">
+<form action="post.html" method="POST" role="form" enctype="multipart/form-data">
 	<legend>Bài viết mới</legend>
 	<div class="form-group">
 		<label for="">Tiêu đề</label> <input name="id" value="${article.id}"
@@ -36,21 +36,21 @@
 
 		<label for="">Từ khóa</label> 
 		<input name="hashtag"  type="text" class="form-control" id="hashtag" placeholder="Từ khóa"/> 
-		<label>Volume</label> 
-		<select name="volume" id="input" class="form-control" required="required">
-			
-				<option value="${article.id }" selected="selected">VOLUME ${article.id}</option>
-			
-			
-
-		</select>
+		
 		<br> 
 		<label for="">Trạng thái</label> 
 		<select name="statusId">
 			
 			<option value="4" selected="selected">Edittable</option>
 		</select>
-		
+		<br/>
+		<label>Loại tin</label> 
+		<select name="category">
+			<c:forEach var="lc" items="${listCategory}">
+				<option value="${lc.id}">${lc.name}</option>
+			</c:forEach>
+			
+		</select>
 		
 		<br>
 		<label for="">Số trang</label> 

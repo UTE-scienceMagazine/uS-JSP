@@ -29,6 +29,8 @@ public class CommentDAO {
 		ps.setInt(5,cm.getArticleId().getId());
 		
 		ps.executeUpdate();
+		
+		ps.close();
 		connection.close();
 	}
 
@@ -52,7 +54,9 @@ public class CommentDAO {
 			list.add(cm);
 		}
 		
-		
+		rs.close();
+		ps.close();
+		connection.close();
 		return list;
 	}
 	public Comment findCommetById(Integer id) throws SQLException{
@@ -71,9 +75,16 @@ public class CommentDAO {
 			comment.setUserId(user);
 			Article article=adao.findArticleById(rs.getInt("articleId"));
 			comment.setArticleId(article);
+			
+			rs.close();
+			ps.close();
+			connection.close();
 			return comment;
 		}
 		
+		rs.close();
+		ps.close();
+		connection.close();
 		return null;
 	}
 	
@@ -97,6 +108,9 @@ public class CommentDAO {
 			list.add(cm);
 		}
 		
+		rs.close();
+		ps.close();
+		connection.close();
 		
 		return list;
 	}

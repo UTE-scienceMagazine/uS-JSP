@@ -32,7 +32,7 @@ public class ArticleDAO implements Serializable {
 		return null;
 		
 	}
-public static void newSendPost(Integer employeeId, Integer articleId,Integer status,Integer statusChange) {
+public static void newSendPost(Integer employeeId, Integer articleId,Integer status,Integer statusChange) throws SQLException {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -70,6 +70,7 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			e.printStackTrace();
 			System.out.println("update error");
 		}
+		connection.close();
 		
 	}
 	public Article findArticleById(Integer id) throws SQLException {
@@ -197,7 +198,7 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 
 	}
 
-	public ArrayList<Article> findArticlesByAuthor(Integer id){
+	public ArrayList<Article> findArticlesByAuthor(Integer id) throws SQLException{
 
 		Connection connection = DBConnect.getConnection();
 		ArrayList<Article> list = new ArrayList<>();
@@ -234,21 +235,20 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 		} catch (SQLException ex) {
 			Logger.getLogger(ArticleDAO.class.getName()).log(Level.SEVERE, null, ex);
 		}
-	
+		connection.close();
 		return list;
 	}
 
 	public boolean updateArticle(Article article) throws SQLException {
 		Connection connection = DBConnect.getConnection();
-		String sql = "UPDATE article SET title = ?,description= ?,volumeId= ?,statusId= ?,pdf=?  WHERE id = ?";
+		String sql = "UPDATE article SET title = ?,description= ?,statusId= ?,pdf=?  WHERE id = ?";
 		try {
 			PreparedStatement ps = connection.prepareCall(sql);
 			ps.setString(1, article.getTitle());
 			ps.setString(2, article.getDescription());
-			ps.setInt(3, article.getVolumeId());
-			ps.setInt(4, article.getStatusId().getId());
-			ps.setString(5, article.getPdf());
-			ps.setInt(6, article.getId());
+			ps.setInt(3, article.getStatusId().getId());
+			ps.setString(4, article.getPdf());
+			ps.setInt(5, article.getId());
 			
 		
 			return ps.executeUpdate() == 1;
@@ -259,30 +259,33 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 		return false;
 	}
 
-	public Boolean insertArticle(Article article) {
+	public Boolean insertArticle(Article article) throws SQLException {
 
 		Connection connection = DBConnect.getConnection();
-		String sql = "INSERT INTO article (title,date,volumeId,pdf,num,description,vote,views,statusId,authorId) VALUES(?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO article (title,date,pdf,num,description,vote,views,statusId,authorId,categoryId) VALUES(?,?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = connection.prepareCall(sql);
 
 			ps.setString(1, article.getTitle());
 			ps.setTimestamp(2, article.getDate());
-			ps.setInt(3, article.getVolumeId());
-			ps.setString(4, article.getPdf());
-			ps.setInt(5, article.getNum());
-			ps.setString(6, article.getDescription());
-			ps.setInt(7, article.getVote());
-			ps.setInt(8, article.getViews());
-			ps.setInt(9, article.getStatusId().getId());
-			ps.setInt(10, article.getAuthorId().getId());
+			ps.setString(3, article.getPdf());
+			ps.setInt(4, article.getNum());
+			ps.setString(5, article.getDescription());
+			ps.setInt(6, article.getVote());
+			ps.setInt(7, article.getViews());
+			ps.setInt(8, article.getStatusId().getId());
+			ps.setInt(9, article.getAuthorId().getId());
+			ps.setInt(10,article.getCategoryId().getId());
 			
 			
 			ps.executeUpdate();
+			connection.close();
 			return true;
 		} catch (SQLException ex) {
 			Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
+			connection.close();
 		}
+		
 		return false;
 	}
 	
@@ -325,6 +328,9 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			list.add(article);
 		}
 		
+		rs.close();
+		ps.close();
+		connection.close();
 		
 		return list;
 	}
@@ -353,7 +359,9 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			article.setViews(rs.getInt("views"));
 			list.add(article);
 		}
+		rs.close();
 		ps.close();
+		connection.close();
 		return list;
 	}
 	public ArrayList<Article> findArticlesByContent(String content) throws SQLException {

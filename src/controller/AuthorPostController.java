@@ -22,11 +22,13 @@ import javax.servlet.http.Part;
 
 
 import dao.ArticleDAO;
+import dao.CategoryDAO;
 import dao.EmployeeArticleDAO;
 import dao.HashtagDAO;
 import dao.StatusDAO;
 import dao.VolumeDAO;
 import model.Article;
+import model.Category;
 import model.Employee;
 import model.EmployeeArticle;
 import model.HashTag;
@@ -46,7 +48,13 @@ public class AuthorPostController extends HttpServlet {
 		try {
 			VolumeDAO vdao=new VolumeDAO();
 			ArrayList<Volume> listVolume=vdao.loadVolume();
+			
+			CategoryDAO cdao=new CategoryDAO();
+			ArrayList<Category> listCategory=cdao.getListCategory();
+			req.setAttribute("listCategory", listCategory);
+			
 			req.setAttribute("listVolume", listVolume);
+			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -71,7 +79,6 @@ public class AuthorPostController extends HttpServlet {
 			Date parsedDate = new Date();
 			article.setDate(new Timestamp( parsedDate.getTime()));
 			
-			article.setVolumeId(Integer.parseInt(req.getParameter("volume")));
 			
 			//upload file
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -91,6 +98,10 @@ public class AuthorPostController extends HttpServlet {
 	        										+ File.separator + fileName));
 			//gán giá trị pdf hiện tại
 			
+			CategoryDAO cdao=new CategoryDAO();
+			Category category=cdao.findCategoryById(Integer.parseInt(req.getParameter("category")));
+			
+			article.setCategoryId(category);
 			article.setPdf(fileName);
 			article.setNum(Integer.parseInt(req.getParameter("num")));
 			article.setVote(0);

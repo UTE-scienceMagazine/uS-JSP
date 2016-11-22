@@ -67,7 +67,7 @@ try {
 				hashTags.add(mhashTag);
 			}
 			
-			article.setVolumeId(Integer.parseInt(req.getParameter("volume")));
+			
 			StatusDAO sdao=new StatusDAO();
 			
 			Status  status = sdao.findStatusId(Integer.parseInt(req.getParameter("statusId")));

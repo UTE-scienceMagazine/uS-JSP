@@ -71,7 +71,12 @@ public class ProfileController extends HttpServlet {
 			case 3:
 				
 				
-				listArticle = adao.findArticlesByAuthor(employee.getId());
+				try {
+					listArticle = adao.findArticlesByAuthor(employee.getId());
+				} catch (SQLException e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
+				}
 				req.setAttribute("list", listArticle);
 				
 				url = "/views/site/profileAuthor.jsp";
