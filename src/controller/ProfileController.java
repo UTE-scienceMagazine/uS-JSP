@@ -93,10 +93,23 @@ public class ProfileController extends HttpServlet {
 				break;
 			case 5:
 				try {
-					
 					ArrayList<Article> listArticle1 = null;
+					ArrayList<Article> listArticleIT = null;
+					ArrayList<Article> listArticleAT = null;
+					ArrayList<Article> listArticleAI = null;
+					ArrayList<Article> listArticleET = null;
 					listArticle1 = adao.getListArticle();
-					session.setAttribute("listArticle", listArticle1);
+					listArticleIT = adao.getListArticleIT();
+					listArticleAT = adao.getListArticleAT();
+					listArticleAI = adao.getListArticleAI();
+					listArticleET = adao.getListArticleET();
+					req.setAttribute("listArticle", listArticle1);
+					req.setAttribute("listArticleIT", listArticleIT);
+					req.setAttribute("listArticleAT", listArticleAT);
+					req.setAttribute("listArticleAI", listArticleAI);
+					req.setAttribute("listArticleET", listArticleET);
+
+
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

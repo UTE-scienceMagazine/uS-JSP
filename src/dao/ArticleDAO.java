@@ -398,6 +398,117 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 	}
 	
 	
-	
+	public ArrayList<Article>getListArticleIT() throws SQLException {
+		Connection connection=DBConnect.getConnection();
+		ArrayList<Article> list=new ArrayList<>();
+		
+		String sql="Select * from article where  article.categoryId = 1";
+		PreparedStatement ps=connection.prepareCall(sql);
+		ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			Article article=new Article();
+			article.setId(rs.getInt("id"));
+			article.setTitle(rs.getString("title"));
+			article.setDate(rs.getTimestamp("date"));
+			article.setVolumeId(rs.getInt("volumeId"));
+			
+			StatusDAO sdao = new StatusDAO();
+			Status status = sdao.findStatusId(rs.getInt("statusId"));
+			article.setStatusId(status);
+			
+			article.setPdf(rs.getString("pdf"));
+			article.setNum(rs.getInt("num"));
+			article.setDescription(rs.getString("description"));
+			article.setVote(rs.getInt("vote"));
+			article.setViews(rs.getInt("views"));
+			list.add(article);
+		}
+		ps.close();
+		return list;
+	}
+	public ArrayList<Article>getListArticleAT() throws SQLException {
+		Connection connection=DBConnect.getConnection();
+		ArrayList<Article> list=new ArrayList<>();
+		
+		String sql="Select * from article where  article.categoryId = 2";
+		PreparedStatement ps=connection.prepareCall(sql);
+		ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			Article article=new Article();
+			article.setId(rs.getInt("id"));
+			article.setTitle(rs.getString("title"));
+			article.setDate(rs.getTimestamp("date"));
+			article.setVolumeId(rs.getInt("volumeId"));
+			
+			StatusDAO sdao = new StatusDAO();
+			Status status = sdao.findStatusId(rs.getInt("statusId"));
+			article.setStatusId(status);
+			
+			article.setPdf(rs.getString("pdf"));
+			article.setNum(rs.getInt("num"));
+			article.setDescription(rs.getString("description"));
+			article.setVote(rs.getInt("vote"));
+			article.setViews(rs.getInt("views"));
+			list.add(article);
+		}
+		ps.close();
+		return list;
+	}
+	public ArrayList<Article>getListArticleAI() throws SQLException {
+		Connection connection=DBConnect.getConnection();
+		ArrayList<Article> list=new ArrayList<>();
+		
+		String sql="Select * from article where  article.categoryId = 3";
+		PreparedStatement ps=connection.prepareCall(sql);
+		ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			Article article=new Article();
+			article.setId(rs.getInt("id"));
+			article.setTitle(rs.getString("title"));
+			article.setDate(rs.getTimestamp("date"));
+			article.setVolumeId(rs.getInt("volumeId"));
+			
+			StatusDAO sdao = new StatusDAO();
+			Status status = sdao.findStatusId(rs.getInt("statusId"));
+			article.setStatusId(status);
+			
+			article.setPdf(rs.getString("pdf"));
+			article.setNum(rs.getInt("num"));
+			article.setDescription(rs.getString("description"));
+			article.setVote(rs.getInt("vote"));
+			article.setViews(rs.getInt("views"));
+			list.add(article);
+		}
+		ps.close();
+		return list;
+	}
+	public ArrayList<Article>getListArticleET() throws SQLException {
+		Connection connection=DBConnect.getConnection();
+		ArrayList<Article> list=new ArrayList<>();
+		
+		String sql="Select * from article where  article.categoryId = 4";
+		PreparedStatement ps=connection.prepareCall(sql);
+		ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			Article article=new Article();
+			article.setId(rs.getInt("id"));
+			article.setTitle(rs.getString("title"));
+			article.setDate(rs.getTimestamp("date"));
+			article.setVolumeId(rs.getInt("volumeId"));
+			
+			StatusDAO sdao = new StatusDAO();
+			Status status = sdao.findStatusId(rs.getInt("statusId"));
+			article.setStatusId(status);
+			
+			article.setPdf(rs.getString("pdf"));
+			article.setNum(rs.getInt("num"));
+			article.setDescription(rs.getString("description"));
+			article.setVote(rs.getInt("vote"));
+			article.setViews(rs.getInt("views"));
+			list.add(article);
+		}
+		ps.close();
+		return list;
+	}
 	
 }
