@@ -147,7 +147,7 @@ public class SigninController extends HttpServlet {
 
 				
 			
-				if (dao.checkEmail(email)) {
+				if (!dao.checkEmail(email)) {
 					user.setEmail(email);
 					user.setPassword(MD5.encryption(password));
 					user.setRoleId(1);

@@ -65,11 +65,11 @@ public class ListAccountController extends HttpServlet {
 		HttpSession session = req.getSession();
 		Integer articleId = (Integer) session.getAttribute("articleId");
 		Integer employeeId =Integer.parseInt(req.getParameter("employeeId"));
-		Integer statusChange = (Integer) session.getAttribute("role");
+		Integer statusChange = 3;
 		
 		ArticleDAO adao = new ArticleDAO();
 		try {
-			adao.newSendPost(employeeId, articleId, statusChange, statusChange);
+			ArticleDAO.newSendPost(employeeId, articleId, statusChange, statusChange);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

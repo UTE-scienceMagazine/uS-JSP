@@ -39,9 +39,9 @@
 		
 		<br> 
 		<label for="">Trạng thái</label> 
-		<select name="statusId">
+		<select name="statusId" readonly="readonly" >
 			
-			<option value="4" selected="selected">Edittable</option>
+			<option value="3" selected="selected" >Waiting for Verifica</option>
 		</select>
 		<br/>
 		<label>Loại tin</label> 

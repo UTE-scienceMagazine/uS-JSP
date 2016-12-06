@@ -22,7 +22,7 @@
 						<c:if test="${role == 2 }">
 							<p style="max-width: 200px;">Tester</p>
 						</c:if>
-						<c:if test="${role == 3 }">
+						<c:if test="${role == 3}">
 							<p style="max-width: 200px;">Editor</p>
 						</c:if>
 						<input value="${list.id}" type="hidden" name="employeeId">

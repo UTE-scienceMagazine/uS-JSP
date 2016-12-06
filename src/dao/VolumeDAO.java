@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import connect.DBConnect;
 import model.Article;
@@ -36,4 +37,56 @@ public class VolumeDAO {
 		
 		return list;
 	}
+	
+	public Boolean hasVolume(String text)
+	{
+		Connection connection=DBConnect.getConnection();
+		String sql = "SELECT volume.id FROM volume WHERE volume.title = ?";
+		try {
+			PreparedStatement ps = connection.prepareCall(sql);
+			ps.setString(1, text);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next())
+				return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public Boolean insertVolume(String text,String des,Date date)
+	{
+		Connection connection=DBConnect.getConnection();
+		String sql = "INSERT INTO volume(title,date,description) values(?,?,?)";
+		try {
+			PreparedStatement ps = connection.prepareCall(sql);
+			ps.setString(1, text);
+			ps.setDate(2, (java.sql.Date) date);
+			ps.setString(3, des);
+			ps.executeUpdate();
+				return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public Integer getMaxVolume() throws SQLException
+	{
+		Connection connection=DBConnect.getConnection();
+		String sql="SELECT MAX(volume.id) as id FROM volume";
+		PreparedStatement ps = connection.prepareCall(sql);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next())
+		{
+			Integer id = rs.getInt("id");
+			ps.close();
+			rs.close();
+			connection.close();
+			return id;
+		}
+		else
+			return -1;
+	}
+	
 }
