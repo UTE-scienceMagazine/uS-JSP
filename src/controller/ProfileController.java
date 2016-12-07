@@ -182,7 +182,12 @@ public class ProfileController extends HttpServlet {
 	        										+ File.separator + fileName));
 			user.setAvatar(fileName);
 			
-			udao.updateUser(user);
+			try {
+				udao.updateUser(user);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 		else{
@@ -218,10 +223,15 @@ public class ProfileController extends HttpServlet {
 			employee.setAvatar(fileName);
 			employee.setIdentitycard(req.getParameter("identitycard"));
 			EmployeeDAO edao=new EmployeeDAO();
-			if(edao.updateUser(employee)){
-				req.setAttribute("message", "cập nhật thông tin thành công");
-			}else{
-				req.setAttribute("message", "cập nhật thông tin thất bại");
+			try {
+				if(edao.updateUser(employee)){
+					req.setAttribute("message", "cập nhật thông tin thành công");
+				}else{
+					req.setAttribute("message", "cập nhật thông tin thất bại");
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
 		}

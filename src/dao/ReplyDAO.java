@@ -28,6 +28,7 @@ public class ReplyDAO{
 		ps.setInt(5,rep.getComId().getId());
 		
 		ps.executeUpdate();
+		ps.close();
 		connection.close();
 	}
 	
@@ -52,7 +53,9 @@ public class ReplyDAO{
 			list.add(rep);
 		}
 		
-		
+		rs.close();
+		ps.close();
+		connection.close();
 		return list;
 	}
 }

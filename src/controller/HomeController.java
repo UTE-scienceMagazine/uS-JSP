@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ArticleDAO;
 import dao.CategoryDAO;
 import dao.VolumeDAO;
+import model.Article;
 import model.Category;
 import model.Volume;
 
@@ -27,13 +29,19 @@ public class HomeController extends HttpServlet {
 		VolumeDAO dao= new VolumeDAO();
 		ArrayList<Volume> list;
 		
+		ArticleDAO articleDAO=new ArticleDAO();
+		ArrayList<Article> topview;
+		
 		CategoryDAO cdao=new CategoryDAO();
 		ArrayList<Category> listCategory;
 		
 		try {
 			list = dao.loadVolume();
+			topview = articleDAO.findArticlesTopView();
 			listCategory=cdao.getListCategory();
+			
 			httpSession.setAttribute("list", list);
+			httpSession.setAttribute("topviews", topview);
 			httpSession.setAttribute("listCategory", listCategory);
 		} catch (SQLException e) {
 			

@@ -41,6 +41,9 @@ public class ArticleController extends HttpServlet {
 			adao.updateViews(article);
 			httpSession.setAttribute("article", article);
 			
+			ArrayList<Article> articles=adao.findArticlesByVolume(article.getVolumeId());
+			req.setAttribute("articles", articles);
+			
 			ArrayList<Comment> list=new ArrayList<>();
 			list=commentDAO.loadComment(id);
 			if(list.isEmpty()){

@@ -20,11 +20,14 @@ public class RoleDAO {
 		if(rs.next()){
 			role.setId(rs.getInt("id"));
 			role.setName(rs.getString("name"));
+			rs.close();
 			ps.close();
+			connection.close();
 			return role;
 		}
+		rs.close();
 		ps.close();
-		
+		connection.close();
 		return null;
 	}
 }

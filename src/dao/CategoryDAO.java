@@ -33,7 +33,9 @@ public class CategoryDAO {
 			connection.close();
 			return category;
 		}
-		
+		rs.close();
+		ps.close();
+		connection.close();
 		return null;
 	}
 	

@@ -35,7 +35,9 @@ public class UserDAO {
 			user.setRoleId(rs.getInt("roleId"));
 			return user;
 		}
-		
+		rs.close();
+		ps.close();
+		connection.close();
 		return null;
 	}
 	
@@ -59,7 +61,7 @@ public class UserDAO {
 	        return false;
 	}
 	
-	public Boolean checkEmail(String email) {
+	public Boolean checkEmail(String email) throws SQLException {
 		
 		Connection connection=DBConnect.getConnection();
 		String sql="Select * from user where email = '"+email+"'";
@@ -68,18 +70,22 @@ public class UserDAO {
 			ps=connection.prepareCall(sql);
 			ResultSet rs= ps.executeQuery();
 			if(rs.next()){
+				rs.close();
+				ps.close();
 				connection.close();
 				return true;
 			}
-			ps.close();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+	
+		connection.close();
 		return false;
 	}
 
-	public User login(String email, String password) {
+	public User login(String email, String password) throws SQLException {
 		
 		Connection conn=DBConnect.getConnection();
 		String sql="select * from user where email= '" +email+ "' and password= '" +password+ "'";
@@ -101,7 +107,7 @@ public class UserDAO {
 				user.setRoleId(rs.getInt("roleId"));
 				rs.close();
 				ps.close();
-				
+				conn.close();
 				return user;
 			}
 		
@@ -110,10 +116,11 @@ public class UserDAO {
 			e.printStackTrace();
 		}	
 		
+		conn.close();
 		return null;
 	}
 
-	public boolean updateUser(User user) {
+	public boolean updateUser(User user) throws SQLException {
 		Connection connection = DBConnect.getConnection();
         String sql = "UPDATE user SET name = ?,phone = ?,sex= ?,birthday= ?,identitycard=?,avatar=?  WHERE id = ?";
         try {
@@ -125,9 +132,14 @@ public class UserDAO {
             ps.setString(5, user.getIdentitycard());
             ps.setString(6,user.getAvatar());
             ps.setInt(7, user.getId());
-            return ps.executeUpdate() == 1;
+            ps.executeUpdate();
+            
+            ps.close();
+            connection.close();
+            return  true;
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            connection.close();
         }
         return false;
 		

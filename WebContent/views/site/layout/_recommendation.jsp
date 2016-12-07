@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <div class="recommendation">
 	<div class="container">
 		<div class="row">
@@ -8,106 +8,24 @@
 				News <strong><a href="">Electronic</a></strong>
 			</h2>
 			<div class="article-list">
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-					<article class="article-item" data-toggle="tooltip"
-						title='"Khi cái chết ập đến" - Chủ đề thi ảnh của National Geographic'>
-						
-						<div class="article-info">
-							<p class="article-title">
-								<a href="">"Khi cái chết ập đến" - Chủ đề thi ảnh của
-									National Geographic</a>
-							</p>
-							<p>Chỉ một câu Em đi về phía. Tôi Một làn mây thật trong lành. Một ngọn gió đung đưa cười vui. Tôi mơ màng chút thôi</p>
-							<p class="article-meta">
-								Bởi <a href="">Duong Anh Vu</a> Vào <a href="">17/09/2016</a>
-							</p>
-						</div>
-					</article>
-				</div>
-				
-				
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-					<article class="article-item" data-toggle="tooltip"
-						title='"Khi cái chết ập đến" - Chủ đề thi ảnh của National Geographic'>
-						
-						<div class="article-info">
-							<p class="article-title">
-								<a href="">"Khi cái chết ập đến" - Chủ đề thi ảnh của
-									National Geographic</a>
-							</p>
-							<p>Chỉ một câu Em đi về phía. Tôi Một làn mây thật trong lành. Một ngọn gió đung đưa cười vui. Tôi mơ màng chút thôi</p>
-							<p class="article-meta">
-								Bởi <a href="">Duong Anh Vu</a> Vào <a href="">17/09/2016</a>
-							</p>
-						</div>
-					</article>
-				</div>
-				
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-					<article class="article-item" data-toggle="tooltip"
-						title='"Khi cái chết ập đến" - Chủ đề thi ảnh của National Geographic'>
-						
-						<div class="article-info">
-							<p class="article-title">
-								<a href="">"Khi cái chết ập đến" - Chủ đề thi ảnh của
-									National Geographic</a>
-							</p>
-							<p>Chỉ một câu Em đi về phía. Tôi Một làn mây thật trong lành. Một ngọn gió đung đưa cười vui. Tôi mơ màng chút thôi</p>
-							<p class="article-meta">
-								Bởi <a href="">Duong Anh Vu</a> Vào <a href="">17/09/2016</a>
-							</p>
-						</div>
-					</article>
-				</div>
 
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-					<article class="article-item" data-toggle="tooltip"
-						title='"Khi cái chết ập đến" - Chủ đề thi ảnh của National Geographic'>
-						
-						<div class="article-info">
-							<p class="article-title">
-								<a href="">"Khi cái chết ập đến" - Chủ đề thi ảnh của
-									National Geographic</a>
-							</p>
-							<p>Chỉ một câu Em đi về phía. Tôi Một làn mây thật trong lành. Một ngọn gió đung đưa cười vui. Tôi mơ màng chút thôi</p>
-							<p class="article-meta">
-								Bởi <a href="">Duong Anh Vu</a> Vào <a href="">17/09/2016</a>
-							</p>
-						</div>
-					</article>
-				</div>
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-					<article class="article-item" data-toggle="tooltip"
-						title='"Khi cái chết ập đến" - Chủ đề thi ảnh của National Geographic'>
-						
-						<div class="article-info">
-							<p class="article-title">
-								<a href="">"Khi cái chết ập đến" - Chủ đề thi ảnh của
-									National Geographic</a>
-							</p>
-							<p>Chỉ một câu Em đi về phía. Tôi Một làn mây thật trong lành. Một ngọn gió đung đưa cười vui. Tôi mơ màng chút thôi</p>
-							<p class="article-meta">
-								Bởi <a href="">Duong Anh Vu</a> Vào <a href="">17/09/2016</a>
-							</p>
-						</div>
-					</article>
-				</div>
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-					<article class="article-item" data-toggle="tooltip"
-						title='"Khi cái chết ập đến" - Chủ đề thi ảnh của National Geographic'>
-						
-						<div class="article-info">
-							<p class="article-title">
-								<a href="">"Khi cái chết ập đến" - Chủ đề thi ảnh của
-									National Geographic</a>
-							</p>
-							<p>Chỉ một câu Em đi về phía. Tôi Một làn mây thật trong lành. Một ngọn gió đung đưa cười vui. Tôi mơ màng chút thôi</p>
-							<p class="article-meta">
-								Bởi <a href="">Duong Anh Vu</a> Vào <a href="">17/09/2016</a>
-							</p>
-						</div>
-					</article>
-				</div>
+				<c:forEach var="as" items="${articles}" end="6">
+					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+						<article class="article-item" data-toggle="tooltip"
+							title='${as.title }'>
+
+							<div class="article-info">
+								<p class="article-title">
+									<a href="">${as.title}</a>
+								</p>
+								<p>${as.description}</p>
+								<p class="article-meta">
+									Bởi <a href="">${as.authorId.name }</a> Vào <a href=""><fmt:formatDate pattern="dd/MM/yyyy" value="${article.date}" /></a>
+								</p>
+							</div>
+						</article>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>

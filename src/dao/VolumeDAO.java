@@ -38,7 +38,7 @@ public class VolumeDAO {
 		return list;
 	}
 	
-	public Boolean hasVolume(String text)
+	public Boolean hasVolume(String text) throws SQLException
 	{
 		Connection connection=DBConnect.getConnection();
 		String sql = "SELECT volume.id FROM volume WHERE volume.title = ?";
@@ -46,15 +46,22 @@ public class VolumeDAO {
 			PreparedStatement ps = connection.prepareCall(sql);
 			ps.setString(1, text);
 			ResultSet rs = ps.executeQuery();
-			if(rs.next())
+			if(rs.next()){
+				rs.close();
+				ps.close();
+				connection.close();
 				return true;
+			}
+				
+				
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		connection.close();
 		return false;
 	}
-	public Boolean insertVolume(String text,String des,Date date)
+	public Boolean insertVolume(String text,String des,Date date) throws SQLException
 	{
 		Connection connection=DBConnect.getConnection();
 		String sql = "INSERT INTO volume(title,date,description) values(?,?,?)";
@@ -64,11 +71,15 @@ public class VolumeDAO {
 			ps.setDate(2, (java.sql.Date) date);
 			ps.setString(3, des);
 			ps.executeUpdate();
-				return true;
+
+			ps.close();
+			connection.close();
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		connection.close();
 		return false;
 	}
 	public Integer getMaxVolume() throws SQLException
@@ -86,7 +97,12 @@ public class VolumeDAO {
 			return id;
 		}
 		else
+		{
+			ps.close();
+			rs.close();
+			connection.close();
 			return -1;
+		}
 	}
 	
 }

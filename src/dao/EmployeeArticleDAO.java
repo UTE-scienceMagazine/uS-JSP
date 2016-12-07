@@ -14,7 +14,7 @@ import connect.DBConnect;
 
 public class EmployeeArticleDAO {
 
-	public boolean insertEA(Integer articleId, Integer employeeId,Integer status) {
+	public boolean insertEA(Integer articleId, Integer employeeId,Integer status) throws SQLException {
 		Connection connection=DBConnect.getConnection();
 		String sql= "INSERT INTO employee_article (employeeId,articleId,status,date) VALUES(?,?,?,?)";
 		 try {
@@ -29,10 +29,15 @@ public class EmployeeArticleDAO {
 	            ps.setTimestamp(4, new Timestamp(parsedDate.getTime()));
 	            
 	            ps.executeUpdate();
+	            
+	            ps.close();
+	            connection.close();
+	            
 	            return true;
 	        } catch (SQLException ex) {
 	            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
 	        }
+		 connection.close();
 	        return false;
 	}
 
