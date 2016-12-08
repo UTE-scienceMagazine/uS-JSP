@@ -140,7 +140,7 @@
 					$('#isresult').removeClass('fail');
 					$('#isresult').addClass('scs');
 					$('#isresult').text('Thêm volume thành công');
-					var html = '<tr class="clk"><td class="org">'+data.id+'</td><td>'+data.text+'</td><td>'+data.date+'</td></tr>';
+					var html = '<tr class="clk odd"><td class="org">'+data.id+'</td><td>'+data.text+'</td><td>'+data.date+'</td></tr>';
 					var x = $('#list-volume tbody:last');
 					
 					$('#list-volume > tbody:last-child').append(html);

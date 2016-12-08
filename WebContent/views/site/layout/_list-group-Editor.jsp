@@ -3,9 +3,9 @@
 <div class="list-group">
 							<p class="list-group-item active">Dành cho biên tập
 								viên</p>
-							<a href="#" class="list-group-item"><span
+							<a href="profile.html" class="list-group-item"><span
 								class="glyphicon glyphicon-comment" aria-hidden="true"
-								style="float: left padding-right:10px;"></span> Bài viết mới</a> 
+								style="float: left padding-right:10px;"></span> Danh sách bài viết</a> 
 								<a	href="#" class="list-group-item"><span class="glyphicon glyphicon-bookmark" aria-hidden="true" style="float: left padding-right:10px;"></span> Thông báo</a> 
 								<a href="add-info.html" class="list-group-item">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"

@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-<form action="post.html" method="POST" role="form" enctype="multipart/form-data">
-	<legend>Bài viết mới</legend>
+<form action="checkArticle.html" method="POST" role="form" enctype="multipart/form-data">
+	<legend>Bài viết</legend>
 	<div class="form-group">
 		<label for="">Tiêu đề</label> <input name="id" value="${article.id}"
 			type="hidden">
@@ -41,6 +41,7 @@
 		<label for="">Trạng thái</label> 
 		<select name="statusId" readonly="readonly" >			
 			<option value="3" >Waiting for Verifica</option>
+			<option value="4">Edittable</option>
 		</select>
 		<br/>
 		<label>Loại tin</label> 
@@ -55,7 +56,11 @@
 		<label for="">Số trang</label> 
 		<input name="num" type="text" class="form-control" id="" placeholder="Thứ tự"
 			value="${article.num}">
-		
+
+		<input name="editoremail" value = "${sessionScope.user.email}" hidden="hidden">
+		<label for="">Gửi thông báo đến tổng biên tập:</label>
+		 <input name="message" type="text" class="form-control" id="" placeholder="Nội dung"
+			value="">
 	</div>
 	<button name="post" type="submit" class="btn btn-primary">Submit</button>
 </form>

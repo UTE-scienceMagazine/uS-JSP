@@ -24,6 +24,7 @@ import javax.servlet.http.Part;
 
 import dao.ArticleDAO;
 import dao.EmployeeDAO;
+import dao.MessageDAO;
 import dao.UserDAO;
 import model.Article;
 import model.Employee;
@@ -108,7 +109,11 @@ public class ProfileController extends HttpServlet {
 					req.setAttribute("listArticleAT", listArticleAT);
 					req.setAttribute("listArticleAI", listArticleAI);
 					req.setAttribute("listArticleET", listArticleET);
-
+					MessageDAO mdao = new MessageDAO();
+					if(mdao.hasMs())
+					{
+						req.setAttribute("hasMs", "1");
+					}
 
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block

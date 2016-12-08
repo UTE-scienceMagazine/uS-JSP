@@ -15,21 +15,28 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import dao.ArticleDAO;
 import dao.EmployeeArticleDAO;
 import dao.HashtagDAO;
+import dao.MessageDAO;
 import dao.StatusDAO;
 import model.Article;
 import model.Employee;
 import model.HashTag;
+import model.Message;
 import model.Status;
 
 
 @WebServlet("/checkArticle.html")
 @MultipartConfig
 public class EditorPostController extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Article article;
 	Integer id;
 	@Override
@@ -52,7 +59,7 @@ public class EditorPostController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 try {
-			
+			id = Integer.parseInt(req.getParameter("id"));
 			article.setId(id);
 			article.setTitle(req.getParameter("title"));
 			article.setDescription(req.getParameter("description"));
@@ -99,6 +106,18 @@ try {
 			Employee employee=(Employee)req.getSession().getAttribute("user");
 			EmployeeArticleDAO eadao=new EmployeeArticleDAO();
 			eadao.insertEA(article.getId(),employee.getId(),4);
+			
+			
+			String editorEmail = req.getParameter("editoremail");
+			Message ms = new Message();
+			
+			ms.setArticleId(id);
+			ms.setEditorEmail(editorEmail);
+			ms.setText(req.getParameter("message"));
+			
+			
+			MessageDAO mdao = new MessageDAO();
+			mdao.insertMs(ms);
 			
 		} catch (NumberFormatException e) {
 			

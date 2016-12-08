@@ -34,7 +34,7 @@ public class ChangeStatusController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		VolumeDAO vdao = new VolumeDAO();
 		try {
-			ArrayList<Volume> list = vdao.loadVolume();
+			ArrayList<Volume> list = vdao.loadListVolume();
 			if(!list.isEmpty())
 			{
 				req.setAttribute("list", list);

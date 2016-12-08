@@ -9,7 +9,7 @@
 			<div class="col-lg-10 col-md-10 col-sm-10">
 				<!-- Edit post area -->
 				<div class="row">
-					<jsp:include page="layout/_post-editor.jsp"></jsp:include>
+					<jsp:include page="layout/_list-message.jsp"></jsp:include>
 				</div>
 			</div>
 			<!-- /Edit post area -->
