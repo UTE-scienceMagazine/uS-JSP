@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Enumeration;
 
@@ -60,7 +61,12 @@ public class SigninController extends HttpServlet {
 			if(roleId==1){
 				User user = new User();
 				UserDAO dao = new UserDAO();
-				user=dao.login(req.getParameter("email"),MD5.encryption(req.getParameter("password")));
+				try {
+					user=dao.login(req.getParameter("email"),MD5.encryption(req.getParameter("password")));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				if(user !=null){
 					session.setAttribute("user", user);
 					String remember = req.getParameter("remember");
@@ -94,7 +100,12 @@ public class SigninController extends HttpServlet {
 			}else {
 				Employee employee=new Employee();
 				EmployeeDAO dao=new EmployeeDAO();
-				employee=dao.login(req.getParameter("email"),MD5.encryption(req.getParameter("password")),roleId);
+				try {
+					employee=dao.login(req.getParameter("email"),MD5.encryption(req.getParameter("password")),roleId);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			
 				if(employee !=null){
 					session.setAttribute("user", employee);
@@ -147,18 +158,23 @@ public class SigninController extends HttpServlet {
 
 				
 			
-				if (!dao.checkEmail(email)) {
-					user.setEmail(email);
-					user.setPassword(MD5.encryption(password));
-					user.setRoleId(1);
-					dao.insertUser(user);
+				try {
+					if (!dao.checkEmail(email)) {
+						user.setEmail(email);
+						user.setPassword(MD5.encryption(password));
+						user.setRoleId(1);
+						dao.insertUser(user);
 
-					session.setAttribute("user", user);
-					url = "/views/site/index.jsp";
-				}
-				else{
-					
-					url = "/views/site/login.jsp";
+						session.setAttribute("user", user);
+						url = "/views/site/index.jsp";
+					}
+					else{
+						
+						url = "/views/site/login.jsp";
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			} else {
 				req.setAttribute("message", "Please check confirm password again");

@@ -73,9 +73,14 @@ public class ChangeStatusController extends HttpServlet {
 				
 				ArticleDAO adao = new ArticleDAO();
 				
-				if(adao.setVolume(articleId, volumeId))
-				{
-					json = "{\"result\": \"success\"}";
+				try {
+					if(adao.setVolume(articleId, volumeId))
+					{
+						json = "{\"result\": \"success\"}";
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 				break;
 			}	
@@ -98,28 +103,33 @@ public class ChangeStatusController extends HttpServlet {
 					{
 						
 						VolumeDAO vdao = new VolumeDAO();
-						if(vdao.hasVolume(text))
-						{
-							json = "{\"result\": \"fail\",\"type\": \"hasVolume\"}";
-						}
-						else
-						{
-							java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-							if(vdao.insertVolume(text, des, sqlDate))
+						try {
+							if(vdao.hasVolume(text))
 							{
-								try {
-									Integer id = vdao.getMaxVolume();
-									json = "{\"result\": \"success\",\"id\": \""+id+"\",\"text\": \""+text+"\",\"date\": \""+date+"\"}";
-								} catch (SQLException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-								
+								json = "{\"result\": \"fail\",\"type\": \"hasVolume\"}";
 							}
 							else
 							{
-								json = "{\"result\": \"fail\",\"type\": \"exeption\"}";
+								java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+								if(vdao.insertVolume(text, des, sqlDate))
+								{
+									try {
+										Integer id = vdao.getMaxVolume();
+										json = "{\"result\": \"success\",\"id\": \""+id+"\",\"text\": \""+text+"\",\"date\": \""+date+"\"}";
+									} catch (SQLException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									
+								}
+								else
+								{
+									json = "{\"result\": \"fail\",\"type\": \"exeption\"}";
+								}
 							}
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
 						
 					}
@@ -135,13 +145,18 @@ public class ChangeStatusController extends HttpServlet {
 				Integer role = Integer.parseInt(req.getParameter("role"));
 				
 				ArticleDAO adao = new ArticleDAO();
-				if(adao.updateSTT(id, role))
-				{
-					json = "{\"result\": \"success\"}";
-				}
-				else
-				{
-					json = "{\"result\": \"fail\"}";
+				try {
+					if(adao.updateSTT(id, role))
+					{
+						json = "{\"result\": \"success\"}";
+					}
+					else
+					{
+						json = "{\"result\": \"fail\"}";
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 			default:

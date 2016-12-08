@@ -40,9 +40,13 @@ public class EmployeeDAO {
 			
 			rs.close();
 			ps.close();
+			connection.close();
 			return employee;
 		}
 		
+		rs.close();
+		ps.close();
+		connection.close();
 		return null;
 	}
 	
@@ -70,12 +74,14 @@ public class EmployeeDAO {
 			employee.setJoinday(rs.getTimestamp("joindate"));
 			list.add(employee);
 		}
+		
 		rs.close();
 		ps.close();
+		connection.close();
 		return list;
 	}
 	
-	public  Boolean insertEmployee(Employee employee) {
+	public  Boolean insertEmployee(Employee employee) throws SQLException {
 		
 		Connection connection=DBConnect.getConnection();
 		String sql= "INSERT INTO employee (email,password,roleId,joindate,available) VALUES(?,?,?,?,?)";
@@ -95,10 +101,11 @@ public class EmployeeDAO {
 	        } catch (SQLException ex) {
 	            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
 	        }
+		 connection.close();
 	        return false;
 	}
 	
-	public Boolean checkEmail(String email) {
+	public Boolean checkEmail(String email) throws SQLException {
 		
 		Connection connection=DBConnect.getConnection();
 		String sql="Select * from user where email = '"+email+"'";
@@ -115,11 +122,11 @@ public class EmployeeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		connection.close();
 		return false;
 	}
 
-	public Employee login(String email, String password,Integer roleId) {
+	public Employee login(String email, String password,Integer roleId) throws SQLException {
 		
 		Connection conn=DBConnect.getConnection();
 		String sql="select * from employee where email= '" +email+ "' and password= '" +password+ "' and roleId= '"+roleId+"'";
@@ -134,6 +141,8 @@ public class EmployeeDAO {
 				employee.setPassword(password);
 				Role role=rdao.findRoleById(rs.getInt("roleId"));
 				employee.setRoleId(role);
+				rs.close();
+				ps.close();
 				conn.close();
 				return employee;
 			}
@@ -141,10 +150,11 @@ public class EmployeeDAO {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		conn.close();
 		return null;
 	}
 
-	public boolean updateEmployee(Employee employee) {
+	public boolean updateEmployee(Employee employee) throws SQLException {
 		// TODO Auto-generated method stub
 		Connection connection = DBConnect.getConnection();
         String sql = "UPDATE employee SET email = ?,password = ?,name= ?,roleId= ? WHERE id = ?";
@@ -155,10 +165,15 @@ public class EmployeeDAO {
             ps.setString(3, employee.getName());
             ps.setInt(4, employee.getRoleId().getId());
             ps.setInt(5, employee.getId());
-            return ps.executeUpdate() == 1;
+            ps.executeUpdate();
+            
+            ps.close();
+            connection.close();
+            return  true;
         } catch (SQLException ex) {
             Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        connection.close();
         return false;
 	}
 
@@ -175,7 +190,7 @@ public class EmployeeDAO {
 		  return false;
 	}
 
-	public boolean updateUser(Employee employee) {
+	public boolean updateUser(Employee employee) throws SQLException {
 		Connection connection = DBConnect.getConnection();
         String sql = "UPDATE employee SET name = ?,phone = ?,sex= ?,birthday= ?,identitycard=?, avatar=?  WHERE id = ?";
         try {
@@ -187,10 +202,14 @@ public class EmployeeDAO {
             ps.setString(5, employee.getIdentitycard());
             ps.setString(6,employee.getAvatar());
             ps.setInt(7, employee.getId());
-            return ps.executeUpdate() == 1;
+            ps.executeUpdate();
+            ps.close();
+            connection.close();
+            return  true;
         } catch (SQLException ex) {
             Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        connection.close();
         return false;
 	}
 	public ArrayList<Employee> getEmployeeByRole(Integer roleId) throws SQLException {
@@ -217,7 +236,9 @@ public class EmployeeDAO {
 			employee.setJoinday(rs.getTimestamp("joindate"));
 			list.add(employee);
 		}
-		
+		rs.close();
+		ps.close();
+		connection.close();
 		return list;
 	}
 

@@ -23,6 +23,7 @@ public class StatusDAO {
 			status.setId(rs.getInt("id"));
 			status.setName(rs.getString("name"));
 			
+			rs.close();
 			ps.close();
 			connection.close();
 			return status;
@@ -48,7 +49,9 @@ public ArrayList<Status> findStatus() throws SQLException {
 			status.setName(rs.getString("name"));
 			list.add(status);
 		}
+		rs.close();
 		ps.close();
+		connection.close();
 		return list;
 	}
 }

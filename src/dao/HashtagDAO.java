@@ -18,6 +18,7 @@ public class HashtagDAO {
 		ps.setInt(1, hashTag.getArticleId());
 		ps.setString(2, hashTag.getTag());
 		ps.executeUpdate();
+		ps.close();
 		connection.close();
 	}
 }

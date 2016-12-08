@@ -29,6 +29,9 @@ public class ArticleDAO implements Serializable {
 			connection.close();
 			return maxId;
 		}
+		rs.close();
+		ps.close();
+		connection.close();
 		return null;
 		
 	}
@@ -50,8 +53,9 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			ps.setInt(2, articleId);
 			ps.setInt(3, status);
 			ps.executeUpdate();
-			ps.close();
 			
+			
+			ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("SQL error");
@@ -147,6 +151,42 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 		connection.close();
 		return list;
 	}
+	
+	public ArrayList<Article> findArticlesTopView() throws SQLException{
+		Connection connection=DBConnect.getConnection();
+		ArrayList<Article> list=new ArrayList<>();
+		
+		String sql="SELECT * from article ORDER by article.views DESC LIMIT 6";
+		
+		PreparedStatement ps=connection.prepareStatement(sql);
+		ResultSet rs=ps.executeQuery();
+		
+		while(rs.next()){
+			Article article=new Article();
+			article.setId(rs.getInt("id"));
+			article.setTitle(rs.getString("title"));
+			article.setDate(rs.getTimestamp("date"));
+			article.setVolumeId(rs.getInt("volumeId"));
+			StatusDAO sdao = new StatusDAO();
+			Status status = sdao.findStatusId(rs.getInt("statusId"));
+			article.setStatusId(status);
+			article.setPdf(rs.getString("pdf"));
+			article.setNum(rs.getInt("num"));
+			article.setDescription(rs.getString("description"));
+			article.setVote(rs.getInt("vote"));
+			article.setViews(rs.getInt("views"));
+			
+			EmployeeDAO edao = new EmployeeDAO();
+			Employee employee = edao.findEmployeeById(rs.getInt("authorId"));
+			article.setAuthorId(employee);
+			list.add(article);
+		}
+		rs.close();
+		ps.close();
+		connection.close();
+		return list;
+	}
+	
 	public ArrayList<Article> findArticlesByCategory(Integer id) throws SQLException {
 		Connection connection = DBConnect.getConnection();
 		ArrayList<Article> list = new ArrayList<>();
@@ -179,7 +219,7 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 		connection.close();
 		return list;
 	}
-	public boolean updateViews(Article article) {
+	public boolean updateViews(Article article) throws SQLException {
 		Connection connection = DBConnect.getConnection();
 		String sql = "UPDATE article SET views=?  WHERE id = ?";
 		try {
@@ -193,6 +233,7 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			return true;
 		} catch (SQLException ex) {
 			Logger.getLogger(ArticleDAO.class.getName()).log(Level.SEVERE, null, ex);
+			connection.close();
 		}
 		return false;
 
@@ -249,9 +290,11 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			ps.setInt(3, article.getStatusId().getId());
 			ps.setString(4, article.getPdf());
 			ps.setInt(5, article.getId());
+			ps.executeUpdate();
+			ps.close();
 			
-		
-			return ps.executeUpdate() == 1;
+			connection.close();
+			return  true;
 		} catch (SQLException ex) {
 			Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -424,7 +467,9 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			article.setViews(rs.getInt("views"));
 			list.add(article);
 		}
+		rs.close();
 		ps.close();
+		connection.close();
 		return list;
 	}
 	public ArrayList<Article>getListArticleAT() throws SQLException {
@@ -452,7 +497,9 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			article.setViews(rs.getInt("views"));
 			list.add(article);
 		}
+		rs.close();
 		ps.close();
+		connection.close();
 		return list;
 	}
 	public ArrayList<Article>getListArticleAI() throws SQLException {
@@ -480,7 +527,9 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			article.setViews(rs.getInt("views"));
 			list.add(article);
 		}
+		rs.close();
 		ps.close();
+		connection.close();
 		return list;
 	}
 	public ArrayList<Article>getListArticleET() throws SQLException {
@@ -508,11 +557,13 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			article.setViews(rs.getInt("views"));
 			list.add(article);
 		}
+		rs.close();
 		ps.close();
+		connection.close();
 		return list;
 	}
 	
-	public Boolean setVolume(Integer articleId,Integer volumeId)
+	public Boolean setVolume(Integer articleId,Integer volumeId) throws SQLException
 	{
 		Connection connection=DBConnect.getConnection();
 		String sql="UPDATE article SET volumeId = ?, statusId = 1 WHERE id = ?";
@@ -522,16 +573,21 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			ps.setInt(1, volumeId);
 			ps.setInt(2, articleId);
 			ps.executeUpdate();
+			
+			ps.close();
+			connection.close();
+			
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		connection.close();
 		return false;
 		
 	}
 	
-	public Boolean updateSTT(Integer id, Integer role)
+	public Boolean updateSTT(Integer id, Integer role) throws SQLException
 	{
 		Connection connection=DBConnect.getConnection();
 		String sql = "UPDATE article SET statusId=? Where id=?"; 
@@ -541,11 +597,15 @@ public static void newSendPost(Integer employeeId, Integer articleId,Integer sta
 			ps.setInt(1, role);
 			ps.setInt(2, id);
 			ps.executeUpdate();
+			
+			ps.close();
+			connection.close();
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+		connection.close();
 		return false;
 	}
 	
