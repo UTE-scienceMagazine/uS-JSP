@@ -45,7 +45,7 @@ public class CheckLogin implements Filter {
 		}
 		
 		String url= req.getRequestURI();
-		if(url.endsWith("/UteScience/")||url.endsWith(".css")||url.endsWith(".js")
+		if(url.endsWith("/")||url.endsWith(".css")||url.endsWith(".js")
 				||url.endsWith(".png")||url.endsWith(".jpg")
 				||url.endsWith(".ttf")
 				||url.endsWith(".pdf")

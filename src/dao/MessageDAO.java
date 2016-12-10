@@ -31,6 +31,8 @@ public class MessageDAO {
 				
 				list.add(ms);				
 			}
+			ps.close();
+			connection.close();
 			return list;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -51,6 +53,8 @@ public class MessageDAO {
 			ps.setInt(4, 1);
 			
 			ps.executeUpdate();
+			ps.close();
+			connection.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,7 +70,13 @@ public class MessageDAO {
 			ps = connection.prepareCall(sql);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next())
+			{
+				ps.close();
+				rs.close();
+				connection.close();
 				return true;
+			}
+				
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -82,6 +92,8 @@ public class MessageDAO {
 			PreparedStatement ps = connection.prepareCall(sql);
 			ps.setInt(1, id);
 			ps.executeUpdate();
+			ps.close();
+			connection.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

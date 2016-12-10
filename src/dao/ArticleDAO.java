@@ -15,6 +15,7 @@ import model.Category;
 import model.Employee;
 import model.Status;
 
+@SuppressWarnings("serial")
 public class ArticleDAO implements Serializable {
 	
 	public Integer maxArticle() throws SQLException {
