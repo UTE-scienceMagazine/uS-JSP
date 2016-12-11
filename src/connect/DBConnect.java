@@ -11,8 +11,9 @@ public class DBConnect {
 		Connection conn=null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn=DriverManager.getConnection("jdbc:mysql://mysql39927-uscience.jelastic.skali.net:3306/"+dbname+"?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8", dbuser, dbpass);
 			//conn=DriverManager.getConnection("jdbc:mysql://localhost/utescience","root","");
+			conn=DriverManager.getConnection("jdbc:mysql://mysql39927-uscience.jelastic.skali.net:3306/"+dbname+"?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8", dbuser, dbpass);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

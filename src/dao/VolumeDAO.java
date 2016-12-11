@@ -128,5 +128,19 @@ public class VolumeDAO {
 			return -1;
 		}
 	}
+	public void updateTitle(Integer id , String text)
+	{
+		Connection connection=DBConnect.getConnection();
+		String sql="UPDATE volume SET title=? WHERE id=?";
+		try {
+			PreparedStatement ps = connection.prepareCall(sql);
+			ps.setInt(2, id);
+			ps.setString(1, text);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 }
